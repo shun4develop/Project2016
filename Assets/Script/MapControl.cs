@@ -8,8 +8,6 @@ using MyLibrary;
 
 public class MapControl : MonoBehaviour {
 	
-	//public Texture2D newMarkerTexture;
-	//public float maxRotateX;
 	private OnlineMapsLocationService locationService;
 	private OnlineMapsTileSetControl control;
 	private OnlineMaps map;
@@ -41,9 +39,9 @@ public class MapControl : MonoBehaviour {
 	}
 
 	void Update(){
-		/*if (map.zoom >= 16) {
-			control.allowZoom = true;
-		}*/
+//		if (map.zoom >= 16) {
+//			control.allowZoom = true;
+//		}
 	}
 
 	//locationが変化した時行う処理
@@ -69,18 +67,6 @@ public class MapControl : MonoBehaviour {
 
 		WebManager.instance.downloadContents(positive_func, negative_func,position.y.ToString("F6"), position.x.ToString("F6"));
 	}
-
-	//マーカークリックした時の処理
-//	private void OnMarkerClick(OnlineMapsMarkerBase marker)
-//	{
-//		foreach(OnlineMapsMarker str in list){
-//			if (marker.GetHashCode () == str.GetHashCode ()) {
-//				Debug.Log ("hit");
-//			}
-//		}
-//		//map.SetPosition (35.675280,138.509463);
-//		Debug.Log(marker.position);
-//	}
 
 	//GPSの緯度情報を返す
 	public double getPositonX(){
