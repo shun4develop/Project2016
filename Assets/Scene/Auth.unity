@@ -141,9 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ab85c96bcbd4a9c88c006f9bab6541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userName: {fileID: 1237940274}
-  log: {fileID: 1919902883}
-  plane: {fileID: 154075150}
 --- !u!114 &15476711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,7 +1169,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 296352243}
         m_MethodName: login
         m_Mode: 1
         m_Arguments:
@@ -1281,7 +1278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4c0279acf69462e8797a52fd9abb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SNSNumber: 0
 --- !u!114 &422442600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2012,8 +2008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a90e8c177da4b4ee59822a468c37b6da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  socialLoginPage: {fileID: 0}
-  logText: {fileID: 559222857}
 --- !u!1 &710292873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2186,7 +2180,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 818063987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847f3db5924ba49c1b151e9eb492262a, type: 3}
+  m_Script: {fileID: 11500000, guid: 91463561b81794647ae9ea84fe78966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &818063989
@@ -3114,8 +3108,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1172083924}
   m_TextComponent: {fileID: 83279551}
   m_Placeholder: {fileID: 1120199836}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -4364,9 +4358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ab85c96bcbd4a9c88c006f9bab6541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userName: {fileID: 1392385650}
-  log: {fileID: 258827650}
-  plane: {fileID: 1015236997}
 --- !u!1 &1657046535
 GameObject:
   m_ObjectHideFlags: 0
@@ -4988,7 +4979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4c0279acf69462e8797a52fd9abb58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SNSNumber: 1
 --- !u!114 &1945700775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5208,10 +5198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd6f9559d47284add80c31f813108d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  user_name: {fileID: 15476711}
-  password: {fileID: 0}
-  log: {fileID: 1919902883}
-  slpc: {fileID: 0}
 --- !u!1 &2109371025
 GameObject:
   m_ObjectHideFlags: 0
