@@ -13,7 +13,6 @@ public class CameraViewerController: MonoBehaviour {
 	
 	public GameObject pre;
 
-
 	void Start () {
 
 //		WebManager wm = GetComponent<WebManager>();
