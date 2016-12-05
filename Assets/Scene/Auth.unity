@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692492, g: 0.4967869, b: 0.57508546, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -913,8 +913,8 @@ GameObject:
   - 224: {fileID: 278837056}
   - 222: {fileID: 278837059}
   - 114: {fileID: 278837058}
-  - 114: {fileID: 278837061}
-  - 225: {fileID: 278837060}
+  - 225: {fileID: 278837061}
+  - 114: {fileID: 278837060}
   - 114: {fileID: 278837057}
   m_Layer: 5
   m_Name: SocialLoginPage
@@ -955,14 +955,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 278837055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd58e568cd2a4298b0f8e4d0fb31857, type: 3}
+  m_Script: {fileID: 11500000, guid: 90047cae2bca24c83a4da53cdadfc214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SLIDE_SPEED: 0.3
-  FEAD_SPEED: 0.3
-  SLIDE_EASE_TYPE: 16
-  FEAD_EASE_TYPE: 21
-  startWithActive: 0
+  img: {fileID: 46393446}
+  user_name: {fileID: 0}
+  log: {fileID: 0}
 --- !u!114 &278837058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,7 +994,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 278837055}
---- !u!225 &278837060
+--- !u!114 &278837060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 278837055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7142ccff1d83b4f8689140dfd5eadf91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SLIDE_SPEED: 0.3
+  FEAD_SPEED: 0.3
+  SLIDE_EASE_TYPE: 16
+  FEAD_EASE_TYPE: 21
+  startWithActive: 0
+--- !u!225 &278837061
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1007,20 +1021,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &278837061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 278837055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e6709d7fcd44d4f9cf8aa3e4d60541, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  img: {fileID: 46393446}
-  user_name: {fileID: 1237940274}
-  log: {fileID: 0}
 --- !u!1 &283552504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 296352243}
+      - m_Target: {fileID: 0}
         m_MethodName: login
         m_Mode: 1
         m_Arguments:
@@ -1226,11 +1226,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 296352238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8acb708e762424a52a27a00e4c318858, type: 3}
+  m_Script: {fileID: 11500000, guid: 91be2e603d51144b9bfafe4c805821ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  user_name: {fileID: 710292876}
-  password: {fileID: 83279551}
+  userName: {fileID: 1339286638}
+  password: {fileID: 1172083926}
   log: {fileID: 559222857}
 --- !u!1 &422442597
 GameObject:
@@ -1517,8 +1517,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SlideIn
+      - m_Target: {fileID: 1611821105}
+        m_MethodName: slideIn
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1617,7 +1617,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 655bdd7dc89a145a1a9384714ce23032, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa0f6476a7ab543128ba98834dda2eef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1708,7 +1708,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1417049779}
+      - m_Target: {fileID: 468834174}
         m_MethodName: login
         m_Mode: 5
         m_Arguments:
@@ -1740,7 +1740,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f14e06185813247f6a462d118ec845a6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0768962f729747e9abf018f23edd111, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1762,7 +1762,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 468834169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 041cbbbd14889492cbce0a94759c68cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 084fa4806e6c744bd8d43f546747d663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &476707851
@@ -3969,7 +3969,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 69df8c7304d9e4be68caaea55cbe1d2e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eef6d34f5142343efae04e479f83ded9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3991,7 +3991,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1417049774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 041cbbbd14889492cbce0a94759c68cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 084fa4806e6c744bd8d43f546747d663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1590243358
@@ -4048,14 +4048,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1590243358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd58e568cd2a4298b0f8e4d0fb31857, type: 3}
+  m_Script: {fileID: 11500000, guid: 7142ccff1d83b4f8689140dfd5eadf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SLIDE_SPEED: 0.3
   FEAD_SPEED: 0.3
   SLIDE_EASE_TYPE: 16
   FEAD_EASE_TYPE: 21
-  startWithActive: 1
+  startWithActive: 0
 --- !u!114 &1590243361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4154,7 +4154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1611821103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd58e568cd2a4298b0f8e4d0fb31857, type: 3}
+  m_Script: {fileID: 11500000, guid: 7142ccff1d83b4f8689140dfd5eadf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SLIDE_SPEED: 0.3
@@ -4518,8 +4518,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1662882378}
-        m_MethodName: register
+      - m_Target: {fileID: 1662882373}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4572,7 +4572,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1662882373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd6f9559d47284add80c31f813108d71, type: 3}
+  m_Script: {fileID: 11500000, guid: a4ebb8e04a5a34f2c9dffd65c018686b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   user_name: {fileID: 1638520122}
