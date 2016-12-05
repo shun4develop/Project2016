@@ -21,6 +21,10 @@ public class SocialLoginPageController : MonoBehaviour {
 			UserOfFacebook f_user = (UserOfFacebook)user;
 			iv.show ("http://graph.facebook.com/" + f_user.id + "/picture");
 		}
+		user_name.text = user.name;
+	}
+	public void setToken(string token){
+		this.token = token;
 	}
 	public UserOfSNS getSNSUser(){
 		return this.user;
