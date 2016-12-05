@@ -12,7 +12,7 @@ using MyLibrary;
 public class CameraViewerController: MonoBehaviour {
 	
 	public GameObject pre;
-
+	private int test;
 
 	void Start () {
 
