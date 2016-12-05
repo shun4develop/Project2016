@@ -57,6 +57,7 @@ public class ReceiverScript : MonoBehaviour {
 		} else {
 			socialLoginPage.SendMessage ("slideIn", "RIGHT");
 			socialLoginPage.SendMessage ("setUser", dic ["user_info"]);
+			socialLoginPage.SendMessage ("setToken", token);
 		}
 	}
 }
