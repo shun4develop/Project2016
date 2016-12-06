@@ -30,8 +30,7 @@ public class OnlineMapsMarker : OnlineMapsMarkerBase
     /// <summary>
     /// Relative area of ​​activity of the marker.
     /// </summary>
-    public Rect markerColliderRect = new Rect(-0.5f, -0.5f, 1, 1);
-
+	public Rect markerColliderRect = new Rect(-0.5f, -0.5f, 1, 1);
     /// <summary>
     /// Texture marker. \n
     /// Texture format: ARGB32.\n

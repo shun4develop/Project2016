@@ -217,7 +217,7 @@ public class OnlineMapsMarkerBase
 
     private void OnMarkerPress(OnlineMapsMarkerBase onlineMapsMarkerBase)
     {
-        OnlineMapsControlBase.instance.dragMarker = this;
+        //OnlineMapsControlBase.instance.dragMarker = this;
     }
 
     public virtual OnlineMapsXML Save(OnlineMapsXML parent)

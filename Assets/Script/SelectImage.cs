@@ -7,20 +7,22 @@ namespace MapScene{
 	public class SelectImage : MonoBehaviour {
 
 		public GameObject webManager;
+		public Text t;
+		public GameObject detailPanel;
+		public GameObject mapobj;
+
+		private MapControl mapcontrol;
 		private string path;
 		private string base64data;
 		private Sprite sp;
 		private AndroidJavaClass unityPlayer;
 		private AndroidJavaObject activity;
-		private GameObject mapobj;
-		public Text t;
-		public GameObject detailPanel;
 
 		private void Start(){
 
 			unityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
 			activity = unityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
-			mapobj = GameObject.Find( "Map" );
+			mapcontrol = mapobj.GetComponent<MapControl> ();
 
 		}
 
@@ -65,6 +67,8 @@ namespace MapScene{
 			//animationを用いて詳細画面を表示する
 			AnimationUI ui = detailPanel.GetComponent<AnimationUI> ();
 			ui.fadeIn ();
+
+			mapcontrol.positionMoveMap ();
 		}
 	}
 
