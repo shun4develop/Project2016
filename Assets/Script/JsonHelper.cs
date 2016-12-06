@@ -17,10 +17,12 @@ namespace MyLibrary{
 		}
 		public static UserOfTwitter TwitterUserFromJson(string json){
 			UserOfTwitter user = JsonUtility.FromJson<UserOfTwitter> (json);
+			user.socialType = "twitter";
 			return user;
 		}
 		public static UserOfFacebook FacebookUserFromJson(string json){
 			UserOfFacebook user = JsonUtility.FromJson<UserOfFacebook> (json);
+			user.socialType = "facebook";
 			return user;
 		}
 		public static string DictionaryToJson(Dictionary<string,string> data){
