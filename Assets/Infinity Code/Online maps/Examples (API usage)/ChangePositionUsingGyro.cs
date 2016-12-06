@@ -19,16 +19,16 @@ namespace InfinityCode.OnlineMapsExamples
         private bool allowDrag;
         private OnlineMaps map;
 
-        private void OnGUI()
-        {
-            GUIStyle style = new GUIStyle(GUI.skin.button);
-
-            // If the button is pressed, allow movement of map.
-            allowDrag = GUI.RepeatButton(new Rect(5, 5, 100, 100), "Drag", style);
-
-            // Log gyroscope rotationRate.
-            GUI.Label(new Rect(5, Screen.height - 50, Screen.width - 10, 50), Input.gyro.rotationRate.ToString("F4"));
-        }
+//        private void OnGUI()
+//        {
+//            GUIStyle style = new GUIStyle(GUI.skin.button);
+//
+//            // If the button is pressed, allow movement of map.
+//            allowDrag = GUI.RepeatButton(new Rect(5, 5, 100, 100), "Drag", style);
+//
+//            // Log gyroscope rotationRate.
+//            GUI.Label(new Rect(5, Screen.height - 50, Screen.width - 10, 50), Input.gyro.rotationRate.ToString("F4"));
+//        }
 
         private void Start()
         {
