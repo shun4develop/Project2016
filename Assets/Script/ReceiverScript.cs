@@ -41,29 +41,6 @@ public class ReceiverScript : MonoBehaviour {
 
 	}
 	private void socialLogin(Dictionary<string,object> dic){
-		string user_json = (string)dic ["user_info"];
-		UserOfSNS user = null;
-		if ((string)dic ["sns_type"] == "twitter") {
-			user = MyLibrary.JsonHelper.TwitterUserFromJson (user_json);
-		}else if((string)dic["sns_type"] == "facebook"){
-			user = MyLibrary.JsonHelper.FacebookUserFromJson (user_json);
-		}
-
-		if (user == null)
-			return;
-
-		string token = (string)dic ["token"];
-
-		if ((bool)dic ["user_find"]) {
-			SaveDataManager.saveToken (token);
-			SaveDataManager.saveUserName (user.name);
-
-			UnityEngine.SceneManagement.SceneManager.LoadScene ("_main");
-			return;
-		} else {
-			socialLoginPage.SendMessage ("slideIn", "RIGHT");
-			socialLoginPage.SendMessage ("setUser", dic ["user_info"]);
-			socialLoginPage.SendMessage ("setToken", token);
-		}
+		socialLoginPage.SendMessage ("login",dic);
 	}
 }

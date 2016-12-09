@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using MyManagers;
+using System.Collections.Generic;
 public class SocialLoginPageController : MonoBehaviour {
 	public Image img;
 	public Text user_name;
@@ -31,5 +33,35 @@ public class SocialLoginPageController : MonoBehaviour {
 	}
 	public string getToken(){
 		return token;
+	}
+	public void showRegistrationPage(){
+		gameObject.SendMessage ("slideIn", "RIGHT");
+	}
+	public void login(Dictionary<string,object> dic){
+		string user_json = (string)dic ["user_info"];
+		UserOfSNS user = null;
+		if ((string)dic ["sns_type"] == "twitter") {
+			user = MyLibrary.JsonHelper.TwitterUserFromJson (user_json);
+		}else if((string)dic["sns_type"] == "facebook"){
+			user = MyLibrary.JsonHelper.FacebookUserFromJson (user_json);
+		}
+
+		if (user == null)
+			return;
+
+		string token = (string)dic ["token"];
+
+		setUser (user);
+		setToken (token);
+
+		if ((bool)dic ["user_find"]) {
+			SaveDataManager.saveToken (token);
+			SaveDataManager.saveUserName (user.name);
+
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
+			return;
+		} else {
+			showRegistrationPage ();
+		}
 	}
 }
