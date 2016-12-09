@@ -41,6 +41,6 @@ public class ReceiverScript : MonoBehaviour {
 
 	}
 	private void socialLogin(Dictionary<string,object> dic){
-		
+		socialLoginPage.SendMessage ("login",dic);
 	}
 }
