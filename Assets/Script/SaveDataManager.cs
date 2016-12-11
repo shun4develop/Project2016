@@ -28,6 +28,8 @@ namespace MyManagers{
 			PlayerPrefs.SetString (tokenDataKey,Crypt.Encrypt(token.Replace("\n","")));
 			PlayerPrefs.Save ();
 		}
-
+		public static void deleteData(){
+			PlayerPrefs.DeleteAll ();
+		}
 	}
 }
