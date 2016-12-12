@@ -15,5 +15,6 @@ public class UserOfFacebook : UserOfSNS {
 		+ "last_name -> " + last_name + "\n"
 		+ "email -> " + email +"\n";
 	}
+	//アイコン画像の取得
 	//https://graph.facebook.com/[id]/picture
 }

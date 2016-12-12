@@ -5,7 +5,7 @@ namespace MyManagers{
 	public class SaveDataManager{
 		static string userNameDataKey = "Ptnyrw_PLKpzDJgGYtsLjyZkEDzJfhwe";
 		static string tokenDataKey = "dRbVArxhQNnGBdrajMKVMpPLYLnusPtW";
-		static string userIconDataKey = "fkm3De26GDccdqMBvdltoyEfF45";
+		//static string userIconDataKey = "fkm3De26GDccdqMBvdltoyEfF45";
 		public static string loadUserName(){
 			try{
 				return Crypt.Decrypt(PlayerPrefs.GetString (userNameDataKey)).Replace("\0","");
@@ -28,5 +28,6 @@ namespace MyManagers{
 			PlayerPrefs.SetString (tokenDataKey,Crypt.Encrypt(token.Replace("\n","")));
 			PlayerPrefs.Save ();
 		}
+
 	}
 }
