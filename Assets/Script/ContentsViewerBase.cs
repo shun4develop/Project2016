@@ -17,8 +17,6 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 	}
 
 	public abstract void show ();
-	public abstract void show(string filepath);
-	public abstract void show (int id);
 
 	public abstract void setTexture (Texture2D tex);
 
@@ -44,7 +42,7 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 		}
 	}
 
-	public void flagChange(){
+	public void clear(){
 		this.gameObject.GetComponent<Image> ().sprite  = null;
 		showCompleted = false;
 	}

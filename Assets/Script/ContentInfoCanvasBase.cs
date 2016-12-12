@@ -5,14 +5,12 @@ using MyClass;
 public abstract class ContentInfoCanvasBase : MonoBehaviour {
 	public Item item{ set; get;}
 	public GameObject image;
-//	public GameObject btn;
 	private ContentsViewerBase iv;
 
 	public virtual void init(Item item){
 		this.iv = image.GetComponent<ContentsOfImage> ();
 		this.iv.Item = item;
 		this.item = item;
-//		btn.GetComponent<ConfirmationButton> ().enter (item);
 	}
 	public virtual void init(int id){
 		this.iv = image.GetComponent<ContentsOfImage> ();
@@ -23,7 +21,7 @@ public abstract class ContentInfoCanvasBase : MonoBehaviour {
 		if (this.item == null) {
 			return;
 		}
-		iv.show (this.item.getFilepath());
+		iv.show ();
 	}
 //	public void fadeIn(){
 //		gameObject.SendMessage ("FadeIn");
