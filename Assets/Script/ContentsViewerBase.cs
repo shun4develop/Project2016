@@ -46,5 +46,6 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 
 	public void flagChange(){
 		this.gameObject.GetComponent<Image> ().sprite  = null;
+		showCompleted = false;
 	}
 }
