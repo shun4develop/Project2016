@@ -89,6 +89,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
+
   bundleIdentifier: jp.suntech.project2016
   bundleVersion: 1.0
   preloadedAssets: []
@@ -155,6 +156,11 @@ PlayerSettings:
   iOSLaunchScreeniPadSize: 100
   iOSLaunchScreeniPadCustomXibPath: 
   iOSDeviceRequirements: []
+
+  iOSURLSchemes:
+
+  - Project2016
+
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -425,7 +431,9 @@ PlayerSettings:
   boolPropertyNames:
   - XboxOne::enus
   XboxOne::enus: 1
+
   stringPropertyNames: []
+
   cloudProjectId: 
   projectName: 
   organizationId: 

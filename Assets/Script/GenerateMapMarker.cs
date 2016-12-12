@@ -19,6 +19,7 @@ public class GenerateMapMarker{
 			markerlist.Add(OnlineMaps.instance.AddMarker(item.getLongitudeParseDouble() ,item.getLatitudeParseDouble(), null, ""));
 			markerlist [i].label = item.getTitle() + "\n" + item.getDesc();
 			titlelist.Add(item.getTitle ());
+			markerlist [i].Dispose();
 		}
 	}
 
