@@ -20,7 +20,6 @@ public class CameraViewerController: MonoBehaviour {
 		{
 			if (child.GetComponent<AnimationUI> ()) {
 				child.GetComponent<AnimationUI> ().slideOut ("TOP");
-				Debug.Log (child.name);
 			}
 		}
 

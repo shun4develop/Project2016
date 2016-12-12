@@ -83,4 +83,10 @@ public class ItemData : MonoBehaviour {
 	
 		
 	}
+
+	public void deleteContentById(int id){
+		contents.Remove (id);
+		thumbnail.Remove (id);
+		contentsSprite.Remove (id);
+	}
 }

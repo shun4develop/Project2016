@@ -62,4 +62,10 @@ public class ContentsOfImage : ContentsViewerBase {
 		//
 		showCompleted = true;
 	}
+
+	public void clearIame(){
+		this.gameObject.GetComponent<Image> ().sprite  = null;
+		fullImage.GetComponent<Image> ().sprite = null;
+		showCompleted = false;
+	}
 }

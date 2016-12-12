@@ -52,7 +52,6 @@ public class ViewerController : MonoBehaviour {
 			//プレハブを複製
 			//GameObject tmp = new GameObject();
 			GameObject tmp = Instantiate(pre);
-
 			tmp.transform.SetParent (contents.transform);
 
 			ContentsViewerBase cv = tmp.GetComponent<ContentsViewerBase> ();
@@ -64,7 +63,10 @@ public class ViewerController : MonoBehaviour {
 	}
 
 	public void contentsUpdate(){
-		gameObject.transform.DetachChildren();
+		foreach (Transform child in contents.transform)
+		{
+			Destroy (child.gameObject);
+		}
 		downloadContents ();
 	}
 }
