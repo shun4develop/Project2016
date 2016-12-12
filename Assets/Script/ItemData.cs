@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System;
 using MyClass;
 
-public class ItemData : MonoBehaviour {
+public class ItemData {
 
 	//シングルトン
 
@@ -16,17 +16,22 @@ public class ItemData : MonoBehaviour {
 	private Dictionary<int,Sprite> contentsSprite;
 	private Dictionary<int,Texture2D> thumbnail;
 
-	void Awake(){
+	private ItemData(){
 		thumbnail = new Dictionary<int, Texture2D> ();
 		contents = new Dictionary<int,Texture2D> ();
 		contentsSprite = new Dictionary<int, Sprite> ();
 
+		locationItems = new List<Item> ();
+		bagItems = new List<Item> ();
+
 	}
+
+
 
 	public static ItemData instance {
 		get{
 			if (_instance == null) {
-				_instance = GameObject.FindObjectOfType<ItemData> ();
+				_instance = new ItemData();
 			}
 			return _instance;
 		}

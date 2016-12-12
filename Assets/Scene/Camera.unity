@@ -1614,7 +1614,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1452802906}
-  - 114: {fileID: 1452802909}
   - 114: {fileID: 1452802907}
   - 114: {fileID: 1452802908}
   m_Layer: 9
@@ -1661,19 +1660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91463561b81794647ae9ea84fe78966c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1452802909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1452802905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4dfb913b62054825b36efb06e66f2fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  locationItems: []
-  bagItems: []
 --- !u!1 &1501583716
 GameObject:
   m_ObjectHideFlags: 0

@@ -841,7 +841,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 357564190}
   - 114: {fileID: 357564189}
-  - 114: {fileID: 357564188}
   - 114: {fileID: 357564191}
   m_Layer: 0
   m_Name: System
@@ -850,19 +849,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &357564188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 357564187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4dfb913b62054825b36efb06e66f2fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  bagItems: []
 --- !u!114 &357564189
 MonoBehaviour:
   m_ObjectHideFlags: 0
