@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
-  productGUID: f6d83dc25521e416b8d5179694afa6ff
+  productGUID: 7a05c8ebebde44e8291802d2dcb70d50
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
@@ -26,11 +26,7 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   m_MobileMTRendering: 0
-<<<<<<< HEAD
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
-=======
-  m_Stereoscopic3D: 0
->>>>>>> origin/master
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosAppInBackgroundBehavior: 0
@@ -98,18 +94,13 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Company.ProductName
+  bundleIdentifier: jp.suntech.project2016
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   xboxOneDisableKinectGpuReservation: 0
-<<<<<<< HEAD
   singlePassStereoRendering: 0
   protectGraphicsMemory: 0
-=======
-  virtualRealitySupported: 0
-  productGUID: e7741ba93cfd04ce8ae942ada5768f24
->>>>>>> origin/master
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -129,13 +120,9 @@ PlayerSettings:
     serializedVersion: 2
     m_Bits: 238
   iPhoneSdkVersion: 988
-<<<<<<< HEAD
   iPhoneTargetOSVersion: 24
   tvOSSdkVersion: 0
   tvOSTargetOSVersion: 900
-=======
-  iPhoneTargetOSVersion: 22
->>>>>>> origin/master
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -174,10 +161,7 @@ PlayerSettings:
   iOSLaunchScreeniPadSize: 100
   iOSLaunchScreeniPadCustomXibPath: 
   iOSDeviceRequirements: []
-<<<<<<< HEAD
   iOSURLSchemes: []
-=======
->>>>>>> origin/master
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -286,12 +270,8 @@ PlayerSettings:
   ps4ApplicationParam4: 0
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
-<<<<<<< HEAD
-  ps4Passcode: kHFswuzleht6xGbotuQQgmO6GkdAqwed
+  ps4Passcode: nZITSBQOgwxhHxrhytFUloiivhOmebpb
   ps4UseDebugIl2cppLibs: 0
-=======
-  ps4Passcode: Okq49TiNXwEkRtFwXosRt1ppttVm7hh1
->>>>>>> origin/master
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -331,11 +311,7 @@ PlayerSettings:
   psp2LiveAreaTrialPath: 
   psp2PatchChangeInfoPath: 
   psp2PatchOriginalPackage: 
-<<<<<<< HEAD
-  psp2PackagePassword: XNRRadbLMZROaAfZDAWhxgqRqcM1fdhR
-=======
-  psp2PackagePassword: yBOrKj4wdwQfPWJYBjHJC4tiABnProph
->>>>>>> origin/master
+  psp2PackagePassword: lnTipx7wXZAqJZR5Y4M9k8AIyGE9CpuX
   psp2KeystoneFile: 
   psp2MemoryExpansionMode: 0
   psp2DRMType: 0
@@ -386,9 +362,9 @@ PlayerSettings:
   metroDefaultTileSize: 1
   metroTileForegroundText: 1
   metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628, a: 0}
-  metroSplashScreenBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628,
+  metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
     a: 1}
-  metroSplashScreenUseBackgroundColor: 1
+  metroSplashScreenUseBackgroundColor: 0
   platformCapabilities: {}
   metroFTAName: 
   metroFTAFileTypes: []
@@ -439,13 +415,16 @@ PlayerSettings:
   - Android::ScriptingBackend
   - Standalone::ScriptingBackend
   - WebPlayer::ScriptingBackend
+  - iOS::Architecture
+  - iOS::ScriptingBackend
   Android::ScriptingBackend: 0
   Standalone::ScriptingBackend: 0
   WebPlayer::ScriptingBackend: 0
+  iOS::Architecture: 2
+  iOS::ScriptingBackend: 1
   boolPropertyNames:
   - XboxOne::enus
   XboxOne::enus: 1
-<<<<<<< HEAD
   stringPropertyNames:
   - Analytics_ServiceEnabled::Analytics_ServiceEnabled
   - Build_ServiceEnabled::Build_ServiceEnabled
@@ -466,9 +445,6 @@ PlayerSettings:
   UNet_ServiceEnabled::UNet_ServiceEnabled: False
   Unity_Ads_ServiceEnabled::Unity_Ads_ServiceEnabled: False
   vectorPropertyNames: []
-=======
-  stringPropertyNames: []
->>>>>>> origin/master
   cloudProjectId: 
   projectName: 
   organizationId: 
