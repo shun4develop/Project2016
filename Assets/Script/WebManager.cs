@@ -4,6 +4,7 @@ using System;
 using MyManagers;
 using UnityEngine.UI;
 using MyClass;
+
 public class WebManager : MonoBehaviour {
 	private static string DOMAIN = "http://160.16.216.204/~hosoya/puts/";
 	//コンテンツデータのリストをもらう
@@ -28,6 +29,7 @@ public class WebManager : MonoBehaviour {
 	//コンテンツのアップロード
 	private string CONTENTS_UPLOAD = DOMAIN+"contents_upload.php";
 
+	private AnimationWebView webViewObject;
 	//シングルトン
 	private static WebManager _instance;
 	public static WebManager instance {
@@ -63,14 +65,12 @@ public class WebManager : MonoBehaviour {
 			return;
 		}
 
-		WebViewObject webViewObject;
-
-		webViewObject = (new GameObject ("WebViewObject")).AddComponent<WebViewObject> ();
+		webViewObject = (new GameObject ("WebViewObject")).AddComponent<AnimationWebView> ();
 		webViewObject.Init ();
 		webViewObject.LoadURL (url);
-		webViewObject.SetVisibility (true);
-
+		webViewObject.slideIn ();
 	}
+
 	public void getSNSIcon(Action<Texture2D> success_func,Action failure_func,string url){
 		WWW www = new WWW (url);
 		throwQueryToServer (www,success_func,failure_func);

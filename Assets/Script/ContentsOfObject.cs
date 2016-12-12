@@ -1,36 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class ContentsOfObject : ContentsViewerBase  {
 
-//	protected GameObject canvas;
-	//DetailInfoCanvasCreator cdc;
-
 	CanvasCreatorBase cc;
-//	bool touch = false;
+	GameObject contents;
 
 	void Start(){
 		//cdc = GetComponent<DetailInfoCanvasCreator> ();
 		cc = GetComponent<CanvasCreatorBase>();
-
+		contents = GameObject.Find ("Contents");
 	}
 	public override void show ()
 	{
-		Debug.Log ("実装してください");
-	}
-	public override void show(string filepath){
-		StartCoroutine (getImage (filepath));
-	}
+		Texture2D downloadedTex = ItemData.instance.getThumbnailTexture2DById (Item.getId());
+		if (downloadedTex != null) {
+			setTexture (downloadedTex);
+		} else {
+			Action<Texture2D> success_func = (Texture2D tex) => {
+				setTexture (tex);
+				ItemData.instance.addThumbnail(Item.getId(),tex);
+				showCompleted = true;
+			};
+			Action failure_func = () => {
+				Debug.Log ("ContentsOfThumbnail : failure_func");
+			};
+			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getItemById (Item.getId()).getThumbnail ());
+		}
 
-	public override void show(int id){
-		StartCoroutine (getImage (ItemData.instance.getItemById(id).getFilepath()));
 	}
-
-//	public override void show(Item item){
-//		StartCoroutine (getImage (item.getThumbnail()));
-//	}
-
 
 	//オブジェクトに貼り付ける
 	public override void setTexture(Texture2D tex){
@@ -40,11 +40,9 @@ public class ContentsOfObject : ContentsViewerBase  {
 
 	public void OnMouseDown() {
 		cc.create (Item);
+		contents.SetActive (false);
 		Debug.Log ("OnMouseDown" + Item);
 	}
-
-
-
 
 }
 

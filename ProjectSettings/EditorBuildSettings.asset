@@ -15,5 +15,5 @@ EditorBuildSettings:
     path: Assets/Scene/Camera.unity
   - enabled: 0
     path: Assets/Scene/Main.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scene/Map.unity

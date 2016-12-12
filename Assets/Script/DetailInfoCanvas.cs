@@ -22,9 +22,6 @@ public class DetailInfoCanvas : ContentInfoCanvasBase{
 	public Text comment;
 
 	GameObject child;
-//	public GameObject canvas;
-
-	//public GameObject fullImage;
 
 	public override void init(Item item){
 		base.init (item);
@@ -32,16 +29,16 @@ public class DetailInfoCanvas : ContentInfoCanvasBase{
 		this.title.text = item.getTitle ();
 		this.comment.text = item.getDesc ();
 
-		if (item.getPermitSave () == true) {
-			child = transform.FindChild ("SaveButton").gameObject;
-		} else {
-			child = transform.FindChild ("DeleteButton").gameObject;
-		}
+//		if (item.getPermitSave () == true) {
+//			child = transform.FindChild ("SaveButton").gameObject;
+//		} else {
+//			child = transform.FindChild ("DeleteButton").gameObject;
+//		}
+//
+//
 
-
-
-		child.SetActive (true);
-		addListener (child);
+		//child.SetActive (true);
+		//addListener (child);
 
 		base.show ();
 		//base.fadeIn ();
@@ -56,49 +53,20 @@ public class DetailInfoCanvas : ContentInfoCanvasBase{
 //		base.fadeIn ();
 	}
 
-	public void addListener(GameObject obj){
-		obj.GetComponent<Button>().onClick.AddListener (() => {
-			enter();
-			Debug.Log(this.item);;
-		});
-	}
-
-
-	public void enter(){
-		if (this.item.getPermitSave () == false) {
-			contentDelete (this.item.getId (), this.item.getTitle());
-		} else {
-			Debug.Log ("true / " + this.item.getId());
-			contentSave (this.item.getId(), this.item.getTitle());
-		}
-	}
-
-
-
-	void contentDelete(int id, string title){
-		Action<string> positive_func = (string text) => {
-			this.item.setPermitSave(true);
-			Debug.Log("削除完了");
-		};
-
-		Action negative_func = () => {
-			//エラー表示
-			Debug.Log("エラー");
-		};
-		WebManager.instance.contentsDump (positive_func, negative_func, id, title);
-	}
-
-	void contentSave(int id, string title){
-		Action<string> positive_func = (string text) => {
-			this.item.setPermitSave(false);
-			Debug.Log("保存完了");
-		};
-
-		Action negative_func = () => {
-			//エラー表示
-			Debug.Log("エラー / " + id + " / " + title);
-		};
-		WebManager.instance.contentsTaken (positive_func, negative_func, id, title);
-	}
-
+//	public void addListener(GameObject obj){
+//		obj.GetComponent<Button>().onClick.AddListener (() => {
+//			enter();
+//			Debug.Log(this.item);;
+//		});
+//	}
+//
+//
+//	public void enter(){
+//		if (this.item.getPermitSave () == false) {
+//			contentDelete (this.item.getId (), this.item.getTitle());
+//		} else {
+//			Debug.Log ("true / " + this.item.getId());
+//			contentSave (this.item.getId(), this.item.getTitle());
+//		}
+//	}
 }
