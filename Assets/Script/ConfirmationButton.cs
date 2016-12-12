@@ -8,7 +8,7 @@ using MyLibrary;
 
 public class ConfirmationButton : MonoBehaviour {
 
-	public GameObject detail;		//これの中の item を使う
+	public GameObject detail;
 
 	public void contentDelete(){
 		Item item = detail.GetComponent<DetailInfoCanvas>().item;
