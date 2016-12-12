@@ -9,5 +9,6 @@ public class DetailInfoCanvasCreator : CanvasCreatorBase {
 		canvas = GameObject.Find("DetailPanel");
 		canvas.GetComponent<DetailInfoCanvas> ().init (item);
 		canvas.GetComponent<AnimationUI> ().slideIn ("TOP");
+		Debug.Log (item);
 	}
 }

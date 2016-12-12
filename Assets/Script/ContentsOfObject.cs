@@ -6,12 +6,11 @@ using System;
 public class ContentsOfObject : ContentsViewerBase  {
 
 	CanvasCreatorBase cc;
-	GameObject contents;
 
 	void Start(){
 		//cdc = GetComponent<DetailInfoCanvasCreator> ();
 		cc = GetComponent<CanvasCreatorBase>();
-		contents = GameObject.Find ("Contents");
+
 	}
 	public override void show ()
 	{
@@ -27,7 +26,7 @@ public class ContentsOfObject : ContentsViewerBase  {
 			Action failure_func = () => {
 				Debug.Log ("ContentsOfThumbnail : failure_func");
 			};
-			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getItemById (Item.getId()).getThumbnail ());
+			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId()).getThumbnail ());
 		}
 
 	}

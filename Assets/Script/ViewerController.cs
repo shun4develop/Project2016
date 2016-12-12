@@ -29,8 +29,8 @@ public class ViewerController : MonoBehaviour {
 
 	public void downloadContents(){
 		Action<string> positive_func = (string text) => {
-			ItemData.instance.SetItems(JsonHelper.ListFromJson<Item> (text));
-			contentsInit(ItemData.instance.items);
+			ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
+			contentsInit(ItemData.instance.bagItems);
 		};
 
 		Action negative_func = () => {
@@ -47,7 +47,7 @@ public class ViewerController : MonoBehaviour {
 		//items.Countの数だけ繰り返す
 
 		for (int i=0;i<items.Count;i++){
-			Item item = ItemData.instance.items[i];
+			Item item = ItemData.instance.bagItems[i];
 //			Debug.Log (item);
 			//プレハブを複製
 			//GameObject tmp = new GameObject();

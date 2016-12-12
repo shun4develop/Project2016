@@ -96,7 +96,6 @@ GameObject:
   - 222: {fileID: 230527687}
   - 114: {fileID: 230527686}
   - 114: {fileID: 230527685}
-  - 114: {fileID: 230527684}
   m_Layer: 5
   m_Name: SaveButton
   m_TagString: Untagged
@@ -122,18 +121,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &230527684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 230527682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09e28784f0a74d1d915232b0f3d9202, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detail: {fileID: 282163111}
 --- !u!114 &230527685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +182,7 @@ MonoBehaviour:
           m_StringArgument: TOP
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 230527684}
+      - m_Target: {fileID: 2068705238}
         m_MethodName: contentSave
         m_Mode: 1
         m_Arguments:
@@ -315,6 +302,7 @@ MonoBehaviour:
   title: {fileID: 1262570708}
   date: {fileID: 1600535463}
   comment: {fileID: 1524782754}
+  btn: {fileID: 2068705236}
 --- !u!225 &282163115
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -516,6 +504,28 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Album
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1434984735}
+        m_MethodName: gyroOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1929678914}
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1662,7 +1672,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4dfb913b62054825b36efb06e66f2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
+  locationItems: []
+  bagItems: []
 --- !u!1 &1501583716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2815,6 +2826,7 @@ GameObject:
   - 222: {fileID: 2068705241}
   - 114: {fileID: 2068705240}
   - 114: {fileID: 2068705239}
+  - 114: {fileID: 2068705238}
   m_Layer: 5
   m_Name: ConfirmationButton
   m_TagString: Untagged
@@ -2841,6 +2853,18 @@ RectTransform:
   m_AnchoredPosition: {x: 79.602, y: 14.925376}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2068705238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068705236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09e28784f0a74d1d915232b0f3d9202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detail: {fileID: 282163111}
 --- !u!114 &2068705239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2864,7 +2888,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.3455882, g: 0.3455882, b: 0.3455882, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

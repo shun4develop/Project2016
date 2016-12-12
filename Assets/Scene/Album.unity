@@ -831,6 +831,7 @@ MonoBehaviour:
   title: {fileID: 551380409}
   date: {fileID: 2124177670}
   comment: {fileID: 1400765925}
+  btn: {fileID: 1110580804}
 --- !u!1 &357564187
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+  bagItems: []
 --- !u!114 &357564189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2469,7 +2471,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1427452367}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.69492304
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

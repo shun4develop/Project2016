@@ -17,7 +17,7 @@ public class ConfirmationButton : MonoBehaviour {
 
 		Action<string> positive_func = (string text) => {
 			ItemData.instance.deleteContentById(item.getId());
-			item.setPermitSave(true);
+//			item.setPermitSave(true);
 			vc.contentsUpdate ();
 			Debug.Log("削除完了");
 		};
@@ -32,8 +32,8 @@ public class ConfirmationButton : MonoBehaviour {
 	public void contentSave(){
 		Item item = detail.GetComponent<DetailInfoCanvas>().item;
 		Action<string> positive_func = (string text) => {
-			item.setPermitSave(false);
-
+//			item.setPermitSave(false);
+			ItemData.instance.saveContent(item);
 			Debug.Log("保存完了");
 		};
 

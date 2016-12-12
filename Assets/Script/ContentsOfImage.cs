@@ -6,22 +6,6 @@ public class ContentsOfImage : ContentsViewerBase {
 
 	public Image fullImage;
 
-//	public override void show(){
-//		Texture2D downloadedTex = ItemData.instance.getContentsTexture2DById (Item.getId());
-//		if (downloadedTex != null) {
-//			setTexture (downloadedTex);
-//		} else {
-//			Action<Texture2D> success_func = (Texture2D tex) => {
-//				setTexture (tex);
-//				ItemData.instance.addContents(Item.getId(),tex);
-//				showCompleted = true;
-//			};
-//			Action failure_func = () => {
-//				Debug.Log ("ContentsOfImage : failure_func");
-//			};
-//			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getItemById (Item.getId()).getFilepath ());
-//		}
-//	}
 
 	public override void show(){
 //		Texture2D downloadedTex = ItemData.instance.getContentsTexture2DById (Item.getId());
@@ -38,8 +22,13 @@ public class ContentsOfImage : ContentsViewerBase {
 			Action failure_func = () => {
 				Debug.Log ("ContentsOfImage : failure_func");
 			};
-			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getItemById (Item.getId()).getFilepath ());
+			if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Album") {
+				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId ()).getFilepath ());
+			} else {
+				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getFilepath ());
+			}
 		}
+
 	}
 
 
