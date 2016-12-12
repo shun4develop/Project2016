@@ -66,7 +66,9 @@ public class WebManager : MonoBehaviour {
 		}
 
 		webViewObject = (new GameObject ("WebViewObject")).AddComponent<AnimationWebView> ();
-		webViewObject.Init ();
+		webViewObject.Init ((string msg)=>{
+			
+		});
 		webViewObject.LoadURL (url);
 		webViewObject.slideIn ();
 	}
