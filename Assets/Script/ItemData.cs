@@ -12,11 +12,14 @@ public class ItemData : MonoBehaviour {
 	private static ItemData _instance;
 	public List<Item> items;
 	private Dictionary<int,Texture2D> contents;
+	private Dictionary<int,Sprite> contentsSprite;
 	private Dictionary<int,Texture2D> thumbnail;
 
 	void Awake(){
 		thumbnail = new Dictionary<int, Texture2D> ();
 		contents = new Dictionary<int,Texture2D> ();
+		contentsSprite = new Dictionary<int, Sprite> ();
+
 	}
 
 	public static ItemData instance {
@@ -36,6 +39,9 @@ public class ItemData : MonoBehaviour {
 	}
 	public void addContents(int id,Texture2D tex){
 		contents.Add (id,tex);
+	}
+	public void addSprite(int id,Sprite s){
+		contentsSprite.Add (id,s);
 	}
 	public void SetItems(List<Item> items){
 		this.items = items;
@@ -57,6 +63,16 @@ public class ItemData : MonoBehaviour {
 			return null;
 		}
 	}
+
+	public Sprite getContentsSpriteById(int id){
+		Sprite s;
+		if (contentsSprite.TryGetValue (id, out s)) {
+			return s;
+		} else {
+			return null;
+		}
+	}
+
 	public Texture2D getThumbnailTexture2DById(int id){
 		Texture2D tex;
 		if (thumbnail.TryGetValue (id, out tex)) {
