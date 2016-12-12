@@ -21,7 +21,7 @@ public abstract class ContentInfoCanvasBase : MonoBehaviour {
 		if (this.item == null) {
 			return;
 		}
-		iv.show (this.item.getFilepath());
+		iv.show ();
 	}
 //	public void fadeIn(){
 //		gameObject.SendMessage ("FadeIn");

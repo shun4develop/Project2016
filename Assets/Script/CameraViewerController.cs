@@ -12,8 +12,17 @@ using MyLibrary;
 public class CameraViewerController: MonoBehaviour {
 	
 	public GameObject pre;
+	public GameObject canvas;
+	public GameObject contents;
 
 	void Start () {
+		foreach (Transform child in canvas.transform)
+		{
+			if (child.GetComponent<AnimationUI> ()) {
+				child.GetComponent<AnimationUI> ().slideOut ("TOP");
+				Debug.Log (child.name);
+			}
+		}
 
 //		WebManager wm = GetComponent<WebManager>();
 		// Action<> 戻り値なし
@@ -49,12 +58,13 @@ public class CameraViewerController: MonoBehaviour {
 			//プレハブを複製
 			//GameObject tmp = new GameObject();
 			GameObject tmp = Instantiate(pre);
+			tmp.transform.SetParent (contents.transform);
 
 			ContentsViewerBase cv = tmp.GetComponent<ContentsViewerBase> ();
 
 			cv.init (item);
 
-			cv.show (item.getThumbnail());
+			cv.show ();
 
 		}
 	}
