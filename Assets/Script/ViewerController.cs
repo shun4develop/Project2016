@@ -62,4 +62,9 @@ public class ViewerController : MonoBehaviour {
 
 		}
 	}
+
+	public void contentsUpdate(){
+		gameObject.transform.DetachChildren();
+		downloadContents ();
+	}
 }
