@@ -24,15 +24,9 @@ PlayerSettings:
   m_ActiveColorSpace: 0
   m_MTRendering: 1
   m_MobileMTRendering: 0
-<<<<<<< Updated upstream
-  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
-  iosShowActivityIndicatorOnLoading: 2
-  androidShowActivityIndicatorOnLoading: 1
-=======
   m_Stereoscopic3D: 0
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
->>>>>>> Stashed changes
   iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 1
   iosAllowHTTPDownload: 1
@@ -95,6 +89,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
+
   bundleIdentifier: jp.suntech.project2016
   bundleVersion: 1.0
   preloadedAssets: []
@@ -161,11 +156,8 @@ PlayerSettings:
   iOSLaunchScreeniPadSize: 100
   iOSLaunchScreeniPadCustomXibPath: 
   iOSDeviceRequirements: []
-<<<<<<< Updated upstream
   iOSURLSchemes:
-  - Project2016
-=======
->>>>>>> Stashed changes
+  - Project201
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -493,47 +485,6 @@ PlayerSettings:
   Purchasing_ServiceEnabled::Purchasing_ServiceEnabled: False
   UNet_ServiceEnabled::UNet_ServiceEnabled: False
   Unity_Ads_ServiceEnabled::Unity_Ads_ServiceEnabled: False
-<<<<<<< Updated upstream
-  vectorPropertyNames:
-  - Android::VR::enabledDevices
-  - Metro::VR::enabledDevices
-  - N3DS::VR::enabledDevices
-  - PS3::VR::enabledDevices
-  - PS4::VR::enabledDevices
-  - PSM::VR::enabledDevices
-  - PSP2::VR::enabledDevices
-  - SamsungTV::VR::enabledDevices
-  - Standalone::VR::enabledDevices
-  - Tizen::VR::enabledDevices
-  - WebGL::VR::enabledDevices
-  - WebPlayer::VR::enabledDevices
-  - WiiU::VR::enabledDevices
-  - Xbox360::VR::enabledDevices
-  - XboxOne::VR::enabledDevices
-  - iOS::VR::enabledDevices
-  - tvOS::VR::enabledDevices
-  Android::VR::enabledDevices:
-  - Oculus
-  Metro::VR::enabledDevices: []
-  N3DS::VR::enabledDevices: []
-  PS3::VR::enabledDevices: []
-  PS4::VR::enabledDevices:
-  - PlayStationVR
-  PSM::VR::enabledDevices: []
-  PSP2::VR::enabledDevices: []
-  SamsungTV::VR::enabledDevices: []
-  Standalone::VR::enabledDevices:
-  - Oculus
-  Tizen::VR::enabledDevices: []
-  WebGL::VR::enabledDevices: []
-  WebPlayer::VR::enabledDevices: []
-  WiiU::VR::enabledDevices: []
-  Xbox360::VR::enabledDevices: []
-  XboxOne::VR::enabledDevices: []
-  iOS::VR::enabledDevices: []
-  tvOS::VR::enabledDevices: []
-=======
->>>>>>> Stashed changes
   cloudProjectId: 
   projectName: 
   organizationId: 

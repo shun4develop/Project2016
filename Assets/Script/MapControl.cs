@@ -83,4 +83,17 @@ public class MapControl : MonoBehaviour {
 		// Change the style settings.
 		style.fontSize = 30;
 	}
+
+	public void positionMoveMap(){
+		Vector3 pos = map.transform.position;
+		pos.x += 10000;
+		map.transform.position = pos;
+	}
+
+	public void positionreturnMap(){
+		Vector3 pos = map.transform.position;
+		pos.x -= 10000;
+		map.transform.position = pos;
+		
+	}
 }
