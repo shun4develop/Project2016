@@ -40,8 +40,7 @@ public class ContentsOfObject : ContentsViewerBase  {
 
 	public void OnMouseDown() {
 		cc.create (Item);
-		contents.SetActive (false);
-		Debug.Log ("OnMouseDown" + Item);
+		Debug.Log (Item);
 	}
 
 }

@@ -39,7 +39,7 @@ public class ConfirmationButton : MonoBehaviour {
 
 		Action negative_func = () => {
 			//エラー表示
-			Debug.Log("エラー / " + item.getId() + " / " + item.getTitle());
+			Debug.Log("エラー / " + item);
 		};
 		WebManager.instance.contentsTaken (positive_func, negative_func, item.getId(), item.getTitle());
 	}
