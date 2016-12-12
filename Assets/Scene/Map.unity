@@ -503,7 +503,6 @@ GameObject:
   - 222: {fileID: 236153291}
   - 114: {fileID: 236153290}
   - 114: {fileID: 236153289}
-  - 114: {fileID: 236153288}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -529,17 +528,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 133}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &236153288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 236153286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb13464b48234aadb020383f41a962e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &236153289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,7 +1949,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Toggle
+  m_Text: "\u4FDD\u5B58\u53EF"
 --- !u!222 &1241025655
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2903,7 +2891,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1720235216}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2116057377}
+        m_MethodName: uploadContent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 193630192}
+        m_MethodName: positionreturnMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1720235216
@@ -3083,6 +3093,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2116057373}
         m_MethodName: fadeOut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 193630192}
+        m_MethodName: positionreturnMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

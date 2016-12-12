@@ -37,7 +37,7 @@ namespace MapScene{
 			//imagepath.text = msg;
 			path = msg;
 			//m.mainTexture = ReadTexture(msg,50, 50);
-			ReadTexture(msg,50, 50);
+			ReadTexture(msg,1000, 1000);
 		}
 
 		//base64data texture2D Sprite作成

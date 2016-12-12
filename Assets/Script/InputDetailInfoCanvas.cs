@@ -54,17 +54,17 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public void uploadContent(){
 		content = new RegisterContents (base64data, desc.text, title.text, lat, lon,SaveDataManager.loadUserName() , permitSave, "images");
 
-//		Action<string> positive_func = (string text) => {
-//			desc.text = text;
-//			Destroy(this.gameObject);
-//		};
-//
-//		Action negative_func = () => {
-//			Debug.Log("miss");
-//		};
-//
-//		WebManager.instance.contentsUpload (positive_func, negative_func, content);
-//		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
-//		ui.FadeOut ();
+		Action<string> positive_func = (string text) => {
+			desc.text = text;
+			Destroy(this.gameObject);
+		};
+
+		Action negative_func = () => {
+			Debug.Log("miss");
+		};
+
+		WebManager.instance.contentsUpload (positive_func, negative_func, content);
+		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
+		ui.fadeOut ();
 	}
 }
