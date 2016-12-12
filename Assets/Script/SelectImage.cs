@@ -48,7 +48,7 @@ namespace MapScene{
 			base64data = System.Convert.ToBase64String (byteReadBinary); //base64に変換
 			Texture2D txtNewImage = new Texture2D(intWidth, intHeight);
 			txtNewImage.LoadImage(byteReadBinary);
-			sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),Vector2.zero);
+			sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
 			//		img.sprite = sp;
 
 			double lat=0,lon=0;

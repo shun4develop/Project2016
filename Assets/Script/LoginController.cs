@@ -17,7 +17,7 @@ public class LoginController : MonoBehaviour {
 			Action<string> success_func = (string text) => {
 				SaveDataManager.saveUserName(userName.text);
 				SaveDataManager.saveToken(text);
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("Map");
+				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
 			};
 			Action failure_func = () => {
 				log.text = "ユーザ名かパスワードが正しくありません";
