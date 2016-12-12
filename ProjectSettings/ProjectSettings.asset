@@ -156,8 +156,11 @@ PlayerSettings:
   iOSLaunchScreeniPadSize: 100
   iOSLaunchScreeniPadCustomXibPath: 
   iOSDeviceRequirements: []
+<<<<<<< Updated upstream
   iOSURLSchemes:
   - Project201
+=======
+>>>>>>> Stashed changes
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
