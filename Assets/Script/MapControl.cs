@@ -38,11 +38,14 @@ public class MapControl : MonoBehaviour {
 
 	}
 
-	void Update(){
-//		if (map.zoom >= 16) {
+//	void Update(){
+//		if (map.zoom > 16) {
 //			control.allowZoom = true;
+//		} else {
+//			control.allowZoom = false;
 //		}
-	}
+//		Debug.Log (map.zoom);
+//	}
 
 	//locationが変化した時行う処理
 	private void OnLocationChanged(Vector2 position)
@@ -63,6 +66,7 @@ public class MapControl : MonoBehaviour {
 		//失敗
 		Action negative_func = () => {
 			Debug.Log("miss");
+			t.text = "miss";
 		};
 
 		WebManager.instance.downloadContents(positive_func, negative_func,position.y.ToString("F6"), position.x.ToString("F6"));
