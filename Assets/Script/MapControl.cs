@@ -15,14 +15,14 @@ public class MapControl : MonoBehaviour {
 	public GameObject webManager;
 	private int a;
 
-	private List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
+	//private List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
 
 	private void Start(){
 		map = GetComponent<OnlineMaps>();
 		control = GetComponent<OnlineMapsTileSetControl>();
 
-		// Get instance of LocationService.
-		locationService = GetComponent<OnlineMapsLocationService>();//OnlineMapsLocationService.instance;
+		// Get LocationService
+		locationService = GetComponent<OnlineMapsLocationService>();
 
 		//説明文のスタイル変更
 		OnlineMaps.instance.OnPrepareTooltipStyle += OnPrepareTooltipStyle;
@@ -37,15 +37,6 @@ public class MapControl : MonoBehaviour {
 		}
 
 	}
-
-//	void Update(){
-//		if (map.zoom > 16) {
-//			control.allowZoom = true;
-//		} else {
-//			control.allowZoom = false;
-//		}
-//		Debug.Log (map.zoom);
-//	}
 
 	//locationが変化した時行う処理
 	private void OnLocationChanged(Vector2 position)

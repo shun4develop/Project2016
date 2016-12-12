@@ -12,7 +12,6 @@ namespace MapScene{
 		public GameObject mapobj;
 
 		private MapControl mapcontrol;
-		private string path;
 		private string base64data;
 		private Sprite sp;
 		private AndroidJavaClass unityPlayer;
@@ -34,9 +33,6 @@ namespace MapScene{
 		public void onCallBack (string msg)
 		{
 			Debug.Log ("Call From Native. (" + msg + ")");
-			//imagepath.text = msg;
-			path = msg;
-			//m.mainTexture = ReadTexture(msg,50, 50);
 			ReadTexture(msg,1000, 1000);
 		}
 

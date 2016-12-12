@@ -9,9 +9,8 @@ public class GenerateMapMarker{
 	private static List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
 	private static List<string> titlelist = new List<string>();
 
-	public GenerateMapMarker(){
-		//markerlist = null;
-	}
+//	public GenerateMapMarker(){
+//	}
 
 	public void createMarker(List<Item> items){
 		for(int i = 0; i < items.Count; i++){
