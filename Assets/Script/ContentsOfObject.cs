@@ -6,11 +6,13 @@ using System;
 public class ContentsOfObject : ContentsViewerBase  {
 
 	CanvasCreatorBase cc;
+	CameraViewerController cvc;
+
+	public bool touchFlag = true;
 
 	void Start(){
-		//cdc = GetComponent<DetailInfoCanvasCreator> ();
 		cc = GetComponent<CanvasCreatorBase>();
-
+		cvc = GameObject.Find ("System").GetComponent<CameraViewerController>();
 	}
 	public override void show ()
 	{
@@ -31,15 +33,16 @@ public class ContentsOfObject : ContentsViewerBase  {
 
 	}
 
-	//オブジェクトに貼り付ける
+	//オブジェクトのテクスチャに貼り付ける
 	public override void setTexture(Texture2D tex){
-
 		this.gameObject.GetComponent<MeshRenderer> ().material.mainTexture = tex;
 	}
 
 	public void OnMouseDown() {
-		cc.create (Item);
-		Debug.Log (Item);
+		if(touchFlag){
+			cc.create (Item);
+			cvc.touchFalseFlag ();
+		}
 	}
 
 }

@@ -86,5 +86,19 @@ public class CameraViewerController: MonoBehaviour {
 		Debug.Log ("locationItems / " + ItemData.instance.locationItems.Count);
 	}
 
+	public void touchFalseFlag(){
+		foreach (Transform child in contents.transform)
+		{
+			child.GetComponent<ContentsOfObject> ().touchFlag = false;
+		}
+	}
+
+	public void touchTrueFlag(){
+		foreach (Transform child in contents.transform)
+		{
+			child.GetComponent<ContentsOfObject> ().touchFlag = true;
+		}
+	}
+
 }
 
