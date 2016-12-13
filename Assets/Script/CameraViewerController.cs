@@ -82,6 +82,8 @@ public class CameraViewerController: MonoBehaviour {
 			cv.show ();
 
 		}
+		Debug.Log ("bagItems / " + ItemData.instance.bagItems.Count);
+		Debug.Log ("locationItems / " + ItemData.instance.locationItems.Count);
 	}
 
 }

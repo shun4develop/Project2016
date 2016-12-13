@@ -16,6 +16,9 @@ public class ItemData {
 	private Dictionary<int,Sprite> contentsSprite;
 	private Dictionary<int,Texture2D> thumbnail;
 
+	private double latitude;
+	private double longitude;
+
 	private ItemData(){
 		thumbnail = new Dictionary<int, Texture2D> ();
 		contents = new Dictionary<int,Texture2D> ();
@@ -24,6 +27,16 @@ public class ItemData {
 		locationItems = new List<Item> ();
 		bagItems = new List<Item> ();
 
+	}
+
+	public void myPositionUpdate(double ido, double keido){
+		latitude = ido;
+		longitude = keido;
+	}
+
+	public string getMyPosition(){
+		string position = latitude.ToString ("F6") + "/" + longitude.ToString ("F6");
+		return position;
 	}
 
 
@@ -37,9 +50,11 @@ public class ItemData {
 		}
 	}
 
-	public void sortById(){
+	public void sortById(List<Item> items){
 		locationItems.Sort (delegate(Item a, Item b){return a.getId() - b.getId();});
 	}
+
+
 	public void addThumbnail(int id,Texture2D tex){
 		thumbnail.Add (id,tex);
 	}
@@ -49,13 +64,16 @@ public class ItemData {
 	public void addSprite(int id,Sprite s){
 		contentsSprite.Add (id,s);
 	}
+
+
+
 	public void SetItems(List<Item> items){
 		this.locationItems = items;
-		sortById ();
+		sortById (items);
 	}
 	public void SetBagItems(List<Item> items){
 		this.bagItems = items;
-		sortById ();
+		sortById (items);
 	}
 
 
@@ -117,6 +135,7 @@ public class ItemData {
 
 	public void saveContent(Item item){
 		bagItems.Add (item);
+		sortById (bagItems);
 	}
 
 	public void deleteContentById(int id){
