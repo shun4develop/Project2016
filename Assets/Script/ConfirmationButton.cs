@@ -11,11 +11,14 @@ public class ConfirmationButton : MonoBehaviour {
 	public GameObject detail;
 
 	public void contentDelete(){
+
+		ViewerController vc = GameObject.Find ("System").GetComponent<ViewerController>();
 		Item item = detail.GetComponent<DetailInfoCanvas>().item;
-		Debug.Log (item);
+
 		Action<string> positive_func = (string text) => {
-			//			item.setPermitSave(true);
-			item.setPermitSave(true);
+			ItemData.instance.deleteContentById(item.getId());
+//			item.setPermitSave(true);
+			vc.contentsUpdate ();
 			Debug.Log("削除完了");
 		};
 
@@ -29,14 +32,14 @@ public class ConfirmationButton : MonoBehaviour {
 	public void contentSave(){
 		Item item = detail.GetComponent<DetailInfoCanvas>().item;
 		Action<string> positive_func = (string text) => {
-			item.setPermitSave(false);
-
+//			item.setPermitSave(false);
+			ItemData.instance.saveContent(item);
 			Debug.Log("保存完了");
 		};
 
 		Action negative_func = () => {
 			//エラー表示
-			Debug.Log("エラー / " + item.getId() + " / " + item.getTitle());
+			Debug.Log("エラー / " + item);
 		};
 		WebManager.instance.contentsTaken (positive_func, negative_func, item.getId(), item.getTitle());
 	}

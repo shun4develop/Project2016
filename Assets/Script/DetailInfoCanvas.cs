@@ -23,50 +23,23 @@ public class DetailInfoCanvas : ContentInfoCanvasBase{
 
 	GameObject child;
 
+	public GameObject btn;
+
 	public override void init(Item item){
 		base.init (item);
 		this.date.text = item.getDate ();
 		this.title.text = item.getTitle ();
 		this.comment.text = item.getDesc ();
 
-//		if (item.getPermitSave () == true) {
-//			child = transform.FindChild ("SaveButton").gameObject;
-//		} else {
-//			child = transform.FindChild ("DeleteButton").gameObject;
-//		}
-//
-//
-
-		//child.SetActive (true);
-		//addListener (child);
+		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Camera"
+		    && !ItemData.instance.checkOverlapItemById (item.getId ())) {
+			Debug.Log ("すでに持ってる" + item);
+			btn.GetComponent<Button> ().interactable = false;
+		} else {
+			btn.GetComponent<Button>().interactable = true;
+		}
 
 		base.show ();
 		//base.fadeIn ();
 	}
-
-	public override void init(int id){
-		base.init (id);
-		this.date.text = this.item.getDate();
-		this.title.text = this.item.getTitle();
-		this.comment.text = this.item.getDesc();
-		base.show ();
-//		base.fadeIn ();
-	}
-
-//	public void addListener(GameObject obj){
-//		obj.GetComponent<Button>().onClick.AddListener (() => {
-//			enter();
-//			Debug.Log(this.item);;
-//		});
-//	}
-//
-//
-//	public void enter(){
-//		if (this.item.getPermitSave () == false) {
-//			contentDelete (this.item.getId (), this.item.getTitle());
-//		} else {
-//			Debug.Log ("true / " + this.item.getId());
-//			contentSave (this.item.getId(), this.item.getTitle());
-//		}
-//	}
 }

@@ -41,9 +41,4 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 			setTexture (tex);
 		}
 	}
-
-	public void clear(){
-		this.gameObject.GetComponent<Image> ().sprite  = null;
-		showCompleted = false;
-	}
 }

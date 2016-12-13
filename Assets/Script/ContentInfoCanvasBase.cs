@@ -12,11 +12,11 @@ public abstract class ContentInfoCanvasBase : MonoBehaviour {
 		this.iv.Item = item;
 		this.item = item;
 	}
-	public virtual void init(int id){
-		this.iv = image.GetComponent<ContentsOfImage> ();
-		this.iv.Item = item;
-		this.item = ItemData.instance.getItemById(id);
-	}
+//	public virtual void init(int id){
+//		this.iv = image.GetComponent<ContentsOfImage> ();
+//		this.iv.Item = item;
+//		this.item = ItemData.instance.getItemById(id);
+//	}
 	public void show(){
 		if (this.item == null) {
 			return;
