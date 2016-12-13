@@ -180,7 +180,7 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
 		yield return www;
 		Debug.Log (www.text);
-		Debug.Log (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+//		Debug.Log (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
 		if (string.IsNullOrEmpty (www.error)) {
 			string[] result = www.text.Split ('/');
 			if (result [0] == MyCommon.Common.SUCCESS && result[0] != MyCommon.Common.FAILURE) {

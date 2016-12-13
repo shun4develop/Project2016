@@ -29,7 +29,7 @@ public class ViewerController : MonoBehaviour {
 
 	public void downloadContents(){
 		Action<string> positive_func = (string text) => {
-			ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
+			//ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
 			contentsInit(ItemData.instance.bagItems);
 		};
 
@@ -48,9 +48,7 @@ public class ViewerController : MonoBehaviour {
 
 		for (int i=0;i<items.Count;i++){
 			Item item = ItemData.instance.bagItems[i];
-//			Debug.Log (item);
-			//プレハブを複製
-			//GameObject tmp = new GameObject();
+
 			GameObject tmp = Instantiate(pre);
 			tmp.transform.SetParent (contents.transform);
 
@@ -60,6 +58,8 @@ public class ViewerController : MonoBehaviour {
 			cv.show ();
 
 		}
+		Debug.Log ("bagItems / " + ItemData.instance.bagItems.Count);
+		Debug.Log ("locationItems / " + ItemData.instance.locationItems.Count);
 	}
 
 	public void contentsUpdate(){
