@@ -1236,7 +1236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5083e265c67f948738a8987b09187e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullImage: {fileID: 0}
 --- !u!114 &1222135460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1969,6 +1968,7 @@ GameObject:
   - 114: {fileID: 1754103173}
   - 114: {fileID: 1754103172}
   - 114: {fileID: 1754103171}
+  - 114: {fileID: 1754103175}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -2006,7 +2006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5083e265c67f948738a8987b09187e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullImage: {fileID: 1222135460}
 --- !u!114 &1754103172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,6 +2094,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1754103169}
+--- !u!114 &1754103175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1754103169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8d9a7579db946b1a839aa32b4f1223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1222135460}
 --- !u!1 &1763441424
 GameObject:
   m_ObjectHideFlags: 0

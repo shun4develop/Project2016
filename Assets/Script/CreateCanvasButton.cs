@@ -6,10 +6,9 @@ using MyClass;
 [RequireComponent(typeof(Button))]
 
 /// <summary>
-/// ボタンに [Canvasを生成するクリックイベント] を登録
+/// ボタンにクリックイベントを登録
 /// </summary>
 
-//public class CreateCanvasButton : ImageViewer {
 public class CreateCanvasButton : MonoBehaviour {
 	
 	CanvasCreatorBase cc;
@@ -21,7 +20,6 @@ public class CreateCanvasButton : MonoBehaviour {
 			if(GetComponent<ContentsViewerBase>().showCompleted){
 				Item item = GetComponent<ContentsViewerBase>().Item;
 				cc.create(item);
-
 			}
 		});
 	}
