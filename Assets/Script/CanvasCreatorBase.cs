@@ -4,6 +4,7 @@ using MyClass;
 
 /// <summary>
 ///  ベースクラス
+/// 
 /// </summary>
 
 public abstract class CanvasCreatorBase : MonoBehaviour {

@@ -4,19 +4,17 @@ using UnityEngine.UI;
 using System;
 public class ContentsOfImage : ContentsViewerBase {
 
-	public Image fullImage;
-
-
 	public override void show(){
-//		Texture2D downloadedTex = ItemData.instance.getContentsTexture2DById (Item.getId());
+		
 		Sprite s = ItemData.instance.getContentsSpriteById (Item.getId());
 
 		if (s != null) {
 			setSprite (s);
 		} else {
+			
 			Action<Texture2D> success_func = (Texture2D tex) => {
 				setTexture (tex);
-				//ItemData.instance.addContents(Item.getId(),tex);
+				ItemData.instance.addContents(Item.getId(),tex);
 				showCompleted = true;
 			};
 			Action failure_func = () => {
@@ -38,7 +36,8 @@ public class ContentsOfImage : ContentsViewerBase {
 		ItemData.instance.addSprite (Item.getId(), s);
 		Image image = this.gameObject.GetComponent<Image> ();
 		image.sprite = s;
-		fullImage.GetComponent<Image> ().sprite = s;
+		GetComponent<ImageFullPanel> ().setSprite (s);
+		//fullImage.GetComponent<Image> ().sprite = s;
 //
 		showCompleted = true;
 	}
@@ -47,14 +46,15 @@ public class ContentsOfImage : ContentsViewerBase {
 //		Sprite s = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
 		Image image = this.gameObject.GetComponent<Image> ();
 		image.sprite = s;
-		fullImage.GetComponent<Image> ().sprite = s;
+		GetComponent<ImageFullPanel> ().setSprite (s);
+		//fullImage.GetComponent<Image> ().sprite = s;
 		//
 		showCompleted = true;
 	}
 
 	public void clearIame(){
 		this.gameObject.GetComponent<Image> ().sprite  = null;
-		fullImage.GetComponent<Image> ().sprite = null;
+		//fullImage.GetComponent<Image> ().sprite = null;
 		showCompleted = false;
 	}
 }

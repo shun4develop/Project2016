@@ -8,25 +8,33 @@ using MyClass;
 using MyLibrary;
 /// <summary>
 /// 
-///  詳細画面用の Canvas に貼り付ける
+///  詳細画面用の Panel にアタッチ
 /// 
-///  Canvas のなかに情報を入れていく
+///  Panel に情報を入れる
 /// 
 /// </summary>
 
 
-public class DetailInfoCanvas : ContentInfoCanvasBase{
+public class DetailInfoCanvas : MonoBehaviour{
+
+	public Item item{ set; get;}
 
 	public Text title;
 	public Text date;
 	public Text comment;
-
-	GameObject child;
+	public GameObject image;
 
 	public GameObject btn;
 
-	public override void init(Item item){
-		base.init (item);
+	private ContentsViewerBase iv;
+
+	GameObject child;
+
+	public void init(Item item){
+		this.iv = image.GetComponent<ContentsOfImage> ();
+		this.iv.Item = item;
+
+		this.item = item;
 		this.date.text = item.getDate ();
 		this.title.text = item.getTitle ();
 		this.comment.text = item.getDesc ();
@@ -39,7 +47,9 @@ public class DetailInfoCanvas : ContentInfoCanvasBase{
 			btn.GetComponent<Button>().interactable = true;
 		}
 
-		base.show ();
-		//base.fadeIn ();
+		if (this.item == null) {
+			return;
+		}
+		iv.show ();
 	}
 }

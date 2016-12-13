@@ -1236,7 +1236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5083e265c67f948738a8987b09187e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullImage: {fileID: 0}
 --- !u!114 &1222135460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1737,7 +1736,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1754103171}
-        m_MethodName: clear
+        m_MethodName: clearIame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1747,9 +1746,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 628555225}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1452802907}
+        m_MethodName: touchTrueFlag
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1969,6 +1968,7 @@ GameObject:
   - 114: {fileID: 1754103173}
   - 114: {fileID: 1754103172}
   - 114: {fileID: 1754103171}
+  - 114: {fileID: 1754103175}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -2006,7 +2006,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5083e265c67f948738a8987b09187e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullImage: {fileID: 1222135460}
 --- !u!114 &1754103172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,6 +2094,18 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1754103169}
+--- !u!114 &1754103175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1754103169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8d9a7579db946b1a839aa32b4f1223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1222135460}
 --- !u!1 &1763441424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2593,9 +2604,9 @@ Light:
   m_GameObject: {fileID: 1983701059}
   m_Enabled: 1
   serializedVersion: 6
-  m_Type: 2
+  m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10

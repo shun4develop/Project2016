@@ -16,9 +16,6 @@ public class ItemData {
 	private Dictionary<int,Sprite> contentsSprite;
 	private Dictionary<int,Texture2D> thumbnail;
 
-	private double latitude;
-	private double longitude;
-
 	private ItemData(){
 		thumbnail = new Dictionary<int, Texture2D> ();
 		contents = new Dictionary<int,Texture2D> ();
@@ -28,19 +25,7 @@ public class ItemData {
 		bagItems = new List<Item> ();
 
 	}
-
-	public void myPositionUpdate(double ido, double keido){
-		latitude = ido;
-		longitude = keido;
-	}
-
-	public string getMyPosition(){
-		string position = latitude.ToString ("F6") + "/" + longitude.ToString ("F6");
-		return position;
-	}
-
-
-
+		
 	public static ItemData instance {
 		get{
 			if (_instance == null) {
