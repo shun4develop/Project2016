@@ -26,7 +26,7 @@ public class ContentsOfThumbnail : ContentsViewerBase  {
 			Action failure_func = () => {
 				Debug.Log ("ContentsOfThumbnail : failure_func");
 			};
-			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getItemById (Item.getId()).getThumbnail ());
+			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId()).getThumbnail ());
 		}
 
 	}		
