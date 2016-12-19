@@ -30,8 +30,8 @@ public class WebManager : MonoBehaviour {
 	private string CONTENTS_UPLOAD = DOMAIN+"contents_upload.php";
 	//ユーザ情報の取得
 	private string GET_USER_INFOMATION = DOMAIN+"get_user_info.php";
-	//ユーザ情報の登録
-	private string USER_INFOMATION_REGISTER = DOMAIN + "user_info_register.php";
+	//ユーザ情報の更新
+	private string UPDATE_USER_INFOMATION = DOMAIN + "update_user_info.php";
 
 	private AnimationWebView webViewObject;
 	//シングルトン
@@ -65,10 +65,10 @@ public class WebManager : MonoBehaviour {
 
 		throwQueryToServer(www,positive_func,negative_func);
 	}
-	public void UserInfomationRegister(Action<string> positive_func,Action negative_func,UserInfomation userInfo){
+	public void updateUserInfomation(Action<string> positive_func,Action negative_func,UserInfomation userInfo){
 		WWWForm data = getSecureForm ();
 		data.AddField ("user_info",UnityEngine.JsonUtility.ToJson(userInfo));
-		WWW www = new WWW (USER_INFOMATION_REGISTER,data);
+		WWW www = new WWW (UPDATE_USER_INFOMATION,data);
 
 		throwQueryToServer(www,positive_func,negative_func);
 	}
@@ -151,14 +151,21 @@ public class WebManager : MonoBehaviour {
 	public void socialRegister(Action<string> positive_func,Action negative_func,UserOfSNS user,string token){
 		WWWForm data = getSecureForm ();
 		string sns_type = "original";
-		if(user.GetType() == typeof(UserOfTwitter))
+		string icon_url = "original";
+		if (user.GetType () == typeof(UserOfTwitter)) {
 			sns_type = "twitter";
-		else if(user.GetType() == typeof(UserOfFacebook))
+			UserOfTwitter t = (UserOfTwitter)user;
+			icon_url = t.profile_background_image_url_https;
+		} else if (user.GetType () == typeof(UserOfFacebook)) {
 			sns_type = "facebook";
+			icon_url = "https://graph.facebook.com/" + user.id + "/picture";
+		}
 		data.AddField("user_name", user.name);
 		data.AddField("social_id", user.id);
 		data.AddField ("sns_type", sns_type);
 		data.AddField ("instant_token",token);
+		data.AddField ("icon_url",icon_url);
+
 		WWW www = new WWW(USER_REGISTER, data.data);
 
 		throwQueryToServer (www,positive_func,negative_func);
