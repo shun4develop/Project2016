@@ -7,49 +7,53 @@ public class locationTester : MonoBehaviour {
 
 	private Text text;
 	private LocationInfo tmpLocation;
+
+
+	double lat;
+	double lon;
+
+	int distance;
+
 	// Use this for initialization
 	void Start () {
 		if (Input.location.isEnabledByUser) {
 			Input.location.Start ();
 		}
 		text = GetComponent<Text> ();
+		tmpLocation = Input.location.lastData;
 
-		//StartCoroutine (locationUpdate());
+		StartCoroutine (locationUpdate());
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-//		double lat = Input.location.lastData.latitude;
-//		double lon = Input.location.lastData.longitude;
+//		double lat = 35.67508;
+//		double lon = 138.5096;
+//
+//		double lat2 = 35.6755;
+//		double lon2 = 138.509;
 
-		double lat = 35.67508;
-		double lon = 138.5096;
+//		text.text = Input.location.status + "\n" + Input.location.lastData.timestamp + "\n" +Input.location.lastData.latitude.ToString() + "\n" + Input.location.lastData.longitude.ToString();
 
-		double lat2 = 35.6755;
-		double lon2 = 138.509;
-
-
-//		text.text = Input.location.lastData.latitude.ToString() + "\n" + Input.location.lastData.longitude.ToString();
-
-		text.text = tmpLocation.altitude.ToString();
-
-
-//		text.text = CalculateDistance (lat, lon, lat2, lon2).ToString();
 	}
 
 	private IEnumerator locationUpdate(){
 		while(true){
+			distance = CalculateDistance (tmpLocation, Input.location.lastData);
 
-			if (tmpLocation.latitude != null) {
-				
-			} else {
-				
+			text.text = Input.location.status + "\n" + distance.ToString() + "\n" + Input.location.lastData.timestamp + "\n" + tmpLocation.latitude.ToString() + "\n" + tmpLocation.longitude.ToString()
+				+ "\n\n" + Input.location.lastData.latitude.ToString() + "\n" + Input.location.lastData.longitude.ToString()+"\n";
+			
+			if (Input.location.isEnabledByUser && Input.location.status == LocationServiceStatus.Running) {
+				if (distance >= 5) {
+					tmpLocation = Input.location.lastData;
+				}
 			}
-			yield return new WaitForSeconds (5);
-
+			yield return new WaitForSeconds (3);
 		}
 	}
+
 
 	/// <summary>
 	/// 度単位から等価なラジアン単位に変換します。

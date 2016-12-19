@@ -72,6 +72,11 @@ public class CameraViewerController: MonoBehaviour {
 
 	}
 
+	public void downloadContents(){
+
+	}
+
+
 	private void contentsInit(List<Item> items){
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す
