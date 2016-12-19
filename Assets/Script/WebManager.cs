@@ -28,6 +28,10 @@ public class WebManager : MonoBehaviour {
 	private string USER_REGISTER = DOMAIN + "user_register.php";
 	//コンテンツのアップロード
 	private string CONTENTS_UPLOAD = DOMAIN+"contents_upload.php";
+	//ユーザ情報の取得
+	private string GET_USER_INFOMATION = DOMAIN+"get_user_info.php";
+	//ユーザ情報の登録
+	private string USER_INFOMATION_REGISTER = DOMAIN + "user_info_register.php";
 
 	private AnimationWebView webViewObject;
 	//シングルトン
@@ -55,6 +59,19 @@ public class WebManager : MonoBehaviour {
 
 		throwQueryToServer(www,positive_func,negative_func);
 	}
+	public void getUserInfomation(Action<string> positive_func,Action negative_func){
+		WWWForm data = getSecureForm ();
+		WWW www = new WWW (GET_USER_INFOMATION,data);
+
+		throwQueryToServer(www,positive_func,negative_func);
+	}
+	public void UserInfomationRegister(Action<string> positive_func,Action negative_func,UserInfomation userInfo){
+		WWWForm data = getSecureForm ();
+		data.AddField ("user_info",UnityEngine.JsonUtility.ToJson(userInfo));
+		WWW www = new WWW (USER_INFOMATION_REGISTER,data);
+
+		throwQueryToServer(www,positive_func,negative_func);
+	}
 	public void socialLogin(string snsType){
 		string url = null;
 		if (snsType == "facebook") {
@@ -67,7 +84,7 @@ public class WebManager : MonoBehaviour {
 
 		webViewObject = (new GameObject ("WebViewObject")).AddComponent<AnimationWebView> ();
 		webViewObject.Init ((string msg)=>{
-			
+			Debug.Log("ok");
 		});
 		webViewObject.LoadURL (url);
 		webViewObject.slideIn ();
