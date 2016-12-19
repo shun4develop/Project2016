@@ -298,10 +298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 803e26b46c2ba4c3e9b836831c1ba3de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1754103169}
   title: {fileID: 1262570708}
   date: {fileID: 1600535463}
   comment: {fileID: 1524782754}
+  image: {fileID: 1754103169}
   btn: {fileID: 2068705236}
 --- !u!225 &282163115
 CanvasGroup:
@@ -1236,6 +1236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5083e265c67f948738a8987b09187e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadImage: {fileID: 2800000, guid: 31c3edfb104e0420ebb9eb5f60db2871, type: 3}
 --- !u!114 &1222135460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2006,6 +2007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5083e265c67f948738a8987b09187e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadImage: {fileID: 2800000, guid: 31c3edfb104e0420ebb9eb5f60db2871, type: 3}
 --- !u!114 &1754103172
 MonoBehaviour:
   m_ObjectHideFlags: 0

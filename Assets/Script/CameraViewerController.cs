@@ -15,6 +15,9 @@ public class CameraViewerController: MonoBehaviour {
 	public GameObject canvas;
 	public GameObject contents;
 
+	private string lat;
+	private string lon;
+
 	void Start () {
 		foreach (Transform child in canvas.transform)
 		{
@@ -22,6 +25,12 @@ public class CameraViewerController: MonoBehaviour {
 				child.GetComponent<AnimationUI> ().slideOut ("TOP");
 			}
 		}
+
+		if (Input.location.isEnabledByUser) {
+			Input.location.Start ();
+		}
+
+//		Input.location.lastData;
 
 //		WebManager wm = GetComponent<WebManager>();
 		// Action<> 戻り値なし
@@ -50,7 +59,7 @@ public class CameraViewerController: MonoBehaviour {
 				Debug.Log("CameraViewerController.Start()   エラー");
 			};
 
-			//		WebManager.instance.downloadContents ( positive_func , negative_func, "location");
+			WebManager.instance.downloadContents ( positive_func , negative_func, "location");
 			WebManager.instance.downloadContents ( positive_func , negative_func, "owner");
 		};
 

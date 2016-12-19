@@ -11,7 +11,7 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 	protected const string getImageURL = "http://160.16.216.204/~hosoya/puts/get_resources.php";
 	public Item Item{ set; get;}
 	public bool showCompleted{ set; get;}
-	
+
 	public void init(Item item){
 		this.Item = item;
 	}
@@ -41,4 +41,6 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 			setTexture (tex);
 		}
 	}
+
+
 }

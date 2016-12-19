@@ -7,7 +7,11 @@ public class ImageFullPanel: MonoBehaviour{
 	
 	public Image image;
 
-	public void setSprite(Sprite sp){
-		image.sprite = sp;
+	public void setSprite(Sprite s){
+		image.sprite = s;
+	}
+
+	public void clearImage(){
+		image.sprite = null;
 	}
 }
