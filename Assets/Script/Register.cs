@@ -21,8 +21,9 @@ public class Register : MonoBehaviour {
 		}else if(password.text.Length < 8 || password.text.Length > 65){
 			log.text = "パスワードは8文字以上64文字以下の長さが必要です";
 		}else {
-			Action<string> success_func = (string text) => {
-				SaveDataManager.saveToken (text);
+			Action<Dictionary<string,object>> success_func = (Dictionary<string,object> dic) => {
+				SaveDataManager.saveToken ((string)dic["token"]);
+				SaveDataManager.saveUserInfo(JsonUtility.FromJson<UserInfomation>((string)dic["user_info"]));
 				SaveDataManager.saveUserName (user_name.text);
 				//メイン画面
 				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");

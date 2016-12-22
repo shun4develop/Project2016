@@ -7,7 +7,7 @@ public class UserInfoTester : MonoBehaviour {
 	public InputField description;
 
 	public void updateInfomation () {
-		SaveDataManager.saveUserInfo(new UserInfomation ("original","amano","自己紹介","icon"));
+		SaveDataManager.saveUserInfo(new UserInfomation ("original","amano","","icon"));
 		UserInfomation info = SaveDataManager.loadUserInfo ();
 		info.setDesc(description.text);
 		Action<string> success = (string text) => {
