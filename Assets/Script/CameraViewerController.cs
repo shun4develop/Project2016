@@ -35,10 +35,6 @@ public class CameraViewerController: MonoBehaviour {
 		if (Input.location.isEnabledByUser) {
 			Input.location.Start ();
 		}
-
-//		Input.location.lastData;
-
-//		WebManager wm = GetComponent<WebManager>();
 		// Action<> 戻り値なし
 		// Func<>	戻り値ある
 
@@ -75,12 +71,8 @@ public class CameraViewerController: MonoBehaviour {
 	private void contentsInit(List<Item> items){
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す
-
 		for (int i=0;i<items.Count;i++){
 			Item item = ItemData.instance.locationItems[i];
-			//			Debug.Log (item);
-			//プレハブを複製
-			//GameObject tmp = new GameObject();
 			GameObject tmp = Instantiate(pre);
 			tmp.transform.SetParent (contents.transform);
 			tmp.name = item.getId ().ToString();
@@ -89,7 +81,6 @@ public class CameraViewerController: MonoBehaviour {
 			cv.init (item);
 
 			cv.show ();
-
 		}
 		Debug.Log ("bagItems / " + ItemData.instance.bagItems.Count);
 		Debug.Log ("locationItems / " + ItemData.instance.locationItems.Count);
