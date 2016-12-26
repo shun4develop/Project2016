@@ -50,8 +50,6 @@ public class ItemData {
 		contentsSprite.Add (id,s);
 	}
 
-
-
 	public void SetItems(List<Item> items){
 		this.locationItems = items;
 		sortById (items);
