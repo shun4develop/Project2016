@@ -20,15 +20,15 @@ namespace MyManagers{
 				return "";
 			}
 		}
-		public static UserInfomation loadUserInfo(){
+		public static Profile loadUserInfo(){
 			try{
 				string json = Crypt.Decrypt (PlayerPrefs.GetString(userInfoDataKey));
-				return JsonUtility.FromJson<UserInfomation>(json);
+				return JsonUtility.FromJson<Profile>(json);
 			}catch{
 				return null;
 			}
 		}
-		public static void saveUserInfo(UserInfomation info){
+		public static void saveUserInfo(Profile info){
 			PlayerPrefs.SetString (userInfoDataKey,Crypt.Encrypt(JsonUtility.ToJson(info)));
 			PlayerPrefs.Save ();
 		}

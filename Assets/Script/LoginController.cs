@@ -28,7 +28,7 @@ public class LoginController : MonoBehaviour {
 	}
 	private void getUserInfo(string user_name){
 		Action<string> success = (string msg)=>{
-			SaveDataManager.saveUserInfo(JsonUtility.FromJson<UserInfomation>(msg));
+			SaveDataManager.saveUserInfo(JsonUtility.FromJson<Profile>(msg));
 		};
 		Action failure = ()=>{
 

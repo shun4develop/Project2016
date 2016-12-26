@@ -23,7 +23,7 @@ public class AutoLogin : MonoBehaviour {
 		Action<Dictionary<string,object>> success_func = (Dictionary<string,object> resp) => {
 			
 			string resp_token = (string)resp["token"];
-			UserInfomation info = JsonUtility.FromJson<UserInfomation>((string)resp["user_info"]);
+			Profile info = JsonUtility.FromJson<Profile>((string)resp["user_info"]);
 
 			SaveDataManager.saveToken(resp_token);
 			SaveDataManager.saveUserInfo(info);
