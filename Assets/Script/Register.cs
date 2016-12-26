@@ -23,7 +23,7 @@ public class Register : MonoBehaviour {
 		}else {
 			Action<Dictionary<string,object>> success_func = (Dictionary<string,object> dic) => {
 				SaveDataManager.saveToken ((string)dic["token"]);
-				SaveDataManager.saveUserInfo(JsonUtility.FromJson<UserInfomation>((string)dic["user_info"]));
+				SaveDataManager.saveUserInfo(JsonUtility.FromJson<Profile>((string)dic["user_info"]));
 				SaveDataManager.saveUserName (user_name.text);
 				//メイン画面
 				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
