@@ -23,6 +23,7 @@ public class UserInfoController: MonoBehaviour {
 		Action failure = () => {
 			logText.text = "取得に失敗しました";
 		};
+		WebManager.instance.getUserInfomation (success,failure);
 	}
 
 	public void updateInfomation () {
