@@ -45,6 +45,7 @@ public class MapControl : MonoBehaviour {
 		t.text = position.ToString("F6") + "\n";
 		a++;
 		t.text += a.ToString();
+		UserInfo.instance.SetLocation (position.y.ToString ("F6"), position.x.ToString ("F6"));
 
 		//成功
 		Action<string> positive_func = (string text) => {

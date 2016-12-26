@@ -15,13 +15,28 @@ public class CameraViewerController: MonoBehaviour {
 	public GameObject canvas;
 	public GameObject contents;
 
+	private string lat;
+	private string lon;
+
 	void Start () {
+
+		lat = UserInfo.instance.latitude;
+		lon = UserInfo.instance.longitude;
+
+		Debug.Log(lat + " / "+ lon);
+
 		foreach (Transform child in canvas.transform)
 		{
 			if (child.GetComponent<AnimationUI> ()) {
 				child.GetComponent<AnimationUI> ().slideOut ("TOP");
 			}
 		}
+
+		if (Input.location.isEnabledByUser) {
+			Input.location.Start ();
+		}
+
+//		Input.location.lastData;
 
 //		WebManager wm = GetComponent<WebManager>();
 		// Action<> 戻り値なし
@@ -31,12 +46,6 @@ public class CameraViewerController: MonoBehaviour {
 		// Action<T1,T2>		引数 2
 		// Func  <T,TResult>	引数 1 戻り値 TResult型
 		// Func  <T1,T2,TResult> 同上
-
-
-
-
-
-
 		Action<string> positive_func2 = (string text) => {
 			ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
 
@@ -50,8 +59,8 @@ public class CameraViewerController: MonoBehaviour {
 				Debug.Log("CameraViewerController.Start()   エラー");
 			};
 
-			//		WebManager.instance.downloadContents ( positive_func , negative_func, "location");
-			WebManager.instance.downloadContents ( positive_func , negative_func, "owner");
+			WebManager.instance.downloadContents ( positive_func , negative_func, lat, lon);
+//			WebManager.instance.downloadContents ( positive_func , negative_func, "owner");
 		};
 
 		Action negative_func2 = () => {
@@ -62,7 +71,7 @@ public class CameraViewerController: MonoBehaviour {
 		WebManager.instance.downloadContents ( positive_func2 , negative_func2, "bag");
 
 	}
-
+		
 	private void contentsInit(List<Item> items){
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す

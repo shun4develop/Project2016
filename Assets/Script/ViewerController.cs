@@ -29,7 +29,7 @@ public class ViewerController : MonoBehaviour {
 
 	public void downloadContents(){
 		Action<string> positive_func = (string text) => {
-			//ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
+			ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
 			contentsInit(ItemData.instance.bagItems);
 		};
 
