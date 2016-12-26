@@ -99,8 +99,13 @@ PlayerSettings:
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   xboxOneDisableKinectGpuReservation: 0
+<<<<<<< HEAD
+  virtualRealitySupported: 0
+  productGUID: 88660dfe8d0f14b8483dd1b095ad48cd
+=======
   singlePassStereoRendering: 0
   protectGraphicsMemory: 0
+>>>>>>> master
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -120,9 +125,13 @@ PlayerSettings:
     serializedVersion: 2
     m_Bits: 238
   iPhoneSdkVersion: 988
+<<<<<<< HEAD
+  iPhoneTargetOSVersion: 22
+=======
   iPhoneTargetOSVersion: 24
   tvOSSdkVersion: 0
   tvOSTargetOSVersion: 900
+>>>>>>> master
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -161,7 +170,10 @@ PlayerSettings:
   iOSLaunchScreeniPadSize: 100
   iOSLaunchScreeniPadCustomXibPath: 
   iOSDeviceRequirements: []
+<<<<<<< HEAD
+=======
   iOSURLSchemes: []
+>>>>>>> master
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
@@ -264,8 +276,12 @@ PlayerSettings:
   ps4ApplicationParam4: 0
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
+<<<<<<< HEAD
+  ps4Passcode: aAfZDAWhxgqRqcM1fdhRxRZYw3GFhPr6
+=======
   ps4Passcode: MuCV6GXi5xr84P2R391UXaLHbavJvFZG
   ps4UseDebugIl2cppLibs: 0
+>>>>>>> master
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -305,7 +321,11 @@ PlayerSettings:
   psp2LiveAreaTrialPath: 
   psp2PatchChangeInfoPath: 
   psp2PatchOriginalPackage: 
+<<<<<<< HEAD
+  psp2PackagePassword: BInZITSBQOgwxhHxrhytFUloiivhOmeb
+=======
   psp2PackagePassword: fO47XWS2qVOw5lxuBEBNue7b9PZS0hoI
+>>>>>>> master
   psp2KeystoneFile: 
   psp2MemoryExpansionMode: 0
   psp2DRMType: 0
@@ -356,9 +376,9 @@ PlayerSettings:
   metroDefaultTileSize: 1
   metroTileForegroundText: 1
   metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628, a: 0}
-  metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
+  metroSplashScreenBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628,
     a: 1}
-  metroSplashScreenUseBackgroundColor: 0
+  metroSplashScreenUseBackgroundColor: 1
   platformCapabilities: {}
   metroFTAName: 
   metroFTAFileTypes: []
@@ -412,7 +432,10 @@ PlayerSettings:
   - XboxOne::enus
   XboxOne::enus: 1
   stringPropertyNames: []
+<<<<<<< HEAD
+=======
   vectorPropertyNames: []
+>>>>>>> master
   cloudProjectId: 
   projectName: 
   organizationId: 
