@@ -4,7 +4,7 @@ using System;
 using MyManagers;
 using UnityEngine.UI;
 using MyClass;
-
+using System.Collections.Generic;
 public class WebManager : MonoBehaviour {
 	private static string DOMAIN = "http://160.16.216.204/~hosoya/puts/";
 	//コンテンツデータのリストをもらう
@@ -28,6 +28,10 @@ public class WebManager : MonoBehaviour {
 	private string USER_REGISTER = DOMAIN + "user_register.php";
 	//コンテンツのアップロード
 	private string CONTENTS_UPLOAD = DOMAIN+"contents_upload.php";
+	//ユーザ情報の取得
+	private string GET_USER_INFOMATION = DOMAIN+"get_user_info.php";
+	//ユーザ情報の更新
+	private string UPDATE_USER_INFOMATION = DOMAIN + "update_user_info.php";
 
 	private AnimationWebView webViewObject;
 	//シングルトン
@@ -55,6 +59,19 @@ public class WebManager : MonoBehaviour {
 
 		throwQueryToServer(www,positive_func,negative_func);
 	}
+	public void getUserInfomation(Action<string> positive_func,Action negative_func){
+		WWWForm data = getSecureForm ();
+		WWW www = new WWW (GET_USER_INFOMATION,data);
+
+		throwQueryToServer(www,positive_func,negative_func);
+	}
+	public void updateUserInfomation(Action<string> positive_func,Action negative_func,UserInfomation userInfo){
+		WWWForm data = getSecureForm ();
+		data.AddField ("user_info",UnityEngine.JsonUtility.ToJson(userInfo));
+		WWW www = new WWW (UPDATE_USER_INFOMATION,data);
+
+		throwQueryToServer(www,positive_func,negative_func);
+	}
 	public void socialLogin(string snsType){
 		string url = null;
 		if (snsType == "facebook") {
@@ -67,7 +84,7 @@ public class WebManager : MonoBehaviour {
 
 		webViewObject = (new GameObject ("WebViewObject")).AddComponent<AnimationWebView> ();
 		webViewObject.Init ((string msg)=>{
-			
+			Debug.Log("ok");
 		});
 		webViewObject.LoadURL (url);
 		webViewObject.slideIn ();
@@ -89,7 +106,7 @@ public class WebManager : MonoBehaviour {
 		WWW www = new WWW (FIND_USER_NAME,data);
 		throwQueryToServer (www,find_func,not_find_func);
 	}
-	public void autoLogin(Action<string> positive_func,Action negative_func){
+	public void autoLogin(Action<Dictionary<string,object>> positive_func,Action negative_func){
 		WWWForm data = getSecureForm ();
 		WWW www = new WWW (AUTO_LOGIN,data);
 		throwQueryToServer (www,positive_func,negative_func);
@@ -134,14 +151,21 @@ public class WebManager : MonoBehaviour {
 	public void socialRegister(Action<string> positive_func,Action negative_func,UserOfSNS user,string token){
 		WWWForm data = getSecureForm ();
 		string sns_type = "original";
-		if(user.GetType() == typeof(UserOfTwitter))
+		string icon_url = "original";
+		if (user.GetType () == typeof(UserOfTwitter)) {
 			sns_type = "twitter";
-		else if(user.GetType() == typeof(UserOfFacebook))
+			UserOfTwitter t = (UserOfTwitter)user;
+			icon_url = t.profile_background_image_url_https;
+		} else if (user.GetType () == typeof(UserOfFacebook)) {
 			sns_type = "facebook";
+			icon_url = "https://graph.facebook.com/" + user.id + "/picture";
+		}
 		data.AddField("user_name", user.name);
 		data.AddField("social_id", user.id);
 		data.AddField ("sns_type", sns_type);
 		data.AddField ("instant_token",token);
+		data.AddField ("icon_url",icon_url);
+
 		WWW www = new WWW(USER_REGISTER, data.data);
 
 		throwQueryToServer (www,positive_func,negative_func);
@@ -164,7 +188,7 @@ public class WebManager : MonoBehaviour {
 
 		throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void userRegister(Action<string> positive_func,Action negative_func,string user_name,string password){
+	public void userRegister(Action<Dictionary<string,object>> positive_func,Action negative_func,string user_name,string password){
 		WWWForm data = getSecureForm ();
 		data.AddField ("user_name", user_name);
 		data.AddField ("password",password);
@@ -176,14 +200,17 @@ public class WebManager : MonoBehaviour {
 	private void throwQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
 		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
 	}
+	private void throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
+		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+	}
 	private void throwQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){
 		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
 	}
 	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
 		yield return www;
 		Debug.Log (www.text);
-//		Debug.Log (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
 		if (string.IsNullOrEmpty (www.error)) {
+			
 			string[] result = www.text.Split ('/');
 			if (result [0] == MyCommon.Common.SUCCESS && result[0] != MyCommon.Common.FAILURE) {
 				positive_func (www.text.Substring(MyCommon.Common.SUCCESS.Length+1));
@@ -191,6 +218,22 @@ public class WebManager : MonoBehaviour {
 				negative_func ();
 			}
 		}
+	}
+	private IEnumerator ThrowQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
+		yield return www;
+		Debug.Log (www.text);
+		if (string.IsNullOrEmpty (www.error)) {
+			if (www.text != MyCommon.Common.FAILURE) {
+				Dictionary<string,object> dic = MiniJSON.Json.Deserialize (www.text) as Dictionary<string,object>;
+				Debug.Log (dic);
+				if ((string)dic ["result"] == MyCommon.Common.SUCCESS) {
+					positive_func (dic);
+					yield break;
+				}
+			} 
+			negative_func ();
+		}
+
 	}
 
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){

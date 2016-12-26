@@ -10,12 +10,10 @@ public class Register : MonoBehaviour {
 	public InputField user_name;
 	public InputField password;
 	public Text log;
-	public SocialLoginController slpc;
 	public void register(){
 		if (!user_name.GetComponent<CheckValidityOfValueInputField> ().IsChecked) {
 			return;
 		}
-
 		if (user_name.text.Length == 0 || password.text.Length == 0) {
 			log.text = "ユーザ名とパスワードを入力してください";
 		}else if(user_name.text.Length < 3 || user_name.text.Length > 17){
@@ -23,16 +21,16 @@ public class Register : MonoBehaviour {
 		}else if(password.text.Length < 8 || password.text.Length > 65){
 			log.text = "パスワードは8文字以上64文字以下の長さが必要です";
 		}else {
-			Action<string> success_func = (string text) => {
-				SaveDataManager.saveToken (text);
+			Action<Dictionary<string,object>> success_func = (Dictionary<string,object> dic) => {
+				SaveDataManager.saveToken ((string)dic["token"]);
+				SaveDataManager.saveUserInfo(JsonUtility.FromJson<UserInfomation>((string)dic["user_info"]));
 				SaveDataManager.saveUserName (user_name.text);
 				//メイン画面
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("_main");
+				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
 			};
 			Action failure_func = () => {
 				log.text = "登録できません";
 			};
-
 			WebManager.instance.userRegister (success_func,failure_func,user_name.text,password.text);
 		}
 	}

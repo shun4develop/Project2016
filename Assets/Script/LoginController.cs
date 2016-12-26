@@ -17,6 +17,7 @@ public class LoginController : MonoBehaviour {
 			Action<string> success_func = (string text) => {
 				SaveDataManager.saveUserName(userName.text);
 				SaveDataManager.saveToken(text);
+				getUserInfo(userName.text);
 				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
 			};
 			Action failure_func = () => {
@@ -24,5 +25,14 @@ public class LoginController : MonoBehaviour {
 			};
 			WebManager.instance.login (success_func,failure_func,userName.text,password.text);
 		}
+	}
+	private void getUserInfo(string user_name){
+		Action<string> success = (string msg)=>{
+			SaveDataManager.saveUserInfo(JsonUtility.FromJson<UserInfomation>(msg));
+		};
+		Action failure = ()=>{
+
+		};
+		WebManager.instance.getUserInfomation(success,failure);
 	}
 }

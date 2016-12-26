@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 422442597}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4c0279acf69462e8797a52fd9abb58, type: 3}
+  m_Script: {fileID: 11500000, guid: 084fa4806e6c744bd8d43f546747d663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &422442600
@@ -1420,13 +1420,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 422442599}
         m_MethodName: login
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: facebook
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -5109,7 +5109,18 @@ MonoBehaviour:
   m_CharacterLimit: 16
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -5176,9 +5187,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1638520120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1ab85c96bcbd4a9c88c006f9bab6541, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cbe8284cdf6a4ec0a75b2b0e7e89b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userName: {fileID: 1392385650}
+  log: {fileID: 258827650}
+  plane: {fileID: 1015236997}
 --- !u!1 &1657046535
 GameObject:
   m_ObjectHideFlags: 0
@@ -5330,8 +5344,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1662882373}
-        m_MethodName: 
+      - m_Target: {fileID: 1662882378}
+        m_MethodName: register
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5390,7 +5404,6 @@ MonoBehaviour:
   user_name: {fileID: 1638520122}
   password: {fileID: 27534317}
   log: {fileID: 258827650}
-  slpc: {fileID: 0}
 --- !u!1 &1772310912
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,7 +5852,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1945700772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f4c0279acf69462e8797a52fd9abb58, type: 3}
+  m_Script: {fileID: 11500000, guid: 084fa4806e6c744bd8d43f546747d663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1945700775
@@ -5883,13 +5896,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1945700774}
         m_MethodName: login
-        m_Mode: 1
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: twitter
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

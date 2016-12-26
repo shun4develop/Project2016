@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System;
 using MyCommon;
@@ -19,9 +20,18 @@ public class AutoLogin : MonoBehaviour {
 		}
 			
 		//コールバック関数の定義
-		Action<string> success_func = (string text) => {
-			SaveDataManager.saveToken(text);
+		Action<Dictionary<string,object>> success_func = (Dictionary<string,object> resp) => {
+			
+			string resp_token = (string)resp["token"];
+			UserInfomation info = JsonUtility.FromJson<UserInfomation>((string)resp["user_info"]);
+
+			SaveDataManager.saveToken(resp_token);
+			SaveDataManager.saveUserInfo(info);
 			SaveDataManager.saveUserName(user_name);
+
+			Debug.Log(resp_token);
+			Debug.Log(info);
+
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
 			return;
 		};
@@ -35,6 +45,7 @@ public class AutoLogin : MonoBehaviour {
 		//自動ログインを試みる
 		WebManager.instance.autoLogin(success_func,failure_func);
 	}
+
 	public void logout(){
 		PlayerPrefs.DeleteKey ("token");
 	}
