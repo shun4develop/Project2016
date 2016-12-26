@@ -53,15 +53,18 @@ public class SocialRegisterPage : MonoBehaviour {
 		} else if (user_name.text.Length < 3 || user_name.text.Length > 17) {
 			log.text = "ユーザ名は3文字以上かつ16文字以下の長さが必要です";
 		} else {
-			Action<string> success_func = (string text) => {
-				SaveDataManager.saveToken (text);
+			Action<Dictionary<string,object>> success_func = (Dictionary<string,object> dic) => {
+
+				SaveDataManager.saveToken ((string)dic["token"]);
+				SaveDataManager.saveUserInfo(JsonUtility.FromJson<Profile>((string)dic["user_info"]));
 				SaveDataManager.saveUserName (user_name.text);
+
+
 				//メイン画面
 				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
 			};
-			Action failure_func = () => {
+			Action<string> failure_func = (string text) => {
 				Debug.Log("失敗");
-				log.text = "登録できません";
 			};
 			user.name = user_name.text;
 			WebManager.instance.socialRegister (success_func, failure_func,user,token);

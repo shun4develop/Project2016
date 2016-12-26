@@ -65,7 +65,7 @@ public class WebManager : MonoBehaviour {
 
 		throwQueryToServer(www,positive_func,negative_func);
 	}
-	public void updateUserInfomation(Action<string> positive_func,Action negative_func,UserInfomation userInfo){
+	public void updateUserInfomation(Action<string> positive_func,Action negative_func,Profile userInfo){
 		WWWForm data = getSecureForm ();
 		data.AddField ("user_info",UnityEngine.JsonUtility.ToJson(userInfo));
 		WWW www = new WWW (UPDATE_USER_INFOMATION,data);
@@ -148,7 +148,7 @@ public class WebManager : MonoBehaviour {
 
 		throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void socialRegister(Action<string> positive_func,Action negative_func,UserOfSNS user,string token){
+	public void socialRegister(Action<Dictionary<string,object>> positive_func,Action<string> negative_func,UserOfSNS user,string token){
 		WWWForm data = getSecureForm ();
 		string sns_type = "original";
 		string icon_url = "original";
@@ -200,7 +200,13 @@ public class WebManager : MonoBehaviour {
 	private void throwQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
 		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
 	}
+	private void throwQueryToServer(WWW www,Action<string> positive_func,Action<string> negative_func){
+		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+	}
 	private void throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
+		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+	}
+	private void throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action<string> negative_func){
 		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
 	}
 	private void throwQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){
@@ -219,6 +225,19 @@ public class WebManager : MonoBehaviour {
 			}
 		}
 	}
+	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action<string> negative_func){
+		yield return www;
+		Debug.Log (www.text);
+		if (string.IsNullOrEmpty (www.error)) {
+
+			string[] result = www.text.Split ('/');
+			if (result [0] == MyCommon.Common.SUCCESS && result[0] != MyCommon.Common.FAILURE) {
+				positive_func (www.text.Substring(MyCommon.Common.SUCCESS.Length+1));
+			} else {
+				negative_func (www.text);
+			}
+		}
+	}
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
 		yield return www;
 		Debug.Log (www.text);
@@ -232,6 +251,22 @@ public class WebManager : MonoBehaviour {
 				}
 			} 
 			negative_func ();
+		}
+
+	}
+	private IEnumerator ThrowQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action<string> negative_func){
+		yield return www;
+		Debug.Log (www.text);
+		if (string.IsNullOrEmpty (www.error)) {
+			if (www.text != MyCommon.Common.FAILURE) {
+				Dictionary<string,object> dic = MiniJSON.Json.Deserialize (www.text) as Dictionary<string,object>;
+				Debug.Log (dic);
+				if ((string)dic ["result"] == MyCommon.Common.SUCCESS) {
+					positive_func (dic);
+					yield break;
+				}
+			} 
+			negative_func (www.text);
 		}
 
 	}

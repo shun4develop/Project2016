@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-
-public class UserInfomation{
+[Serializable]
+public class Profile{
 	[SerializeField]
 	private string login_type;
 	[SerializeField]
@@ -12,17 +13,11 @@ public class UserInfomation{
 	[SerializeField]
 	private string icon;
 
-	public UserInfomation(string login_type,string name,string description,string icon){
+	public Profile(string login_type,string name,string description,string icon){
 		this.name = name;
 		this.description = description;
 		this.icon = icon;
 		this.login_type = login_type;
-	}
-	public void setUserName(string name){
-		this.name = name;
-	}
-	public void setLoginType(string type){
-		this.login_type = type;
 	}
 	public void setDesc(string desc){
 		this.description = desc;
