@@ -85,17 +85,17 @@ public class WebManager : MonoBehaviour {
 		webViewObject = (new GameObject ("WebViewObject")).AddComponent<AnimationWebView> ();
 		webViewObject.Init ((string msg)=>{
 
-			Debug.Log(msg);
+			msg = WWW.UnEscapeURL(msg);
+
 			webViewObject.GetComponent<AnimationWebView> ().slideOut ();
 
 			//URLに乗って情報が返されるのでDecodeする
 			msg = MyLibrary.UriStringDecoder.decode (msg);
 			//メッセージが短すぎると弾きます。せめてレスポンスタイプの指定をしてから返してね。
 			if (msg.Length < "response_type".Length) {
-				Debug.Log ("short msg");
+				Debug.Log ("error");
 				return;
 			}
-			msg = msg.Substring (msg.IndexOf('/')+1);
 
 			Debug.Log (msg);
 
@@ -103,8 +103,7 @@ public class WebManager : MonoBehaviour {
 
 			if (resp == null)
 				return;
-
-
+			
 			if ((string)resp ["response_type"] == "social_login") {
 				GameObject.Find("SocialLoginController").SendMessage ("socialLogin",resp);
 			}
