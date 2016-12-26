@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: suntech
-  productName: Project2016
+  productName: project2016
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenStyle: 0
@@ -94,7 +94,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: jp.suntech.Project2016
+  bundleIdentifier: jp.suntech.project2016
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0

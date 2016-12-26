@@ -13,7 +13,6 @@ public class ReceiverScript : MonoBehaviour {
 		//非表示にしてオブジェクトを破棄する
 		GameObject webView = GameObject.Find ("WebViewObject") as GameObject;
 		if (webView != null) {
-			webView.GetComponent<WebViewObject> ().SetVisibility (false);
 			webView.GetComponent<AnimationWebView> ().slideOut ();
 		}
 		//URLに乗って情報が返されるのでDecodeする
@@ -39,6 +38,6 @@ public class ReceiverScript : MonoBehaviour {
 
 	}
 	private void socialLogin(Dictionary<string,object> dic){
-		GameObject.Find("SocialLoginController").SendMessage ("socialLogin",dic);
+		
 	}
 }
