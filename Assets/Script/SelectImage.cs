@@ -18,9 +18,12 @@ namespace MapScene{
 		private AndroidJavaObject activity;
 
 		private void Start(){
-
-			unityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
-			activity = unityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
+			if (Application.platform == RuntimePlatform.Android) {
+				unityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
+				activity = unityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
+			} else if(Application.platform == RuntimePlatform.IPhonePlayer) {
+				
+			}
 			mapcontrol = mapobj.GetComponent<MapControl> ();
 
 		}

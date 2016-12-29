@@ -19,6 +19,11 @@ public class WebCameraController : MonoBehaviour {
 		transform.localScale = new Vector3(Screen.width, Screen.height, 1);
 
 		WebCamDevice[] devices = WebCamTexture.devices;
+
+		if (devices.Length < 1) {
+			return;
+		}
+
 		var euler = transform.localRotation.eulerAngles;
 
 		webcamTexture = new WebCamTexture(devices[0].name);
