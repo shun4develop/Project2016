@@ -7,8 +7,7 @@ using MyClass;
 //画像オブジェクトの型に応じて派生させる
 
 public abstract class ContentsViewerBase : MonoBehaviour {
-
-	protected const string getImageURL = "http://160.16.216.204/~hosoya/puts/get_resources.php";
+	
 	public Item Item{ set; get;}
 	public bool showCompleted{ set; get;}
 
@@ -20,21 +19,7 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 
 	public abstract void setTexture (Texture2D tex);
 
-	public IEnumerator getImage(string filepath){
-		WWWForm data = new WWWForm ();
-		data.AddField ("filepath", filepath);
-		WWW www = new WWW (getImageURL, data);
 
-		yield return www;
-
-		if (www.texture != null) {
-			showCompleted = true;
-		}
-
-		Texture2D tex = www.texture;
-
-		setTexture (tex);
-	}
 	public void getImage(){
 		Texture2D tex = ItemData.instance.getContentsTexture2DById(Item.getId ());
 		if (tex != null) {

@@ -17,9 +17,9 @@ public class Indicator : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (coi.loading) {
+		if (!coi.showCompleted) {
 			image.enabled = true;
-			iTween.RotateTo (gameObject, iTween.Hash ("z", 720, "easetype", "linear", "loopType", "loop", "delay", 0));
+			iTween.RotateTo (gameObject, iTween.Hash ("z", -720, "easetype", "linear", "loopType", "loop", "delay", 0));
 		} else {
 			image.enabled = false;
 			GetComponent<RectTransform> ().rotation = new Quaternion(0,0,0,1);

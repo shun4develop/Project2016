@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using UnityEngine.UI;
 using MyManagers;
-public class SNSIconImageViewer : MonoBehaviour {
+public class IconImageViewer : MonoBehaviour {
 	public void show(string filepath){
 		Sprite icon = SaveDataManager.loadUserIcon ();
 		Debug.Log (icon);
@@ -13,7 +13,7 @@ public class SNSIconImageViewer : MonoBehaviour {
 			};
 			Action failure = () => {
 				//GetComponent<Image>().sprite = SaveDataManager.loadUserIcon();
-				GetComponent<Image> ().sprite = Resources.Load<Sprite> ("image/t");
+				GetComponent<Image> ().sprite = Resources.Load<Sprite> ("image/User-50");
 			};
 			WebManager.instance.getSNSIcon (success, failure, filepath);
 		} else {

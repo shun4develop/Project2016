@@ -4,9 +4,9 @@ using System;
 using UnityEngine.UI;
 using MyManagers;
 public class UserInfoController: MonoBehaviour {
-	public InputField description;
+	public Text description;
 	public Text userName;
-	public SNSIconImageViewer icon;
+	public IconImageViewer icon;
 	public Text logText;
 
 	void Start(){

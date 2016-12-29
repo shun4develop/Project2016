@@ -10,13 +10,13 @@ public class SocialRegisterPage : MonoBehaviour {
 	public InputField user_name;
 	public Text log;
 	private string token;
-	private SNSIconImageViewer iv;
+	private IconImageViewer iv;
 	private UserOfSNS user;
 
 	private bool isSetInfo = false;
 
 	void Start(){
-		iv = img.GetComponent<SNSIconImageViewer> ();
+		iv = img.GetComponent<IconImageViewer> ();
 	}
 
 	public void showRegisterInfo(Dictionary<string,object> dic){

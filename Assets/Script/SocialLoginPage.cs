@@ -9,13 +9,13 @@ public class SocialLoginPage : MonoBehaviour {
 	public Image img;
 	public Text user_name;
 	private string token;
-	private SNSIconImageViewer iv;
+	private IconImageViewer iv;
 	private UserOfSNS user;
 
 	private bool isSetInfo = false;
 
 	void Start(){
-		iv = img.GetComponent<SNSIconImageViewer> ();
+		iv = img.GetComponent<IconImageViewer> ();
 	}
 
 	public void showLoginInfo(Dictionary<string,object> dic){

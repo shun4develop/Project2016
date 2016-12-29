@@ -7,8 +7,6 @@ public class ContentsOfImage : ContentsViewerBase {
 	private Image image;
 	private ImageFullPanel ifp;
 
-	public bool loading = false;
-
 
 	void Start(){
 		image = this.gameObject.GetComponent<Image> ();
@@ -27,8 +25,6 @@ public class ContentsOfImage : ContentsViewerBase {
 			Action<Texture2D> success_func = (Texture2D tex) => {
 				setTexture (tex);
 				ItemData.instance.addContents(Item.getId(),tex);
-
-				loading = false;
 			};
 			Action failure_func = () => {
 				Debug.Log ("ContentsOfImage : failure_func");
@@ -40,7 +36,6 @@ public class ContentsOfImage : ContentsViewerBase {
 				// それ以外の Scene（Camera）では LovationItem をもらう
 				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getFilepath ());
 			}
-			loading = true;
 		}
 
 	}
