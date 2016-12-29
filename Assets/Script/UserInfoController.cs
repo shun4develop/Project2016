@@ -6,25 +6,24 @@ using MyManagers;
 public class UserInfoController: MonoBehaviour {
 	public InputField description;
 	public Text userName;
-	public Image icon;
+	public SNSIconImageViewer icon;
 	public Text logText;
 
 	void Start(){
-		
+		fetchUserInfo ();
 	}
 	private void fetchUserInfo(){
 		Action<string> success = (string msg) => {
 			Profile profile = JsonUtility.FromJson<Profile>(msg);
 			description.text = profile.getDesc();
 			userName.text = profile.getUserName();
-			//WebManager.instance.getSNSIcon();
-			logText.text = "保存しました";
+			icon.show(profile.getUserIconDataPath());
+			logText.text = "";
 		};
 		Action failure = () => {
 			logText.text = "取得に失敗しました";
 		};
 		WebManager.instance.getUserInfomation (success,failure);
-
 	}
 
 	public void updateInfomation () {

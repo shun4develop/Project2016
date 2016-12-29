@@ -10,7 +10,7 @@ using MyLibrary;
 public class ViewerController : MonoBehaviour {
 	public GameObject pre;
 
-	public GameObject contents;
+	public ScrollRect scrollView;
 	public GameObject tx;
 
 	void Start () {
@@ -50,20 +50,23 @@ public class ViewerController : MonoBehaviour {
 			Item item = ItemData.instance.bagItems[i];
 
 			GameObject tmp = Instantiate(pre);
-			tmp.transform.SetParent (contents.transform);
+
+//			if (tmp == null)
+//				return;
+
+			tmp.transform.SetParent (scrollView.content.transform);
 
 			ContentsViewerBase cv = tmp.GetComponent<ContentsViewerBase> ();
 			cv.init (item);
 			
 			cv.show ();
-
 		}
 		Debug.Log ("bagItems / " + ItemData.instance.bagItems.Count);
 		Debug.Log ("locationItems / " + ItemData.instance.locationItems.Count);
 	}
 
 	public void contentsUpdate(){
-		foreach (Transform child in contents.transform)
+		foreach (Transform child in scrollView.content.transform)
 		{
 			Destroy (child.gameObject);
 		}

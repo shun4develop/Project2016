@@ -4,6 +4,8 @@ using System.Collections;
 public class UserInfo{
 	public string latitude;
 	public string longitude;
+	public Profile Profile{ get; set;}
+	public Sprite IconImage{ get; set;}
 
 	private static UserInfo _instance;
 
@@ -20,4 +22,5 @@ public class UserInfo{
 		this.latitude = lat;
 		this.longitude = lon;
 	}
+
 }
