@@ -18,6 +18,7 @@ public class UserInfoController: MonoBehaviour {
 			description.text = profile.getDesc();
 			userName.text = profile.getUserName();
 			icon.show(profile.getUserIconDataPath());
+			Debug.Log(profile.getUserIconDataPath());
 			logText.text = "";
 		};
 		Action failure = () => {

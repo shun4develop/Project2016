@@ -20,12 +20,12 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 	public abstract void setTexture (Texture2D tex);
 
 
-	public void getImage(){
-		Texture2D tex = ItemData.instance.getContentsTexture2DById(Item.getId ());
-		if (tex != null) {
-			setTexture (tex);
-		}
-	}
+//	public void getImage(){
+//		Texture2D tex = ItemData.instance.getContentsTexture2DById(Item.getId ());
+//		if (tex != null) {
+//			setTexture (tex);
+//		}
+//	}
 
 
 }

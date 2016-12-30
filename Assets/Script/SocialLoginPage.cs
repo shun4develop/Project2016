@@ -33,13 +33,15 @@ public class SocialLoginPage : MonoBehaviour {
 
 		if (user.GetType () == typeof(UserOfTwitter)) {
 			UserOfTwitter t_user = (UserOfTwitter)user;
+			Debug.Log (t_user);
 			iv.show (t_user.profile_image_url);
 		} else if (user.GetType () == typeof(UserOfFacebook)) {
 			UserOfFacebook f_user = (UserOfFacebook)user;
+			Debug.Log (f_user);
 			iv.show ("http://graph.facebook.com/" + f_user.id + "/picture");
 		}
 		user_name.text = user.name;
-
+		Debug.Log (user_name.text);
 		isSetInfo = true;
 	}
 	public void login(){
