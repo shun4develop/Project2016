@@ -8,7 +8,7 @@ using MyClass;
 /// </summary>
 
 public abstract class CanvasCreatorBase : MonoBehaviour {
-	public GameObject canvas;
+	protected GameObject canvas;
 
 	public abstract void create (Item item);
 }

@@ -177,7 +177,7 @@ public class WebManager : MonoBehaviour {
 		if (user.GetType () == typeof(UserOfTwitter)) {
 			sns_type = "twitter";
 			UserOfTwitter t = (UserOfTwitter)user;
-			icon_url = t.profile_background_image_url_https;
+			icon_url = t.profile_image_url;
 		} else if (user.GetType () == typeof(UserOfFacebook)) {
 			sns_type = "facebook";
 			icon_url = "https://graph.facebook.com/" + user.id + "/picture";

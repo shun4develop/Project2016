@@ -29,9 +29,6 @@ public class AutoLogin : MonoBehaviour {
 			SaveDataManager.saveUserInfo(info);
 			SaveDataManager.saveUserName(user_name);
 
-			Debug.Log(resp_token);
-			Debug.Log(info);
-
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
 			return;
 		};

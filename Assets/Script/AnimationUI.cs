@@ -8,10 +8,15 @@ public class AnimationUI : MonoBehaviour {
 
 	private RectTransform rectTransform;
 	private CanvasGroup canvasGroup;
-	public float SLIDE_SPEED = 0.3f;
-	public float FEAD_SPEED = 0.3f;
+	public float SLIDE_IN_SPEED = 0.2f;
+	public float SLIDE_OUT_SPEED = 0.3f;
+	public float FEAD_IN_SPEED = 0.3f;
+	public float FEAD_OUT_SPEED = 0.3f;
+	public float POP_UP_SPEED = 0.2f;
+	public float POP_DOWN_SPEED = 0.2f;
 	public iTween.EaseType SLIDE_EASE_TYPE = iTween.EaseType.easeOutExpo;
 	public iTween.EaseType FEAD_EASE_TYPE = iTween.EaseType.linear;
+	public iTween.EaseType POP_EASE_TYPE = iTween.EaseType.easeInBounce;
 	public bool startWithActive;
 	private bool move;
 	void Awake () {
@@ -49,7 +54,7 @@ public class AnimationUI : MonoBehaviour {
 		Hashtable slideInHashtable = new Hashtable ();
 		slideInHashtable.Add ("from",fromValue);
 		slideInHashtable.Add ("to",toValue);
-		slideInHashtable.Add ("time",SLIDE_SPEED);
+		slideInHashtable.Add ("time",SLIDE_IN_SPEED);
 		slideInHashtable.Add ("easeType",SLIDE_EASE_TYPE);
 		slideInHashtable.Add ("oncompletetarget",gameObject);
 		slideInHashtable.Add ("oncomplete","pageInCallback");
@@ -80,7 +85,7 @@ public class AnimationUI : MonoBehaviour {
 		Hashtable slideOutHashtable = new Hashtable ();
 		slideOutHashtable.Add ("from",fromValue);
 		slideOutHashtable.Add ("to",toValue);
-		slideOutHashtable.Add ("time",SLIDE_SPEED);
+		slideOutHashtable.Add ("time",SLIDE_OUT_SPEED);
 		slideOutHashtable.Add ("easeType",SLIDE_EASE_TYPE);
 		slideOutHashtable.Add ("oncompletetarget",gameObject);
 		slideOutHashtable.Add ("oncomplete","pageOutCallback");
@@ -101,7 +106,7 @@ public class AnimationUI : MonoBehaviour {
 		Hashtable feadOutHashtable = new Hashtable ();
 		feadOutHashtable.Add ("from", 1);
 		feadOutHashtable.Add ("to", 0);
-		feadOutHashtable.Add ("time",FEAD_SPEED);
+		feadOutHashtable.Add ("time",FEAD_OUT_SPEED);
 		feadOutHashtable.Add ("easeType",FEAD_EASE_TYPE);
 		feadOutHashtable.Add ("onupdate","setAlpha");
 		feadOutHashtable.Add ("oncompletetarget",gameObject);
@@ -117,7 +122,7 @@ public class AnimationUI : MonoBehaviour {
 		Hashtable feadInHashtable = new Hashtable ();
 		feadInHashtable.Add ("from", 0);
 		feadInHashtable.Add ("to", 1);
-		feadInHashtable.Add ("time",FEAD_SPEED);
+		feadInHashtable.Add ("time",FEAD_IN_SPEED);
 		feadInHashtable.Add ("easeType",FEAD_EASE_TYPE);
 		feadInHashtable.Add ("onupdate","setAlpha");
 		feadInHashtable.Add ("oncompletetarget",gameObject);
@@ -126,6 +131,45 @@ public class AnimationUI : MonoBehaviour {
 		transform.SetAsLastSibling ();
 		move = true;
 		iTween.ValueTo (gameObject,feadInHashtable);
+	}
+	public void popUp(){
+		setAlpha (1);
+		setScale (0);
+		setVirtical (1);
+		setHorizon (1);
+
+		Hashtable hashtable = new Hashtable ();
+		hashtable.Add ("from", 0);
+		hashtable.Add ("to", 1);
+		hashtable.Add ("time",POP_UP_SPEED);
+		hashtable.Add ("easeType",POP_EASE_TYPE);
+		hashtable.Add ("onupdate","setScale");
+		hashtable.Add ("oncompletetarget",gameObject);
+		hashtable.Add ("oncomplete","pageInCallback");
+
+		transform.SetAsLastSibling ();
+		move = true;
+		iTween.ValueTo (gameObject,hashtable);
+	}
+	public void popDown(){
+		setVirtical (1);
+		setHorizon (1);
+
+		Hashtable hashtable = new Hashtable ();
+		hashtable.Add ("from", 1);
+		hashtable.Add ("to", 0);
+		hashtable.Add ("time",POP_DOWN_SPEED);
+		hashtable.Add ("easeType",POP_EASE_TYPE);
+		hashtable.Add ("onupdate","setScale");
+		hashtable.Add ("oncompletetarget",gameObject);
+		hashtable.Add ("oncomplete","pageOutCallback");
+
+		move = true;
+		iTween.ValueTo (gameObject,hashtable);
+
+	}
+	private void setScale(float val){
+		rectTransform.localScale = new Vector3(val,val,val);
 	}
 	private void setAlpha(float alpha){
 		canvasGroup.alpha = alpha;
