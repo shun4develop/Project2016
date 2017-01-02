@@ -19,7 +19,7 @@ public class DynamicGridLayout : MonoBehaviour {
 	void Update () {
 		if(childCount != transform.childCount){
 			foreach (RectTransform rt in transform) {
-				rt.localScale = new Vector2 (0.95f,0.95f);
+				rt.localScale = new Vector2 (0.9f,0.9f);
 			}
 			childCount = transform.childCount;
 		}
