@@ -486,15 +486,15 @@ MonoBehaviour:
   dispatchEvents: 1
   emptyColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   height: 0
-  labels: 0
-  language: 656e
+  labels: 1
+  language: ja
   lockRedraw: 0
   markers: []
   needGC: 0
   needRedraw: 1
   notInteractUnderGUI: 1
   provider: 2
-  mapType: arcgis.worldstreetmap
+  mapType: hydda.full
   redrawOnPlay: 0
   renderInThread: 1
   resourcesPath: 4f6e6c696e654d61707354696c65732f7b7a6f6f6d7d2f7b787d2f7b797d
@@ -532,7 +532,7 @@ MonoBehaviour:
   latitude: 0
   longitude: 0
   _position: {x: 0, y: 0}
-  _zoom: 16
+  _zoom: 18
 --- !u!4 &193630191
 Transform:
   m_ObjectHideFlags: 0
@@ -558,7 +558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: {fileID: 356807023}
-  webManager: {fileID: 497352790}
 --- !u!114 &193630193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,7 +575,7 @@ MonoBehaviour:
   desiredAccuracy: 1
   emulatorCompass: 30
   emulatorPosition: {x: 138.5095, y: 35.675537}
-  findLocationByIP: 1
+  findLocationByIP: 0
   markerTooltip: 
   markerType: 1
   marker2DAlign: 4
@@ -2904,10 +2903,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142ccff1d83b4f8689140dfd5eadf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SLIDE_SPEED: 0.3
-  FEAD_SPEED: 0.3
+  SLIDE_IN_SPEED: 0.2
+  SLIDE_OUT_SPEED: 0.3
+  FEAD_IN_SPEED: 0.3
+  FEAD_OUT_SPEED: 0.3
+  POP_UP_SPEED: 0.2
+  POP_DOWN_SPEED: 0.2
   SLIDE_EASE_TYPE: 16
   FEAD_EASE_TYPE: 21
+  POP_EASE_TYPE: 23
   startWithActive: 0
 --- !u!225 &1469791441
 CanvasGroup:
@@ -3004,10 +3008,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142ccff1d83b4f8689140dfd5eadf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SLIDE_SPEED: 0.3
-  FEAD_SPEED: 0.5
+  SLIDE_IN_SPEED: 0.2
+  SLIDE_OUT_SPEED: 0.3
+  FEAD_IN_SPEED: 0.3
+  FEAD_OUT_SPEED: 0.3
+  POP_UP_SPEED: 0.2
+  POP_DOWN_SPEED: 0.2
   SLIDE_EASE_TYPE: 16
   FEAD_EASE_TYPE: 21
+  POP_EASE_TYPE: 23
   startWithActive: 0
 --- !u!225 &1526212166
 CanvasGroup:
@@ -4358,10 +4367,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142ccff1d83b4f8689140dfd5eadf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SLIDE_SPEED: 0.3
-  FEAD_SPEED: 0.5
+  SLIDE_IN_SPEED: 0.2
+  SLIDE_OUT_SPEED: 0.3
+  FEAD_IN_SPEED: 0.3
+  FEAD_OUT_SPEED: 0.3
+  POP_UP_SPEED: 0.2
+  POP_DOWN_SPEED: 0.2
   SLIDE_EASE_TYPE: 16
   FEAD_EASE_TYPE: 21
+  POP_EASE_TYPE: 23
   startWithActive: 1
 --- !u!225 &2104782505
 CanvasGroup:
@@ -4429,10 +4443,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7142ccff1d83b4f8689140dfd5eadf91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SLIDE_SPEED: 0.3
-  FEAD_SPEED: 0.5
+  SLIDE_IN_SPEED: 0.2
+  SLIDE_OUT_SPEED: 0.3
+  FEAD_IN_SPEED: 0.3
+  FEAD_OUT_SPEED: 0.3
+  POP_UP_SPEED: 0.2
+  POP_DOWN_SPEED: 0.2
   SLIDE_EASE_TYPE: 16
   FEAD_EASE_TYPE: 21
+  POP_EASE_TYPE: 23
   startWithActive: 0
 --- !u!225 &2116057374
 CanvasGroup:

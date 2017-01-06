@@ -12,7 +12,6 @@ public class MapControl : MonoBehaviour {
 	private OnlineMapsTileSetControl control;
 	private OnlineMaps map;
 	public Text t;
-	public GameObject webManager;
 	private int a;
 
 	//private List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();

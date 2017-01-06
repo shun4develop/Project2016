@@ -67,6 +67,7 @@ public class GPS_3dMarker : MonoBehaviour
 	{
 		//Set marker rotation
 		Transform markerTransform = locationMarker.transform;
+		Transform tr = new RectTransform ();
 		if (markerTransform != null) markerTransform.rotation = Quaternion.Euler(0, f * 360, 0);
 	}
 
