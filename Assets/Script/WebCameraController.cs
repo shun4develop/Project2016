@@ -14,6 +14,13 @@ public class WebCameraController : MonoBehaviour {
 	float width;
 
 	void Start () {
+		#if UNITY_ANDROID
+		Debug.Log("ANDROID");
+		#elif UNITY_IOS
+		Debug.Log("IOS");
+		#elif UNITY_EDITOR
+		Debug.Log("UNITY");
+		#endif
 
 		// Quad をカメラのサイズに合わせる
 		transform.localScale = new Vector3(Screen.width, Screen.height, 1);
@@ -27,10 +34,6 @@ public class WebCameraController : MonoBehaviour {
 		var euler = transform.localRotation.eulerAngles;
 
 		webcamTexture = new WebCamTexture(devices[0].name);
-
-//		Debug.Log ("screen->"+Screen.height+"/"+Screen.width);
-
-		//webcamTexture = new WebCamTexture(camWidth_px,camHeight_px);
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer||Application.platform == RuntimePlatform.Android){
 			transform.localRotation = Quaternion.Euler( euler.x, euler.y, euler.z - 90 );
