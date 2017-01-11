@@ -13,7 +13,7 @@ public class PinchInOut : MonoBehaviour {
 //	float viewMax = 60.0f;
 
 	float vMin = 1.0f;
-	float vMax = 10.0f;
+	float vMax = 5.0f;
 
 	//直前の2点間の距離.
 	private float backDist = 0.0f;
@@ -64,6 +64,7 @@ public class PinchInOut : MonoBehaviour {
 					if (v != 0) {
 //					map.transform.localScale = new Vector3(v, v, 1.0f);
 						transform.localScale = new Vector3 (v, v, 1.0f);
+						backDist = newDist;
 					}
 				}
 			} else if (Input.touchCount == 1 && transform.localScale.x != 1 && transform.localScale.y != 1) {
