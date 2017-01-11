@@ -19,21 +19,11 @@ public class CameraViewerController: MonoBehaviour {
 	private string lon;
 
 	void Start () {
-
-		lat = UserInfo.instance.latitude;
-		lon = UserInfo.instance.longitude;
-
-		Debug.Log(lat + " / "+ lon);
-
 		foreach (Transform child in canvas.transform)
 		{
 			if (child.GetComponent<AnimationUI> ()) {
 				child.GetComponent<AnimationUI> ().slideOut ("TOP");
 			}
-		}
-
-		if (Input.location.isEnabledByUser) {
-			Input.location.Start ();
 		}
 		// Action<> 戻り値なし
 		// Func<>	戻り値ある

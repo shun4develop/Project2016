@@ -11,7 +11,6 @@ public class ContentsOfImage : ContentsViewerBase {
 	void Start(){
 		image = this.gameObject.GetComponent<Image> ();
 		ifp = this.GetComponent<ImageFullPanel> ();
-		clearImage ();
 	}
 
 
