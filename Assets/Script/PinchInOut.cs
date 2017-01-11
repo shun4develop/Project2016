@@ -32,8 +32,9 @@ public class PinchInOut : MonoBehaviour {
 	void Update () {
 
 		Debug.Log ("x : " + transform.position.x + "y : "+ transform.position.y);
+		//Debug.Log(transform.localScale);
 
-		if (transform.localScale.x == 1)
+		if (transform.localScale.x == 1 || transform.localScale.y == 1)
 			transform.position = startPos;
 
 		if (touchFlag) {
@@ -65,7 +66,7 @@ public class PinchInOut : MonoBehaviour {
 						transform.localScale = new Vector3 (v, v, 1.0f);
 					}
 				}
-			} else if (Input.touchCount == 1) {
+			} else if (Input.touchCount == 1 && transform.localScale.x != 1 && transform.localScale.y != 1) {
 				Touch t = Input.GetTouch (0);
 
 				if (t.phase == TouchPhase.Began) {
