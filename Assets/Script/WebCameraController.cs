@@ -14,16 +14,29 @@ public class WebCameraController : MonoBehaviour {
 	float width;
 
 	void Start () {
-		#if UNITY_ANDROID
-		Debug.Log("ANDROID");
-		#elif UNITY_IOS
-		Debug.Log("IOS");
-		#elif UNITY_EDITOR
-		Debug.Log("UNITY");
-		#endif
+//		#if UNITY_ANDROID
+//		Debug.Log("ANDROID");
+//		#elif UNITY_IOS
+//		Debug.Log("IOS");
+//		#elif UNITY_EDITOR
+//		Debug.Log("UNITY");
+//		#endif
 
 		// Quad をカメラのサイズに合わせる
 		transform.localScale = new Vector3(Screen.width, Screen.height, 1);
+
+
+		targetCamera = Camera.main;
+		height = targetCamera.orthographicSize * 2;
+		width = height * targetCamera.aspect;
+
+		if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			transform.localScale = new Vector3 (height, (width + 1) * -1, 1);
+		} else if (Application.platform == RuntimePlatform.Android) {
+			transform.localScale = new Vector3 (height, width + 1, 1);
+		} else {
+			transform.localScale = new Vector3 (width, height, 1);
+		}
 
 		WebCamDevice[] devices = WebCamTexture.devices;
 
@@ -46,21 +59,6 @@ public class WebCameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		//Debug.Log ("web->"+webcamTexture.height+"/"+webcamTexture.width);
-		targetCamera = Camera.main;
-
-		//transform.localScale = new Vector3(Screen.height, Screen.width, 1);
-
-		height = targetCamera.orthographicSize * 2;
-		width = height * targetCamera.aspect;
-
-		if (Application.platform == RuntimePlatform.IPhonePlayer || Application.platform == RuntimePlatform.Android) {
-			transform.localScale = new Vector3 (height, width+1, 1);
-		} else {
-			transform.localScale = new Vector3 (width, height, 1);
-		}
-
 
 	}
 
