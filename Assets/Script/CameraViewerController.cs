@@ -19,6 +19,10 @@ public class CameraViewerController: MonoBehaviour {
 	private string lon;
 
 	void Start () {
+
+		lat = UserInfo.instance.latitude;
+		lon = UserInfo.instance.longitude;
+
 		foreach (Transform child in canvas.transform)
 		{
 			if (child.GetComponent<AnimationUI> ()) {
@@ -59,6 +63,9 @@ public class CameraViewerController: MonoBehaviour {
 	}
 		
 	private void contentsInit(List<Item> items){
+
+		Debug.Log (lat + " : " + lon);
+
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す
 		for (int i=0;i<items.Count;i++){

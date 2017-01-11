@@ -31,7 +31,7 @@ public class PinchInOut : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Debug.Log ("x : " + transform.position.x + "y : "+ transform.position.y);
+		//Debug.Log ("x : " + transform.position.x + "y : "+ transform.position.y);
 		//Debug.Log(transform.localScale);
 
 		if (transform.localScale.x == 1 || transform.localScale.y == 1)
