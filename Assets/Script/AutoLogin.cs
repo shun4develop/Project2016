@@ -18,7 +18,6 @@ public class AutoLogin : MonoBehaviour {
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
 			return;
 		}
-			
 		//コールバック関数の定義
 		Action<Dictionary<string,object>> success_func = (Dictionary<string,object> resp) => {
 			

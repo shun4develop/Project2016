@@ -19,26 +19,9 @@ public class UserInfoController: MonoBehaviour {
 			userName.text = profile.getUserName();
 			icon.show(profile.getUserIconDataPath());
 			Debug.Log(profile.getUserIconDataPath());
-			logText.text = "";
 		};
 		Action failure = () => {
-			logText.text = "取得に失敗しました";
 		};
 		WebManager.instance.getUserInfomation (success,failure);
 	}
-
-	public void updateInfomation () {
-		Profile info = SaveDataManager.loadUserInfo ();
-		info.setDesc(description.text);
-		Action<string> success = (string text) => {
-			logText.text = "保存しました";
-			SaveDataManager.saveUserInfo(info);
-		};
-		Action failure = ()=>{
-			logText.text = "保存できません";
-			Debug.Log("ng");
-		};
-		WebManager.instance.updateUserInfomation (success,failure,info);
-	}
-
 }
