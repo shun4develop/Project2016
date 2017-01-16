@@ -20,13 +20,13 @@ public class WebCameraController : MonoBehaviour {
 
 	void Start () {
 		#if UNITY_ANDROID
-		s = "Aondroid";
+		s = "Android";
 		webCamera();
 		#endif
 		#if UNITY_IOS
 		s = IosCamera.test();
 		iosTester();
-		webCamera();
+		IosCamera.cameraStart();
 		#endif
 		#if UNITY_EDITOR
 		s = "webCam";
