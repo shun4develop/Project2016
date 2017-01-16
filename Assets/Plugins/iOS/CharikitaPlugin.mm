@@ -356,28 +356,33 @@
  * ネイティブメソッド
  */
 extern "C" {
-    static CharikitaPlugin *plugin =[[CharikitaPlugin alloc] init];
-    UIView *UnityGetGLView();
-    UIViewController *UnityGetGLViewController();
-    void UnitySendMessage(const char *, const char *, const char *);
+    // static CharikitaPlugin *plugin =[[CharikitaPlugin alloc] init];
+    // UIView *UnityGetGLView();
+    // UIViewController *UnityGetGLViewController();
+    // void UnitySendMessage(const char *, const char *, const char *);
 
-    static NSString *getStr(char *str){
-        if (str) {
-            return [NSString stringWithCString: str encoding:NSUTF8StringEncoding];
-        } else {
-            return [NSString stringWithUTF8String: ""];
-        }
-    }
+    // static NSString *getStr(char *str){
+    //     if (str) {
+    //         return [NSString stringWithCString: str encoding:NSUTF8StringEncoding];
+    //     } else {
+    //         return [NSString stringWithUTF8String: ""];
+    //     }
+    // }
 
-    void showCamera(char *imagePath, int photoStyle){
-        [plugin showCamera:getStr(imagePath) photoStyle:photoStyle];
-    }
+    // void showCamera(char *imagePath, int photoStyle){
+    //     [plugin showCamera:getStr(imagePath) photoStyle:photoStyle];
+    // }
 
-    void showAlbum(char *imagePath, int photoStyle){
-        [plugin showAlbum:getStr(imagePath) photoStyle:photoStyle];
-    }
+    // void showAlbum(char *imagePath, int photoStyle){
+    //     [plugin showAlbum:getStr(imagePath) photoStyle:photoStyle];
+    // }
 
-    void savePhoto(char *path){
-        [plugin savePhoto:getStr(path)];
-    }
+    // void savePhoto(char *path){
+    //     [plugin savePhoto:getStr(path)];
+    // }
+
+    int sampleMethod1();
+}
+int sampleMethod1() {
+    return 10;
 }

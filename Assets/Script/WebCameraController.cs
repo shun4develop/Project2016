@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class WebCameraController : MonoBehaviour {
 
@@ -13,21 +14,34 @@ public class WebCameraController : MonoBehaviour {
 	float height;
 	float width;
 
+	string s;
+
+	public GameObject text;
+
 	void Start () {
 		#if UNITY_ANDROID
+		s = "Aondroid";
 		webCamera();
 		#endif
 		#if UNITY_IOS
-		Debug.Log("IOS");
-		#endif
-		#if UNITY_EDITOR
+		s = IosCamera.test();
+		iosTester();
 		webCamera();
 		#endif
+		#if UNITY_EDITOR
+		s = "webCam";
+		webCamera();
+		#endif
+	}
 
-
+	void iosTester(){
+		text.GetComponent<Text> ().text = s;
 	}
 
 	void webCamera(){
+
+		text.GetComponent<Text> ().text = s;
+
 		// Quad をカメラのサイズに合わせる
 		transform.localScale = new Vector3(Screen.width, Screen.height, 1);
 
