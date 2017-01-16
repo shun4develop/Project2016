@@ -4,6 +4,7 @@ using MyClass;
 using System.Threading;
 //詳細画面を作るクラス
 
+//public class PassItemToPanel : CanvasCreatorBase {
 public class DetailInfoCanvasCreator : CanvasCreatorBase {
 	public override void create (Item item){
 		canvas = GameObject.Find("DetailPanel");

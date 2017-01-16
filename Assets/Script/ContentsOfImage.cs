@@ -9,8 +9,8 @@ public class ContentsOfImage : ContentsViewerBase {
 
 
 	void Start(){
-		image = this.gameObject.GetComponent<Image> ();
-		ifp = this.GetComponent<ImageFullPanel> ();
+		image = GetComponent<Image> ();
+		ifp = GetComponent<ImageFullPanel> ();
 	}
 
 

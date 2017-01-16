@@ -14,17 +14,22 @@ public class WebCameraController : MonoBehaviour {
 	float width;
 
 	void Start () {
-//		#if UNITY_ANDROID
-//		Debug.Log("ANDROID");
-//		#elif UNITY_IOS
-//		Debug.Log("IOS");
-//		#elif UNITY_EDITOR
-//		Debug.Log("UNITY");
-//		#endif
+		#if UNITY_ANDROID
+		webCamera();
+		#endif
+		#if UNITY_IOS
+		Debug.Log("IOS");
+		#endif
+		#if UNITY_EDITOR
+		webCamera();
+		#endif
 
+
+	}
+
+	void webCamera(){
 		// Quad をカメラのサイズに合わせる
 		transform.localScale = new Vector3(Screen.width, Screen.height, 1);
-
 
 		targetCamera = Camera.main;
 		height = targetCamera.orthographicSize * 2;
@@ -55,11 +60,6 @@ public class WebCameraController : MonoBehaviour {
 		GetComponent<MeshRenderer> ().material.mainTexture = webcamTexture;
 
 		webcamTexture.Play();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
 	}
 
 	public void Stop(){
