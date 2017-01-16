@@ -24,23 +24,23 @@ public class WebCameraController : MonoBehaviour {
 		webCamera();
 		#endif
 		#if UNITY_IOS
-		s = IosCamera.test();
-		iosTester();
+		//s = IosCamera.test();
+		//iosTester();
 		IosCamera.cameraStart();
 		#endif
 		#if UNITY_EDITOR
-		s = "webCam";
+		//s = "webCam";
 		webCamera();
 		#endif
 	}
 
 	void iosTester(){
-		text.GetComponent<Text> ().text = s;
+		//text.GetComponent<Text> ().text = s;
 	}
 
 	void webCamera(){
 
-		text.GetComponent<Text> ().text = s;
+		//text.GetComponent<Text> ().text = s;
 
 		// Quad をカメラのサイズに合わせる
 		transform.localScale = new Vector3(Screen.width, Screen.height, 1);
