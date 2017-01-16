@@ -536,7 +536,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
 --- !u!114 &193630192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,6 +549,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: {fileID: 356807023}
+  tooltipPrefab: {fileID: 106076, guid: c1e2c495f202d41ca98a18bc256000ef, type: 2}
+  container: {fileID: 1218702709}
 --- !u!114 &193630193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,10 +782,10 @@ RectTransform:
   - {fileID: 1331508556}
   m_Father: {fileID: 2116057372}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 0, y: 200}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 200}
+  m_SizeDelta: {x: 376, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &317946724
 MonoBehaviour:
@@ -928,7 +930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1277,7 +1279,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &571950239
@@ -1420,7 +1422,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -54}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &663071212
@@ -1695,9 +1697,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2116057372}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -300}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838769455
@@ -2047,7 +2049,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &1036892155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2247,7 +2249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 0
-  m_BlockingObjects: 3
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2280,10 +2282,10 @@ Canvas:
   m_GameObject: {fileID: 1218702706}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1343750811}
   m_PlaneDistance: 1
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -2307,7 +2309,7 @@ RectTransform:
   - {fileID: 2104782501}
   - {fileID: 1469791439}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2322,7 +2324,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &1241025652
 GameObject:
@@ -2990,7 +2992,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &1526212167
 MonoBehaviour:
@@ -4243,7 +4245,6 @@ GameObject:
   - 222: {fileID: 2104782503}
   - 114: {fileID: 2104782502}
   - 225: {fileID: 2104782505}
-  - 114: {fileID: 2104782504}
   m_Layer: 5
   m_Name: menuPanel
   m_TagString: Untagged
@@ -4304,27 +4305,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2104782500}
---- !u!114 &2104782504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2104782500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7142ccff1d83b4f8689140dfd5eadf91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SLIDE_IN_SPEED: 0.2
-  SLIDE_OUT_SPEED: 0.3
-  FEAD_IN_SPEED: 0.3
-  FEAD_OUT_SPEED: 0.3
-  POP_UP_SPEED: 0.2
-  POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
-  FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
-  startWithActive: 1
 --- !u!225 &2104782505
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4335,7 +4315,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2116057371
 GameObject:
   m_ObjectHideFlags: 0
@@ -4409,7 +4389,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &2116057375
 MonoBehaviour:

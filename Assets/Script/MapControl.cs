@@ -20,12 +20,18 @@ public class MapControl : MonoBehaviour {
 
 	private List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
 
-	private GameObject tooltip;
+	//custom tooltip用変数
+//	public GameObject tooltipPrefab;
+//	public Canvas container;
+//
+//	private OnlineMapsMarker marker;
+//	private GameObject tooltip;
 
 	private void Start(){
 		map = GetComponent<OnlineMaps>();
 		control = GetComponent<OnlineMapsTileSetControl>();
 
+		//OnlineMaps.instance.OnUpdateLate += OnUpdateLate;
 		// Get LocationService
 		locationService = GetComponent<OnlineMapsLocationService>();
 
@@ -42,7 +48,7 @@ public class MapControl : MonoBehaviour {
 		}
 
 		map.showMarkerTooltip = OnlineMapsShowMarkerTooltip.onPress;
-		map.AddMarker(138.509600,35.675190, "Dynamic marker").OnPress += OnMarkerPress;
+//		map.AddMarker(138.509600,35.675190, "Dynamic marker").OnPress += OnMarkerPress;
 		map.AddMarker(138.5097,35.675194, "marker2").OnPress += OnMarkerPress;
 
 		OnlineMapsControlBase.instance.OnUpdateAfter += OnUpdateAfter;
@@ -78,7 +84,28 @@ public class MapControl : MonoBehaviour {
 			markerlist = marker.getMarkerList();
 			foreach(OnlineMapsMarker m in markerlist){
 				m.OnPress += OnMarkerPress;
+				//m.OnDrawTooltip = delegate {  };
+
+//				OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
+//				if (tooltipMarker == m) {
+//					if (tooltip == null) {
+//						tooltip = Instantiate (tooltipPrefab) as GameObject;
+//						(tooltip.transform as RectTransform).SetParent (container.transform);
+//					}
+//					Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (m.position);
+//					screenPosition.y += m.height;
+//					Vector2 point;
+//					RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
+//					(tooltip.transform as RectTransform).localPosition = point;
+//					tooltip.GetComponentInChildren<Text> ().text = m.label;
+//
+//				} else if (tooltip != null) {
+//					OnlineMapsUtils.DestroyImmediate (tooltip);
+//					tooltip = null;
+//				}
 			}
+
+
 //			Debug.Log(markerlist[0].label);
 		};
 		//失敗
@@ -107,12 +134,14 @@ public class MapControl : MonoBehaviour {
 		tooltipStyle = style;
 	}
 
+	//mapオブジェクトを移動
 	public void positionMoveMap(){
 		Vector3 pos = map.transform.position;
 		pos.x += 10000;
 		map.transform.position = pos;
 	}
 
+	//mapオブジェクトを元の位置に戻す
 	public void positionreturnMap(){
 		Vector3 pos = map.transform.position;
 		pos.x -= 10000;
@@ -120,6 +149,7 @@ public class MapControl : MonoBehaviour {
 		
 	}
 
+	//マーカーを押した時の処理
 	private void OnMarkerPress(OnlineMapsMarkerBase marker)
 	{
 		// Change active marker
@@ -130,7 +160,7 @@ public class MapControl : MonoBehaviour {
 		}
 		activeMarker = marker;
 	}
-
+	//tooltipを描画
 	private void OnMarkerDrawTooltip(OnlineMapsMarkerBase marker)
 	{
 		if (tooltipflag) {
@@ -146,7 +176,7 @@ public class MapControl : MonoBehaviour {
 			GUI.Label (new Rect (screenPosition.x - size.x / 2 - 5, Screen.height - screenPosition.y - size.y - 20, size.x + 10, size.y + 5), marker.label, tooltipStyle);
 		}
 	}
-
+	//update前
 	private void OnUpdateAfter()
 	{
 		// If activeMarker exists, restore tootip
@@ -156,5 +186,25 @@ public class MapControl : MonoBehaviour {
 			map.tooltip = activeMarker.label;
 		}
 	}
-
+	//custom tooltip
+//	private void OnUpdateLate()
+//	{
+//		OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
+//		if (tooltipMarker == marker) {
+//			if (tooltip == null) {
+//				tooltip = Instantiate (tooltipPrefab) as GameObject;
+//				(tooltip.transform as RectTransform).SetParent (container.transform);
+//			}
+//			Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (marker.position);
+//			screenPosition.y += marker.height;
+//			Vector2 point;
+//			RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
+//			(tooltip.transform as RectTransform).localPosition = point;
+//			tooltip.GetComponentInChildren<Text> ().text = marker.label;
+//
+//		} else if (tooltip != null) {
+//			OnlineMapsUtils.DestroyImmediate (tooltip);
+//			tooltip = null;
+//		}
+//	}
 }

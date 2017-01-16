@@ -193,9 +193,11 @@ public class AnimationUI : MonoBehaviour {
 	}
 	private void activate(){
 		canvasGroup.interactable = true;
+		canvasGroup.blocksRaycasts = true;
 		transform.SetAsLastSibling ();
 	}
 	private void deactivate(){
+		canvasGroup.blocksRaycasts = false;
 		canvasGroup.interactable = false;
 	}
 }
