@@ -14,7 +14,13 @@ public class MapControl : MonoBehaviour {
 	public Text t;
 	private int a;
 
-	//private List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
+	private OnlineMapsMarkerBase activeMarker;
+	private GUIStyle tooltipStyle;
+	private bool tooltipflag;
+
+	private List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
+
+	private GameObject tooltip;
 
 	private void Start(){
 		map = GetComponent<OnlineMaps>();
@@ -35,6 +41,23 @@ public class MapControl : MonoBehaviour {
 			return;
 		}
 
+		map.showMarkerTooltip = OnlineMapsShowMarkerTooltip.onPress;
+		map.AddMarker(138.509600,35.675190, "Dynamic marker").OnPress += OnMarkerPress;
+		map.AddMarker(138.5097,35.675194, "marker2").OnPress += OnMarkerPress;
+
+		OnlineMapsControlBase.instance.OnUpdateAfter += OnUpdateAfter;
+
+		// Intercepts tooltip style.
+		map.OnPrepareTooltipStyle += OnPrepareTooltipStyle;
+
+		// Intercepts drawing tooltips.
+		OnlineMapsMarkerBase.OnMarkerDrawTooltip += OnMarkerDrawTooltip;
+	}
+
+	private void Update(){
+		if (control.cameraRotation.x > 40) {
+			control.cameraRotation.x = 40;
+		}
 	}
 
 	//locationが変化した時行う処理
@@ -52,7 +75,11 @@ public class MapControl : MonoBehaviour {
 			GenerateMapMarker marker = new GenerateMapMarker();
 			marker.allMarkerDestroy(t);
 			marker.createMarker(items);
-
+			markerlist = marker.getMarkerList();
+			foreach(OnlineMapsMarker m in markerlist){
+				m.OnPress += OnMarkerPress;
+			}
+//			Debug.Log(markerlist[0].label);
 		};
 		//失敗
 		Action negative_func = () => {
@@ -77,6 +104,7 @@ public class MapControl : MonoBehaviour {
 	{
 		// Change the style settings.
 		style.fontSize = 30;
+		tooltipStyle = style;
 	}
 
 	public void positionMoveMap(){
@@ -91,4 +119,42 @@ public class MapControl : MonoBehaviour {
 		map.transform.position = pos;
 		
 	}
+
+	private void OnMarkerPress(OnlineMapsMarkerBase marker)
+	{
+		// Change active marker
+		if (activeMarker == marker) {
+			tooltipflag = !tooltipflag;
+		} else {
+			tooltipflag = true;
+		}
+		activeMarker = marker;
+	}
+
+	private void OnMarkerDrawTooltip(OnlineMapsMarkerBase marker)
+	{
+		if (tooltipflag) {
+			// Get screen position of marker
+			Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (marker.position);
+
+			// Calculate the size
+			GUIContent tip = new GUIContent (marker.label);
+			Debug.Log (tip);
+			Vector2 size = tooltipStyle.CalcSize (tip);
+
+			// Draw the tooltip
+			GUI.Label (new Rect (screenPosition.x - size.x / 2 - 5, Screen.height - screenPosition.y - size.y - 20, size.x + 10, size.y + 5), marker.label, tooltipStyle);
+		}
+	}
+
+	private void OnUpdateAfter()
+	{
+		// If activeMarker exists, restore tootip
+		if (activeMarker != null)
+		{
+			map.tooltipMarker = activeMarker;
+			map.tooltip = activeMarker.label;
+		}
+	}
+
 }
