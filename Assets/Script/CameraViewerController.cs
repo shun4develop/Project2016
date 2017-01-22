@@ -23,12 +23,12 @@ public class CameraViewerController: MonoBehaviour {
 		lat = UserInfo.instance.latitude;
 		lon = UserInfo.instance.longitude;
 
-		foreach (Transform child in canvas.transform)
-		{
-			if (child.GetComponent<AnimationUI> ()) {
-				child.GetComponent<AnimationUI> ().slideOut ("TOP");
-			}
-		}
+//		foreach (Transform child in canvas.transform)
+//		{
+//			if (child.GetComponent<AnimationUI> ()) {
+//				child.GetComponent<AnimationUI> ().slideOut ("TOP");
+//			}
+//		}
 		// Action<> 戻り値なし
 		// Func<>	戻り値ある
 
