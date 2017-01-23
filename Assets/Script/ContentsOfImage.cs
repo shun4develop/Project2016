@@ -39,7 +39,6 @@ public class ContentsOfImage : ContentsViewerBase {
 				runningCoroutine = WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getFilepath ());
 			}
 		}
-
 	}
 
 	//imageのオブジェクトに貼り付ける
@@ -52,18 +51,17 @@ public class ContentsOfImage : ContentsViewerBase {
 		image.sprite = s;
 		ifp.setSprite (s);
 		showCompleted = true;
-
-		Debug.Log ("show " + Item.getId());
 	}
-
 	public void clearImage(){
-		image.sprite = null;
-		ifp.clearImage();
-		showCompleted = false;
 		try{
 			StopCoroutine (runningCoroutine);
 		}catch{
 			Debug.Log ("すでにCoroutineが終了しています。");
+		}finally{
+			image.sprite = null;
+			ifp.clearImage ();
+			showCompleted = false;
 		}
+
 	}
 }

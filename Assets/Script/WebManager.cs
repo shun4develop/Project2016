@@ -34,6 +34,7 @@ public class WebManager : MonoBehaviour {
 	private string UPDATE_USER_INFOMATION = DOMAIN + "update_user_info.php";
 
 	private AnimationWebView webViewObject;
+
 	//シングルトン
 	private static WebManager _instance;
 	public static WebManager instance {
@@ -221,21 +222,32 @@ public class WebManager : MonoBehaviour {
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
 	private Coroutine throwQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
-		return StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+
 	}
 	private Coroutine throwQueryToServer(WWW www,Action<string> positive_func,Action<string> negative_func){
-		return StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+		
 	}
 	private Coroutine throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
-		return StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+		
 	}
 	private Coroutine throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action<string> negative_func){
-		return StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+		
 	}
 	private Coroutine throwQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){
-		return StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+		
 	}
 	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
+		
 		yield return www;
 		Debug.Log (www.text);
 		if (string.IsNullOrEmpty (www.error)) {
@@ -291,7 +303,6 @@ public class WebManager : MonoBehaviour {
 			} 
 			negative_func (www.text);
 		}
-
 	}
 
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){
