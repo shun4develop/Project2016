@@ -26,7 +26,8 @@ public class WebCameraController : MonoBehaviour {
 		#if UNITY_IOS
 		//s = IosCamera.test();
 		//iosTester();
-		IosCamera.cameraStart();
+		//IosCamera.cameraStart();
+		webCamera();
 		#endif
 		#if UNITY_EDITOR
 		//s = "webCam";
@@ -66,7 +67,7 @@ public class WebCameraController : MonoBehaviour {
 		var euler = transform.localRotation.eulerAngles;
 
 		//var webcamTextureorg = new WebCamTexture(devices[0].name);
-		webcamTexture = new WebCamTexture(devices[0].name, 4000,7000);
+		webcamTexture = new WebCamTexture(devices[0].name, 640,1136,60);
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer||Application.platform == RuntimePlatform.Android){
 			transform.localRotation = Quaternion.Euler( euler.x, euler.y, euler.z - 90 );
