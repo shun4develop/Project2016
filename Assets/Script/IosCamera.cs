@@ -7,6 +7,9 @@ public class IosCamera{
 	private static extern int sampleMethod1();
 	[DllImport("__Internal")]
 	private static extern void showCamera();
+	[DllImport("__Internal")]
+	private static extern void testCamera();
+
 
 	public static string test(){
 		int s = sampleMethod1();
@@ -14,6 +17,6 @@ public class IosCamera{
 	}
 
 	public static void cameraStart(){
-		showCamera ();
+		testCamera ();
 	}
 }

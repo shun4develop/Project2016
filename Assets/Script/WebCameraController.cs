@@ -65,7 +65,8 @@ public class WebCameraController : MonoBehaviour {
 
 		var euler = transform.localRotation.eulerAngles;
 
-		webcamTexture = new WebCamTexture(devices[0].name);
+		//var webcamTextureorg = new WebCamTexture(devices[0].name);
+		webcamTexture = new WebCamTexture(devices[0].name, 4000,7000);
 
 		if(Application.platform == RuntimePlatform.IPhonePlayer||Application.platform == RuntimePlatform.Android){
 			transform.localRotation = Quaternion.Euler( euler.x, euler.y, euler.z - 90 );

@@ -40,8 +40,10 @@
     _ipc = [[UIImagePickerController alloc] init];
     _ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
     _ipc.delegate = self;
-    _ipc.showsCameraControls = NO;
-    _ipc.allowsEditing = NO;
+    _ipc.showsCameraControls = YES;
+    _ipc.allowsEditing = YES;
+
+
 
     // カメラビュー
     CGRect s = [[UIScreen mainScreen] bounds];
@@ -51,46 +53,48 @@
     float ch = 1280 / 2;
     float r  = (sh * cw) / (sw * ch);
     float a  = ((r > 1) ? (sh / ch) : (sw / cw)) / 2;
-    UIView *parent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, sw, sh * 2)];
+    UIView *parent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, sw, sh)];
 
-    _ipc.cameraViewTransform = CGAffineTransformScale(_ipc.cameraViewTransform, 1.1, 1.1);
+    NSLog(@"width : %d\nheight : %d", s.size.width, s.size.height);
+
+    //_ipc.cameraViewTransform = CGAffineTransformScale(_ipc.cameraViewTransform, 1.1, 1.1);
     
     // 背景
-    // NSString *name;
-    // CGRect rect;
-    // for(int i = 0; i < 2; i++) {
-    //     name = [NSString stringWithFormat:@"%@%d", @"common_camera_", i];
-    //     float height = ((i == 0) ? 320 : 560) * a;
-    //     rect = CGRectMake(0, sh - height, 720 * a, height);
-    //     [_cameraBacks addObject:[self createImageView:parent tag:0 imageNamed:name frame:rect]];
-    // }
+    NSString *name;
+    CGRect rect;
+    for(int i = 0; i < 2; i++) {
+        name = [NSString stringWithFormat:@"%@%d", @"common_camera_", i];
+        float height = ((i == 0) ? 320 : 560) * a;
+        rect = CGRectMake(0, sh - height, 720 * a, height);
+        [_cameraBacks addObject:[self createImageView:parent tag:0 imageNamed:name frame:rect]];
+    }
 
     // 撮影ボタン
-    // name = @"common_button_camera";
-    // rect = CGRectMake(210 * a, 1010 * a, 300 * a, 120 * a);
-    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(takeCamera)];
+    name = @"common_button_camera";
+    rect = CGRectMake(210 * a, 1010 * a, 300 * a, 120 * a);
+    [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(takeCamera)];
 
     // キャンセルボタン
-    // name = @"common_button_cancel";
-    // rect = CGRectMake(10 * a, 1077 * a, 150 * a, 90 * a);
-    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(hideCamera)];
+    name = @"common_button_cancel";
+    rect = CGRectMake(10 * a, 1077 * a, 150 * a, 90 * a);
+    [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(hideCamera)];
 
     // 長方形ボタン
-    // name = @"common_button_rectangle";
-    // rect = CGRectMake(560 * a, 970 * a, 150 * a, 90 * a);
-    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(updateRectangle)];
+    name = @"common_button_rectangle";
+    rect = CGRectMake(560 * a, 970 * a, 150 * a, 90 * a);
+    [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(updateRectangle)];
 
     // // 正方形ボタン
-    // name = @"common_button_square";
-    // rect = CGRectMake(560 * a, 1077 * a, 150 * a, 90 * a);
-    // [self createButton:parent tag:1 imageNamed:name frame:rect action:@selector(updateSquare)];
+    name = @"common_button_square";
+    rect = CGRectMake(560 * a, 1077 * a, 150 * a, 90 * a);
+    [self createButton:parent tag:1 imageNamed:name frame:rect action:@selector(updateSquare)];
 
     // フォトスタイル初期化
-    // if(_photoStyle == 0) {
-    //     [self updateRectangle];
-    // } else {
-    //     [self updateSquare];
-    // }
+    if(_photoStyle == 0) {
+        [self updateRectangle];
+    } else {
+        [self updateSquare];
+    }
 
     // カメラ表示
     _ipc.cameraOverlayView = parent;
