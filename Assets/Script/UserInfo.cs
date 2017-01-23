@@ -22,5 +22,4 @@ public class UserInfo{
 		this.latitude = lat;
 		this.longitude = lon;
 	}
-
 }
