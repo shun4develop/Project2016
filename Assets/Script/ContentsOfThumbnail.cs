@@ -26,7 +26,13 @@ public class ContentsOfThumbnail : ContentsViewerBase  {
 			Action failure_func = () => {
 				Debug.Log ("ContentsOfThumbnail : failure_func");
 			};
-			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId()).getThumbnail ());
+			if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Album") {
+				// Scene が Album の場合は BagItem を参照する
+				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId ()).getFilepath ());
+			} else {
+				// それ以外の Scene（Camera）では LovationItem をもらう
+				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getFilepath ());
+			}
 		}
 
 	}		

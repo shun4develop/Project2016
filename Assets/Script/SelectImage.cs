@@ -66,8 +66,6 @@ namespace MapScene{
 			//animationを用いて詳細画面を表示する
 			AnimationUI ui = detailPanel.GetComponent<AnimationUI> ();
 			ui.fadeIn ();
-
-			mapcontrol.positionMoveMap ();
 		}
 	}
 

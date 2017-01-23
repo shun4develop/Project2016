@@ -52,6 +52,7 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 
 	//RegisterContents型のデータをアップロードする
 	public void uploadContent(){
+		
 		if (title.text == "") {
 			title.text = "no title";
 		}
@@ -60,11 +61,10 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 			desc.text = "no comment";
 		}
 
-		content = new RegisterContents (base64data, desc.text, title.text, lat, lon,SaveDataManager.loadUserName() , permitSave, "images");
+		content = new RegisterContents (base64data, desc.text, title.text, lat, lon ,SaveDataManager.loadUserName() , permitSave, "images");
 
 		Action<string> positive_func = (string text) => {
 			desc.text = text;
-			Destroy(this.gameObject);
 		};
 
 		Action negative_func = () => {
