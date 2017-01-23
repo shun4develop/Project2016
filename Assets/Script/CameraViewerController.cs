@@ -19,9 +19,9 @@ public class CameraViewerController: MonoBehaviour {
 	private string lon;
 
 	void Start () {
-
-		lat = UserInfo.instance.latitude;
-		lon = UserInfo.instance.longitude;
+		LocationInfo locationInfo = LocationManager.location;
+		lat = locationInfo.latitude.ToString("F6");
+		lon = locationInfo.latitude.ToString("F6");
 
 //		foreach (Transform child in canvas.transform)
 //		{
