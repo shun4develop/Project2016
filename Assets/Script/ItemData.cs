@@ -41,13 +41,25 @@ public class ItemData {
 
 
 	public void addThumbnail(int id,Texture2D tex){
-		thumbnail.Add (id,tex);
+		try{
+			thumbnail.Add (id,tex);
+		}catch{
+			return;
+		}
 	}
 	public void addContents(int id,Texture2D tex){
-		contents.Add (id,tex);
+		try{
+			contents.Add (id,tex);
+		}catch{
+			return;
+		}
 	}
 	public void addSprite(int id,Sprite s){
-		contentsSprite.Add (id,s);
+		try{
+			contentsSprite.Add (id,s);
+		}catch{
+			return;
+		}
 	}
 
 	public void SetItems(List<Item> items){
