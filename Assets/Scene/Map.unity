@@ -490,7 +490,7 @@ MonoBehaviour:
   redrawOnPlay: 0
   renderInThread: 1
   resourcesPath: 4f6e6c696e654d61707354696c65732f7b7a6f6f6d7d2f7b787d2f7b797d
-  showMarkerTooltip: 3
+  showMarkerTooltip: 1
   smartTexture: {fileID: 0}
   source: 0
   stopPlayingWhenScriptsCompile: 1
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   t: {fileID: 356807023}
-  tooltipPrefab: {fileID: 106076, guid: c1e2c495f202d41ca98a18bc256000ef, type: 2}
+  tooltipPrefab: {fileID: 171846, guid: a6dd8ef8189794d72a95ee2641f8afb7, type: 2}
   container: {fileID: 1218702709}
 --- !u!114 &193630193
 MonoBehaviour:

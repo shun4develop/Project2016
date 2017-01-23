@@ -21,22 +21,20 @@ public class MapControl : MonoBehaviour {
 	private List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
 
 	//custom tooltip用変数
-//	public GameObject tooltipPrefab;
-//	public Canvas container;
-//
-//	private OnlineMapsMarker marker;
-//	private GameObject tooltip;
+	public GameObject tooltipPrefab;
+	public Canvas container;
+
+	private OnlineMapsMarker marker;
+	private GameObject tooltip;
+	private int markerHeight;
 
 	private void Start(){
 		map = GetComponent<OnlineMaps>();
 		control = GetComponent<OnlineMapsTileSetControl>();
 
-		//OnlineMaps.instance.OnUpdateLate += OnUpdateLate;
 		// Get LocationService
 		locationService = GetComponent<OnlineMapsLocationService>();
 
-		//説明文のスタイル変更
-		OnlineMaps.instance.OnPrepareTooltipStyle += OnPrepareTooltipStyle;
 		locationService.OnLocationChanged += OnLocationChanged;
 
 		//locationServiceがなかった場合
@@ -46,18 +44,20 @@ public class MapControl : MonoBehaviour {
 				"Location Service not found.\nAdd Location Service Component (Component / Infinity Code / Online Maps / Plugins / Location Service).");
 			return;
 		}
+			
+		//map.AddMarker(138.509600,35.675190, "Dynamic marker").OnPress += OnMarkerPress;
 
-		map.showMarkerTooltip = OnlineMapsShowMarkerTooltip.onPress;
-//		map.AddMarker(138.509600,35.675190, "Dynamic marker").OnPress += OnMarkerPress;
-		map.AddMarker(138.5097,35.675194, "marker2").OnPress += OnMarkerPress;
+		//test用のマーカー
+		marker = map.AddMarker(138.5097,35.675194, "marker2");
+		marker.OnPress += OnMarkerPress;
+		marker.customData = "custamdata";
 
-		OnlineMapsControlBase.instance.OnUpdateAfter += OnUpdateAfter;
+		marker.OnDrawTooltip = delegate {  };
 
 		// Intercepts tooltip style.
 		map.OnPrepareTooltipStyle += OnPrepareTooltipStyle;
 
-		// Intercepts drawing tooltips.
-		OnlineMapsMarkerBase.OnMarkerDrawTooltip += OnMarkerDrawTooltip;
+		map.OnUpdateLate += OnUpdateLate;
 	}
 
 	private void Update(){
@@ -84,29 +84,10 @@ public class MapControl : MonoBehaviour {
 			markerlist = marker.getMarkerList();
 			foreach(OnlineMapsMarker m in markerlist){
 				m.OnPress += OnMarkerPress;
-				//m.OnDrawTooltip = delegate {  };
-
-//				OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
-//				if (tooltipMarker == m) {
-//					if (tooltip == null) {
-//						tooltip = Instantiate (tooltipPrefab) as GameObject;
-//						(tooltip.transform as RectTransform).SetParent (container.transform);
-//					}
-//					Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (m.position);
-//					screenPosition.y += m.height;
-//					Vector2 point;
-//					RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
-//					(tooltip.transform as RectTransform).localPosition = point;
-//					tooltip.GetComponentInChildren<Text> ().text = m.label;
-//
-//				} else if (tooltip != null) {
-//					OnlineMapsUtils.DestroyImmediate (tooltip);
-//					tooltip = null;
-//				}
+				m.OnDrawTooltip = delegate {  };
 			}
+			markerHeight = markerlist[0].height;
 
-
-//			Debug.Log(markerlist[0].label);
 		};
 		//失敗
 		Action negative_func = () => {
@@ -152,6 +133,8 @@ public class MapControl : MonoBehaviour {
 	//マーカーを押した時の処理
 	private void OnMarkerPress(OnlineMapsMarkerBase marker)
 	{
+		//this.marker = marker;
+		OnlineMapsUtils.DestroyImmediate (tooltip);
 		// Change active marker
 		if (activeMarker == marker) {
 			tooltipflag = !tooltipflag;
@@ -160,51 +143,27 @@ public class MapControl : MonoBehaviour {
 		}
 		activeMarker = marker;
 	}
-	//tooltipを描画
-	private void OnMarkerDrawTooltip(OnlineMapsMarkerBase marker)
-	{
-		if (tooltipflag) {
-			// Get screen position of marker
-			Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (marker.position);
 
-			// Calculate the size
-			GUIContent tip = new GUIContent (marker.label);
-			Debug.Log (tip);
-			Vector2 size = tooltipStyle.CalcSize (tip);
-
-			// Draw the tooltip
-			GUI.Label (new Rect (screenPosition.x - size.x / 2 - 5, Screen.height - screenPosition.y - size.y - 20, size.x + 10, size.y + 5), marker.label, tooltipStyle);
-		}
-	}
-	//update前
-	private void OnUpdateAfter()
-	{
-		// If activeMarker exists, restore tootip
-		if (activeMarker != null)
-		{
-			map.tooltipMarker = activeMarker;
-			map.tooltip = activeMarker.label;
-		}
-	}
 	//custom tooltip
-//	private void OnUpdateLate()
-//	{
-//		OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
-//		if (tooltipMarker == marker) {
-//			if (tooltip == null) {
-//				tooltip = Instantiate (tooltipPrefab) as GameObject;
-//				(tooltip.transform as RectTransform).SetParent (container.transform);
-//			}
-//			Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (marker.position);
-//			screenPosition.y += marker.height;
-//			Vector2 point;
-//			RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
-//			(tooltip.transform as RectTransform).localPosition = point;
-//			tooltip.GetComponentInChildren<Text> ().text = marker.label;
-//
-//		} else if (tooltip != null) {
-//			OnlineMapsUtils.DestroyImmediate (tooltip);
-//			tooltip = null;
-//		}
-//	}
+	private void OnUpdateLate()
+	{
+		//Debug.Log ("OnupdateLate");
+		OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
+		if (tooltipMarker == activeMarker && tooltipflag) {
+			if (tooltip == null) {
+				tooltip = Instantiate (tooltipPrefab) as GameObject;
+				(tooltip.transform as RectTransform).SetParent (container.transform);
+			}
+			Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (activeMarker.position);
+			screenPosition.y += markerHeight + 100;
+			Vector2 point;
+			RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
+			(tooltip.transform as RectTransform).localPosition = point;
+			Item item = (Item)activeMarker.customData;
+			tooltip.GetComponentInChildren<Text> ().text = item.getTitle();
+			//tooltip.GetComponentInChildren<Image> ().sprite = item.getThumbnail();
+			Debug.Log(item.getThumbnail());
+			//Debug.Log (marker.customData);
+		}
+	}
 }
