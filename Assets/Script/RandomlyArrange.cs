@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ObjectSetter : MonoBehaviour {
+/// <summary>
+///  オブジェクトを適当な位置に配置する
+/// 
+///  target の方向を向く
+/// </summary>
+
+public class RandomlyArrange : MonoBehaviour {
 
 
 	GameObject target;
@@ -15,24 +21,20 @@ public class ObjectSetter : MonoBehaviour {
 
 		target = GameObject.Find("Camera");
 
-//		float x = Random.Range (-5.0f, 5.0f);
-//		float y = Random.Range (-5.0f, 5.0f);
-//		float z = Random.Range (-5.0f, 5.0f);
-
 		x = Random.Range(-5.0f, 5.0f);
 		y = Random.Range(-5.0f, 5.0f);
 		z = Random.Range(-5.0f, 5.0f);
-		//y = Random.Range (-5.0f, 5.0f);
+
 		if (x > 0) {
 			x += 5f;
 		} else {
 			x -= 5f;
 		}
-//		if (y > 0) {
-//			y += 5;
-//		} else {
-//			y -= 5;
-//		}
+		if (y > 0) {
+			y += 5;
+		} else {
+			y -= 5;
+		}
 		if (z > 0) {
 			z += 5f;
 		} else {
@@ -44,10 +46,5 @@ public class ObjectSetter : MonoBehaviour {
 		//this.gameObject.transform.LookAt (Vector3);
 		transform.Rotate(new Vector3(0, 1, 0), 180);
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

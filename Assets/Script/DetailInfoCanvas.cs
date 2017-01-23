@@ -26,13 +26,16 @@ public class DetailInfoCanvas : MonoBehaviour{
 
 	public GameObject btn;
 
-	private ContentsViewerBase iv;
+	private ContentsViewerBase imageViewer;
 
 	GameObject child;
 
+	void Start(){
+		this.imageViewer = image.GetComponent<ContentsViewerBase> ();
+	}
+
 	public void init(Item item){
-		this.iv = image.GetComponent<ContentsOfImage> ();
-		this.iv.Item = item;
+		this.imageViewer.Item = item;
 
 		this.item = item;
 		this.date.text = item.getDate ();
@@ -50,6 +53,7 @@ public class DetailInfoCanvas : MonoBehaviour{
 		if (this.item == null) {
 			return;
 		}
-		iv.show ();
+
+		imageViewer.show ();
 	}
 }

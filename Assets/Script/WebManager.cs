@@ -34,6 +34,7 @@ public class WebManager : MonoBehaviour {
 	private string UPDATE_USER_INFOMATION = DOMAIN + "update_user_info.php";
 
 	private AnimationWebView webViewObject;
+
 	//シングルトン
 	private static WebManager _instance;
 	public static WebManager instance {
@@ -52,25 +53,25 @@ public class WebManager : MonoBehaviour {
 		data.AddField ("user_name",SaveDataManager.loadUserName());
 		return data;
 	}
-	public void contentsUpload(Action<string> positive_func,Action negative_func,RegisterContents item){
+	public Coroutine contentsUpload(Action<string> positive_func,Action negative_func,RegisterContents item){
 		WWWForm data = getSecureForm ();
 		data.AddField ("contents",UnityEngine.JsonUtility.ToJson(item));
 		WWW www = new WWW (CONTENTS_UPLOAD,data);
 
-		throwQueryToServer(www,positive_func,negative_func);
+		return throwQueryToServer(www,positive_func,negative_func);
 	}
-	public void getUserInfomation(Action<string> positive_func,Action negative_func){
+	public Coroutine getUserInfomation(Action<string> positive_func,Action negative_func){
 		WWWForm data = getSecureForm ();
 		WWW www = new WWW (GET_USER_INFOMATION,data);
 
-		throwQueryToServer(www,positive_func,negative_func);
+		return throwQueryToServer(www,positive_func,negative_func);
 	}
-	public void updateUserInfomation(Action<string> positive_func,Action negative_func,Profile userInfo){
+	public Coroutine updateUserInfomation(Action<string> positive_func,Action negative_func,Profile userInfo){
 		WWWForm data = getSecureForm ();
 		data.AddField ("user_info",UnityEngine.JsonUtility.ToJson(userInfo));
 		WWW www = new WWW (UPDATE_USER_INFOMATION,data);
 
-		throwQueryToServer(www,positive_func,negative_func);
+		return throwQueryToServer(www,positive_func,negative_func);
 	}
 	public void socialLogin(string snsType){
 		string url = null;
@@ -112,36 +113,37 @@ public class WebManager : MonoBehaviour {
 		webViewObject.slideIn ();
 	}
 
-	public void getSNSIcon(Action<Texture2D> success_func,Action failure_func,string url){
+	public Coroutine getSNSIcon(Action<Texture2D> success_func,Action failure_func,string url){
 		WWW www = new WWW (url);
-		throwQueryToServer (www,success_func,failure_func);
+		return throwQueryToServer (www,success_func,failure_func);
 	}
-	public void getResources(Action<Texture2D> success_func,Action failure_func,string filepath){
+	public Coroutine getResources(Action<Texture2D> success_func,Action failure_func,string filepath){
 		WWWForm data = getSecureForm ();
 		data.AddField ("filepath", filepath);
 		WWW www = new WWW (GET_RESOURCES,data);
-		throwQueryToServer (www,success_func,failure_func);
+		return throwQueryToServer (www,success_func,failure_func);
 	}
-	public void findUserName(Action<string> find_func,Action not_find_func,string user_name){
+	public Coroutine findUserName(Action<string> find_func,Action not_find_func,string user_name){
 		WWWForm data = getSecureForm ();
 		data.AddField ("user_name",user_name);
 		WWW www = new WWW (FIND_USER_NAME,data);
-		throwQueryToServer (www,find_func,not_find_func);
+		return throwQueryToServer (www,find_func,not_find_func);
 	}
-	public void autoLogin(Action<Dictionary<string,object>> positive_func,Action negative_func){
+	public Coroutine autoLogin(Action<Dictionary<string,object>> positive_func,Action negative_func){
 		WWWForm data = getSecureForm ();
 		WWW www = new WWW (AUTO_LOGIN,data);
-		throwQueryToServer (www,positive_func,negative_func);
+		return throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void downloadContents(Action<string> positive_func,Action negative_func,string mode){
+	public Coroutine downloadContents(Action<string> positive_func,Action negative_func,string mode){
 		
 		WWWForm data = getSecureForm ();
 		data.AddField ("mode", mode);
 
 		WWW www = new WWW (FETCH_CONTENTS, data);
 
-		throwQueryToServer (www,positive_func,negative_func);
-	}public void downloadContents(Action<string> positive_func,Action negative_func,string latitude,string longitude){
+		return throwQueryToServer (www,positive_func,negative_func);
+	}
+	public Coroutine downloadContents(Action<string> positive_func,Action negative_func,string latitude,string longitude){
 
 		WWWForm data = getSecureForm ();
 		data.AddField ("mode", "location");
@@ -150,17 +152,17 @@ public class WebManager : MonoBehaviour {
 
 		WWW www = new WWW (FETCH_CONTENTS, data);
 
-		throwQueryToServer (www,positive_func,negative_func);
+		return throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void login(Action<string> positive_func,Action negative_func,string user_name,string password){
+	public Coroutine login(Action<string> positive_func,Action negative_func,string user_name,string password){
 		WWWForm data = getSecureForm ();
 		data.AddField("user_name", user_name);
 		data.AddField("password", password);
 		WWW www = new WWW(LOGIN, data.data);
 
-		throwQueryToServer (www,positive_func,negative_func);
+		return throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void socialLogin(Action<string> positive_func,Action negative_func,UserOfSNS user,string token){
+	public Coroutine socialLogin(Action<string> positive_func,Action negative_func,UserOfSNS user,string token){
 		WWWForm data = getSecureForm ();
 		data.AddField("user_name", user.name);
 		data.AddField("social_id", user.id);
@@ -168,9 +170,9 @@ public class WebManager : MonoBehaviour {
 		data.AddField ("instant_token", token);
 		WWW www = new WWW(LOGIN, data.data);
 
-		throwQueryToServer (www,positive_func,negative_func);
+		return throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void socialRegister(Action<Dictionary<string,object>> positive_func,Action<string> negative_func,UserOfSNS user,string token){
+	public Coroutine socialRegister(Action<Dictionary<string,object>> positive_func,Action<string> negative_func,UserOfSNS user,string token){
 		WWWForm data = getSecureForm ();
 		string sns_type = "original";
 		string icon_url = "original";
@@ -190,51 +192,62 @@ public class WebManager : MonoBehaviour {
 
 		WWW www = new WWW(USER_REGISTER, data.data);
 
-		throwQueryToServer (www,positive_func,negative_func);
+		return throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void contentsDump(Action<string> positive_func,Action negative_func,int contentsID,string title){
+	public Coroutine contentsDump(Action<string> positive_func,Action negative_func,int contentsID,string title){
 
 		WWWForm data = getSecureForm ();
 		data.AddField("contents_id",contentsID);
 		data.AddField ("title",title);
 		WWW www = new WWW(CONTENTS_DUMP,data);
 
-		throwQueryToServer (www,positive_func,negative_func);
+		return throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void contentsTaken(Action<string> positive_func,Action negative_func,int contentsID, string title){
+	public Coroutine contentsTaken(Action<string> positive_func,Action negative_func,int contentsID, string title){
 		WWWForm data = getSecureForm ();
 		data.AddField("contents_id",contentsID);
 		data.AddField ("title", title);
 
 		WWW www = new WWW(CONTENTS_TAKEN,data);
 
-		throwQueryToServer (www,positive_func,negative_func);
+		return throwQueryToServer (www,positive_func,negative_func);
 	}
-	public void userRegister(Action<Dictionary<string,object>> positive_func,Action negative_func,string user_name,string password){
+	public Coroutine userRegister(Action<Dictionary<string,object>> positive_func,Action negative_func,string user_name,string password){
 		WWWForm data = getSecureForm ();
 		data.AddField ("user_name", user_name);
 		data.AddField ("password",password);
 
 		WWW www = new WWW (USER_REGISTER,data);
 
-		throwQueryToServer (www,positive_func,negative_func);
+		return throwQueryToServer (www,positive_func,negative_func);
 	}
-	private void throwQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
-		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+	private Coroutine throwQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+
 	}
-	private void throwQueryToServer(WWW www,Action<string> positive_func,Action<string> negative_func){
-		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+	private Coroutine throwQueryToServer(WWW www,Action<string> positive_func,Action<string> negative_func){
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+		
 	}
-	private void throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
-		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+	private Coroutine throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+		
 	}
-	private void throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action<string> negative_func){
-		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+	private Coroutine throwQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action<string> negative_func){
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+		
 	}
-	private void throwQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){
-		StartCoroutine (ThrowQueryToServer(www,positive_func,negative_func));
+	private Coroutine throwQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){
+		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
+		return StartCoroutine(e);
+		
 	}
 	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
+		
 		yield return www;
 		Debug.Log (www.text);
 		if (string.IsNullOrEmpty (www.error)) {
@@ -290,7 +303,6 @@ public class WebManager : MonoBehaviour {
 			} 
 			negative_func (www.text);
 		}
-
 	}
 
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){

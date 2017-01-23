@@ -9,14 +9,12 @@ public class Indicator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject parent = transform.parent.gameObject;
-		contents = parent.GetComponent<ContentsViewerBase> ();
-
 		image = GetComponent<Image>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		contents = transform.parent.GetComponent<ContentsViewerBase> ();
 		if (!contents.showCompleted) {
 			image.enabled = true;
 			iTween.RotateTo (gameObject, iTween.Hash ("z", -720, "easetype", "linear", "loopType", "loop", "delay", 0));
