@@ -40,7 +40,7 @@ public class CameraViewerController: MonoBehaviour {
 			ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
 
 			Action<string> positive_func = (string json) => {
-				ItemData.instance.SetItems(JsonHelper.ListFromJson<Item> (json));
+				ItemData.instance.SetLocationItems(JsonHelper.ListFromJson<Item> (json));
 				contentsInit(ItemData.instance.locationItems);
 			};
 

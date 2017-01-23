@@ -10,6 +10,7 @@ GameObject:
   - 224: {fileID: 22427846}
   - 222: {fileID: 22235298}
   - 114: {fileID: 11455418}
+  - 114: {fileID: 11407548}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -52,6 +53,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &11407548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a767649dcb846a3beefbdb912ad56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11455332
 MonoBehaviour:
   m_ObjectHideFlags: 1

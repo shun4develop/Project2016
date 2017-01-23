@@ -50,7 +50,7 @@ public class ItemData {
 		contentsSprite.Add (id,s);
 	}
 
-	public void SetItems(List<Item> items){
+	public void SetLocationItems(List<Item> items){
 		this.locationItems = items;
 		sortById (items);
 	}
