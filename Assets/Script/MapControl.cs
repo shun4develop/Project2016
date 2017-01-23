@@ -67,9 +67,9 @@ public class MapControl : MonoBehaviour {
 	private void OnLocationChanged(Vector2 position)
 	{
 		Debug.Log("location change");
-		t.text = position.ToString("F6") + "\n";
+		t.text += position.ToString("F6") + "\n";
 		a++;
-		t.text += a.ToString();
+		//t.text += a.ToString();
 		UserInfo.instance.SetLocation (position.y.ToString ("F6"), position.x.ToString ("F6"));
 
 		if (pos.x != position.x && pos.y != position.y) {
