@@ -7,7 +7,11 @@
 @property(nonatomic, retain)NSMutableArray *_cameraBacks;
 @property(nonatomic, copy)NSString *_imagePath;
 @property(nonatomic, assign)int _photoStyle;
+@property (strong, nonatomic)NSMutableString *mstSelectedImage;
 @end
+
+// @interface presentViewController : NSObject<UIAlertController>
+// @end
 
 @implementation CharikitaPlugin
 @synthesize _ipc;
@@ -41,7 +45,7 @@
     _ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
     _ipc.delegate = self;
     _ipc.showsCameraControls = YES;
-    _ipc.allowsEditing = YES;
+    _ipc.allowsEditing = NO;
 
 
 
@@ -55,49 +59,47 @@
     float a  = ((r > 1) ? (sh / ch) : (sw / cw)) / 2;
     UIView *parent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, sw, sh)];
 
-    NSLog(@"width : %d\nheight : %d", s.size.width, s.size.height);
-
     //_ipc.cameraViewTransform = CGAffineTransformScale(_ipc.cameraViewTransform, 1.1, 1.1);
     
     // 背景
-    NSString *name;
-    CGRect rect;
-    for(int i = 0; i < 2; i++) {
-        name = [NSString stringWithFormat:@"%@%d", @"common_camera_", i];
-        float height = ((i == 0) ? 320 : 560) * a;
-        rect = CGRectMake(0, sh - height, 720 * a, height);
-        [_cameraBacks addObject:[self createImageView:parent tag:0 imageNamed:name frame:rect]];
-    }
+    // NSString *name;
+    // CGRect rect;
+    // for(int i = 0; i < 2; i++) {
+    //     name = [NSString stringWithFormat:@"%@%d", @"common_camera_", i];
+    //     float height = ((i == 0) ? 320 : 560) * a;
+    //     rect = CGRectMake(0, sh - height, 720 * a, height);
+    //     [_cameraBacks addObject:[self createImageView:parent tag:0 imageNamed:name frame:rect]];
+    // }
 
-    // 撮影ボタン
-    name = @"common_button_camera";
-    rect = CGRectMake(210 * a, 1010 * a, 300 * a, 120 * a);
-    [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(takeCamera)];
+    // // 撮影ボタン
+    // name = @"common_button_camera";
+    // rect = CGRectMake(210 * a, 1010 * a, 300 * a, 120 * a);
+    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(takeCamera)];
 
-    // キャンセルボタン
-    name = @"common_button_cancel";
-    rect = CGRectMake(10 * a, 1077 * a, 150 * a, 90 * a);
-    [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(hideCamera)];
+    // // キャンセルボタン
+    // name = @"common_button_cancel";
+    // rect = CGRectMake(10 * a, 1077 * a, 150 * a, 90 * a);
+    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(hideCamera)];
 
-    // 長方形ボタン
-    name = @"common_button_rectangle";
-    rect = CGRectMake(560 * a, 970 * a, 150 * a, 90 * a);
-    [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(updateRectangle)];
+    // // 長方形ボタン
+    // name = @"common_button_rectangle";
+    // rect = CGRectMake(560 * a, 970 * a, 150 * a, 90 * a);
+    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(updateRectangle)];
 
-    // // 正方形ボタン
-    name = @"common_button_square";
-    rect = CGRectMake(560 * a, 1077 * a, 150 * a, 90 * a);
-    [self createButton:parent tag:1 imageNamed:name frame:rect action:@selector(updateSquare)];
+    // // // 正方形ボタン
+    // name = @"common_button_square";
+    // rect = CGRectMake(560 * a, 1077 * a, 150 * a, 90 * a);
+    // [self createButton:parent tag:1 imageNamed:name frame:rect action:@selector(updateSquare)];
 
-    // フォトスタイル初期化
-    if(_photoStyle == 0) {
-        [self updateRectangle];
-    } else {
-        [self updateSquare];
-    }
+    // // フォトスタイル初期化
+    // if(_photoStyle == 0) {
+    //     [self updateRectangle];
+    // } else {
+    //     [self updateSquare];
+    // }
 
     // カメラ表示
-    _ipc.cameraOverlayView = parent;
+    //_ipc.cameraOverlayView = parent;
     [UnityGetGLViewController() presentViewController:_ipc animated:YES completion:nil];
 }
 
@@ -211,46 +213,45 @@
  */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // ローディングを先に走らせる(画像処理に時間が掛かるため)
-    UnitySendMessage("SceneTitle", "OnLoadPhoto", "");
+    //UnitySendMessage("SceneTitle", "OnLoadPhoto", "");
 
-    // 元のシーンへ
-    [UnityGetGLViewController() dismissViewControllerAnimated:YES completion:^{
-        // 画像取得
-        UIImage *origin = [info objectForKey:UIImagePickerControllerOriginalImage];
-        UIImage *edited = [info objectForKey:UIImagePickerControllerEditedImage];
-        UIImage *image = (edited) ? edited : origin;
+    [UnityGetGLViewController() dismissViewControllerAnimated:YES completion:nil];
 
-        // サイズが大きいものはリサイズ
-        if(image.size.width > 2048 || image.size.height > 2048) {
-            image = [self resizedImage:image size:CGSizeMake(image.size.width / 2, image.size.height / 2)];
-        }
+    
+    NSLog(@"TEST1");
+    // 画像取得
+    UIImage *origin = [info objectForKey:UIImagePickerControllerOriginalImage];
+    //UIImageWriteToSavedPhotosAlbum(origin, self, nil, nil);
 
-        // フォトスタイルが正方形の場合はトリミング
-        if(_ipc.sourceType == UIImagePickerControllerSourceTypeCamera && _photoStyle == 1) {
-            image = [self clippedImage:image rect:CGRectMake(0, 0, image.size.width, image.size.width)];
-        }
+    // 端末に保存
+    NSData *data = UIImagePNGRepresentation(origin);
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [path objectAtIndex:0];
+    
+    // 適当なファイル名をつける.
+    NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"tmp.jpg"];
+    [data writeToFile:filePath atomically:YES];
 
-        // 端末に保存
-        NSData *data = UIImagePNGRepresentation(image);
-        NSString *path = _imagePath;
-        [data writeToFile:path atomically:YES];
+    _imagePath = (NSMutableString *)filePath;
+    NSLog(@"TEST2");
 
-        // Unity側に情報を返す
-        if(image.imageOrientation == UIImageOrientationUp) {
-            path = [path stringByAppendingFormat:@",0,%d", _photoStyle];
-        } else if(image.imageOrientation == UIImageOrientationRight) {
-            path = [path stringByAppendingFormat:@",1,%d", _photoStyle];
-        } else if(image.imageOrientation == UIImageOrientationDown) {
-            path = [path stringByAppendingFormat:@",2,%d", _photoStyle];
-        } else if(image.imageOrientation == UIImageOrientationLeft) {
-            path = [path stringByAppendingFormat:@",3,%d", _photoStyle];
-        }
-        UnitySendMessage("SceneTitle", "OnSelectPhoto", [self parseStr:path.UTF8String]);
+    // Unity側に情報を返す
+    //_mstSelectedImage
+    UnitySendMessage("MarkerButton", "onCallBack", [self parseStr:_imagePath.UTF8String ]);
 
-        // 破棄
-        [self releaseImagePicker];
-    }];
+    // 破棄
+    [self releaseImagePicker];
+    NSLog(@"TEST3  path : %s", _imagePath);
 }
+// - (char *)MakeStringCopy: (const char*) string{
+//     if (string == NULL)
+//         return NULL;
+    
+//     char* res = (char*)malloc(strlen(string) + 1);
+//     strcpy(res, string);
+//     return res;
+// }
+
 
 /**
  * 画像リサイズ
@@ -343,6 +344,7 @@
 - (void)releaseImagePicker {
     self._ipc = nil;
     [_cameraBacks removeAllObjects];
+    NSLog(@"TEST");
 }
 
 /**
@@ -355,6 +357,37 @@
     char *res = (char *)malloc(strlen(str) + 1);
     strcpy(res, str);
     return res;
+}
+// - (void)alertTest {
+ 
+//     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"選択" message:@"どれにしますか？" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+//     // 上から順にボタンが配置
+//     [alertController addAction:[UIAlertAction actionWithTitle:@"選択１" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//         [self selectedActionWith:1];
+//     }]];
+//     [alertController addAction:[UIAlertAction actionWithTitle:@"選択２" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//         [self selectedActionWith:2];
+//     }]];
+//     [alertController addAction:[UIAlertAction actionWithTitle:@"選択３" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//         [self selectedActionWith:3];
+//     }]];
+//     [alertController addAction:[UIAlertAction actionWithTitle:@"クリア" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+//         [self selectedActionWith:0];
+//     }]];
+    
+//     // iPad用　（これが無いとエラー）
+//     // alertController.popoverPresentationController.sourceView = self.view;
+//     // alertController.popoverPresentationController.sourceRect = CGRectMake(_actionSheetBtn.frame.origin.x, _actionSheetBtn.frame.origin.y, 20.0, 20.0);
+//     //alertController.popoverPresentationController.sourceView = _actionSheetBtn; //でも良い
+    
+//     [self presentViewController:alertController animated:YES completion:nil];
+   
+// }
+ 
+-(void)selectedActionWith:(int)index{
+    NSLog(@"選択: %d",index);
+    // 選択時の処理    
 }
 @end
 
@@ -388,11 +421,15 @@ extern "C" {
         [plugin savePhoto:getStr(path)];
     }
 
+    //void alertTest();
+
     int sampleMethod1();
 }
 int sampleMethod1() {
     return 10;
 }
+
+
 
 
 
