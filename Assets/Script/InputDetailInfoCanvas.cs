@@ -24,6 +24,8 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public Toggle toggle;
 	public Image img;
 	public GameObject fullImagePanel;
+	public GameObject uploadCheck;
+	public Text debugText;
 
 	void Start(){
 		toggle.onValueChanged.AddListener(OnValueChanged);
@@ -64,7 +66,9 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		content = new RegisterContents (base64data, desc.text, title.text, lat, lon ,SaveDataManager.loadUserName() , permitSave, "images");
 
 		Action<string> positive_func = (string text) => {
-			desc.text = text;
+			debugText.text += text;
+			AnimationUI u = uploadCheck.GetComponent<AnimationUI>();
+			u.fadeIn();
 		};
 
 		Action negative_func = () => {

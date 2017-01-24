@@ -34,7 +34,7 @@ public class GenerateMapMarker{
 				a++;
 			}
 		}
-		t.text += "destroy呼ばれた回数" + a.ToString();
+		//t.text += "destroy呼ばれた回数" + a.ToString();
 	}
 
 	public List<OnlineMapsMarker> getMarkerList(){
