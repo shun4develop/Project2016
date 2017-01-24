@@ -224,7 +224,6 @@ public class WebManager : MonoBehaviour {
 	private Coroutine throwQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
 		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
 		return StartCoroutine(e);
-
 	}
 	private Coroutine throwQueryToServer(WWW www,Action<string> positive_func,Action<string> negative_func){
 		IEnumerator e = ThrowQueryToServer (www, positive_func, negative_func);
