@@ -36,7 +36,7 @@ public class ItemData {
 	}
 
 	public void sortById(List<Item> items){
-		locationItems.Sort (delegate(Item a, Item b){return a.getId() - b.getId();});
+		items.Sort (delegate(Item a, Item b){return a.getId() - b.getId();});
 	}
 
 
