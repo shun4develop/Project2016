@@ -37,7 +37,4 @@ public class LocationManager : MonoBehaviour
 		}
 	}
 
-	public static LocationInfo getLocationInfo(){
-		return location;
-	}
 }

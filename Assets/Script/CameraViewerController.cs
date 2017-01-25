@@ -18,53 +18,39 @@ public class CameraViewerController: MonoBehaviour {
 	private string lat;
 	private string lon;
 
-	void Start () {
-		LocationInfo locationInfo = LocationManager.location;
-		lat = locationInfo.latitude.ToString("F6");
-		lon = locationInfo.latitude.ToString("F6");
+	IEnumerator Start(){
+		while(true){
+			lat = LocationManager.location.latitude.ToString("F6");
+			lon = LocationManager.location.latitude.ToString("F6");
+			Debug.Log (lat+"\n"+lon);
+			Action<string> positive_func2 = (string text) => {
+				ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
 
-//		foreach (Transform child in canvas.transform)
-//		{
-//			if (child.GetComponent<AnimationUI> ()) {
-//				child.GetComponent<AnimationUI> ().slideOut ("TOP");
-//			}
-//		}
-		// Action<> 戻り値なし
-		// Func<>	戻り値ある
+				Action<string> positive_func = (string json) => {
+					ItemData.instance.SetLocationItems(JsonHelper.ListFromJson<Item> (json));
+					contentsInit(ItemData.instance.locationItems);
+				};
 
-		// Action<T>	 		引数 1
-		// Action<T1,T2>		引数 2
-		// Func  <T,TResult>	引数 1 戻り値 TResult型
-		// Func  <T1,T2,TResult> 同上
-		Action<string> positive_func2 = (string text) => {
-			ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
+				Action negative_func = () => {
+					//エラー表示
+					Debug.Log("CameraViewerController.Start()   エラー");
+				};
 
-			Action<string> positive_func = (string json) => {
-				ItemData.instance.SetLocationItems(JsonHelper.ListFromJson<Item> (json));
-				contentsInit(ItemData.instance.locationItems);
+				WebManager.instance.downloadContents ( positive_func , negative_func, lat, lon);
+				//			WebManager.instance.downloadContents ( positive_func , negative_func, "owner");
 			};
 
-			Action negative_func = () => {
+			Action negative_func2 = () => {
 				//エラー表示
-				Debug.Log("CameraViewerController.Start()   エラー");
+				Debug.Log("ViewerController.Start()   エラー");
 			};
 
-			WebManager.instance.downloadContents ( positive_func , negative_func, lat, lon);
-//			WebManager.instance.downloadContents ( positive_func , negative_func, "owner");
-		};
+			WebManager.instance.downloadContents ( positive_func2 , negative_func2, "bag");
 
-		Action negative_func2 = () => {
-			//エラー表示
-			Debug.Log("ViewerController.Start()   エラー");
-		};
-
-		WebManager.instance.downloadContents ( positive_func2 , negative_func2, "bag");
-
+			yield return new WaitForSeconds (5);
+		}
 	}
-		
 	private void contentsInit(List<Item> items){
-
-		Debug.Log (lat + " : " + lon);
 
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す

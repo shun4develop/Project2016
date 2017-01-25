@@ -407,17 +407,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: slideOut
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: TOP
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 236882931}
         m_MethodName: slideOut
         m_Mode: 5
@@ -431,6 +420,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1613622221}
         m_MethodName: clearImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1066153928}
+        m_MethodName: popDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

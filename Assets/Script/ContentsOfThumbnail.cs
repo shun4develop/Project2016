@@ -28,10 +28,10 @@ public class ContentsOfThumbnail : ContentsViewerBase  {
 			};
 			if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Album") {
 				// Scene が Album の場合は BagItem を参照する
-				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId ()).getFilepath ());
+				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId ()).getThumbnail ());
 			} else {
 				// それ以外の Scene（Camera）では LovationItem をもらう
-				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getFilepath ());
+				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getThumbnail ());
 			}
 		}
 
