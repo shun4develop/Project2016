@@ -67,9 +67,9 @@ public class MapControl : MonoBehaviour {
 	private void OnLocationChanged(Vector2 position)
 	{
 		Debug.Log("location change");
-		t.text += position.ToString("F6") + "\n";
+		t.text = position.ToString("F6") + "\n";
 		a++;
-		//t.text += a.ToString();
+		t.text += a.ToString();
 		UserInfo.instance.SetLocation (position.y.ToString ("F6"), position.x.ToString ("F6"));
 
 		if (pos.x != position.x && pos.y != position.y) {
@@ -117,8 +117,11 @@ public class MapControl : MonoBehaviour {
 	//マーカーを押した時の処理
 	private void OnMarkerPress(OnlineMapsMarkerBase marker)
 	{
+		
 		//this.marker = marker;
-		OnlineMapsUtils.DestroyImmediate (tooltip);
+		if (tooltip != null) {
+			OnlineMapsUtils.DestroyImmediate (tooltip);
+		}
 		// Change active marker
 		if (activeMarker == marker) {
 			tooltipflag = !tooltipflag;
@@ -130,7 +133,6 @@ public class MapControl : MonoBehaviour {
 		Debug.Log ("ompress");
 		//custamtooltip作成
 		OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
-		Debug.Log ("tooltip");
 		if (tooltipflag) {
 			if (tooltip == null) {
 				tooltip = Instantiate (tooltipPrefab) as GameObject;
