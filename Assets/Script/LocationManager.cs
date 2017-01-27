@@ -21,6 +21,8 @@ public class LocationManager : MonoBehaviour
 					break;
 				case LocationServiceStatus.Running:
 					location = Input.location.lastData;
+					//Debug.Log ("緯度 ->" + location.latitude);
+					//Debug.Log ("経度 -> "+location.longitude);
 					break;
 				default:
 					break;

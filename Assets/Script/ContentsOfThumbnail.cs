@@ -30,7 +30,11 @@ public class ContentsOfThumbnail : ContentsViewerBase  {
 				// Scene が Album の場合は BagItem を参照する
 				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId ()).getThumbnail ());
 			} else {
+<<<<<<< Updated upstream
 				// それ以外の Scene（Camera）では LovationItem をもらう
+=======
+				// それ以外の Scene（Camera）では LocationItem をもらう
+>>>>>>> Stashed changes
 				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getThumbnail ());
 			}
 		}
@@ -41,7 +45,6 @@ public class ContentsOfThumbnail : ContentsViewerBase  {
 		Sprite s = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
 		Image image = this.gameObject.GetComponent<Image> ();
 		image.sprite = s;
-
 		showCompleted = true;
 	}
 }
