@@ -18,18 +18,19 @@ namespace MapScene{
 		private AndroidJavaObject activity;
 
 		private void Start(){
-			if (Application.platform == RuntimePlatform.Android) {
-				unityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
-				activity = unityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
-			} else if(Application.platform == RuntimePlatform.IPhonePlayer) {
-				
-			}
+			
 			mapcontrol = mapobj.GetComponent<MapControl> ();
 
 		}
 
 		public void ShowDialog(){
-			activity.CallStatic("ShowAlertDialog", activity);
+			if (Application.platform == RuntimePlatform.Android) {
+				unityPlayer = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
+				activity = unityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
+				activity.CallStatic("ShowAlertDialog", activity);
+			} else if(Application.platform == RuntimePlatform.IPhonePlayer) {
+				IosCamera.album ();
+			}
 		}
 
 		//pluginからファイルパスが返ってくる
