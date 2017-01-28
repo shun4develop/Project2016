@@ -23,47 +23,13 @@ public class PinchInOut : MonoBehaviour {
 
 	Vector2 oldPos;
 	Vector2 startPos;
-	Vector2 min;
-	Vector2 max;
-
-	Rect rect;
 
 	void Start(){
 		startPos = new Vector2 (transform.position.x, transform.position.y);
-
-		rect = GetComponent<RectTransform> ().rect;
-
 	}
 
 	// Update is called once per frame
 	void Update () {
-		
-		min = new Vector2(rect.xMin, rect.yMin);
-		max = new Vector2(rect.xMax, rect.yMax);
-
-		Vector2 pos = transform.position;
-
-		//デバッグ用
-		if (Input.GetKey (KeyCode.UpArrow))
-			transform.position = new Vector2 (transform.position.x, transform.position.y -10);
-		if (Input.GetKey (KeyCode.DownArrow))
-			transform.position = new Vector2 (transform.position.x, transform.position.y +10);
-		if (Input.GetKey (KeyCode.LeftArrow) && pos.x > min.x)
-			transform.position = new Vector2 (transform.position.x + 10, transform.position.y);
-		if (Input.GetKey (KeyCode.RightArrow))
-			transform.position = new Vector2 (transform.position.x-10, transform.position.y);
-
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			transform.localScale= new Vector3 (transform.localScale.x + 1, transform.localScale.y+1);
-			Debug.Log (min + " / " + max);
-		}
-		//Vector2 pos = transform.position;
-
-		//pos.x = Mathf.Clamp (pos.x, min.x, max.x);
-		//pos.y = Mathf.Clamp (pos.y, min.y, max.y);
-
-		//transform.position = pos;
-
 
 		//Debug.Log ("x : " + transform.position.x + "y : "+ transform.position.y);
 		//Debug.Log(transform.localScale);
