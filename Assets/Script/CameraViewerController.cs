@@ -18,28 +18,7 @@ public class CameraViewerController: MonoBehaviour {
 	private string lat;
 	private string lon;
 
-<<<<<<< Updated upstream
-	IEnumerator Start(){
-		while(true){
-			lat = LocationManager.location.latitude.ToString("F6");
-			lon = LocationManager.location.latitude.ToString("F6");
-			Debug.Log (lat+"\n"+lon);
-			Action<string> positive_func2 = (string text) => {
-				ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
 
-				Action<string> positive_func = (string json) => {
-					ItemData.instance.SetLocationItems(JsonHelper.ListFromJson<Item> (json));
-					contentsInit(ItemData.instance.locationItems);
-				};
-
-				Action negative_func = () => {
-					//エラー表示
-					Debug.Log("CameraViewerController.Start()   エラー");
-				};
-
-				WebManager.instance.downloadContents ( positive_func , negative_func, lat, lon);
-				//			WebManager.instance.downloadContents ( positive_func , negative_func, "owner");
-=======
 	private Dictionary<int,GameObject> instanceObjectList = new Dictionary<int,GameObject> ();
 	//Start with this method
 	IEnumerator Start(){
@@ -72,47 +51,32 @@ public class CameraViewerController: MonoBehaviour {
 		// Action<T1,T2>		引数 2
 		// Func  <T,TResult>	引数 1 戻り値 TResult型
 		// Func  <T1,T2,TResult> 同上
-		Action<string> positive_func2 = (string text) => {
+		Action<string> positive_func = (string text) => {
 			ItemData.instance.SetBagItems (JsonHelper.ListFromJson<Item> (text));
 
-			Action<string> positive_func = (string json) => {
+			Action<string> positive_func2 = (string json) => {
 				ItemData.instance.SetLocationItems (JsonHelper.ListFromJson<Item> (json));
 				contentsInit ();
->>>>>>> Stashed changes
 			};
 
 			Action negative_func2 = () => {
 				//エラー表示
-<<<<<<< Updated upstream
-				Debug.Log("ViewerController.Start()   エラー");
-			};
-
-			WebManager.instance.downloadContents ( positive_func2 , negative_func2, "bag");
-
-			yield return new WaitForSeconds (5);
-		}
-	}
-	private void contentsInit(List<Item> items){
-
-=======
 				Debug.Log ("CameraViewerController.Start()   エラー");
 			};
 
-			WebManager.instance.downloadContents (positive_func, negative_func, lat, lon);
-			//			WebManager.instance.downloadContents ( positive_func , negative_func, "owner");
+			WebManager.instance.downloadContents (positive_func2, negative_func2, "bag");
+
+		};
+		Action negative_func = () => {
+			
 		};
 
-		Action negative_func2 = () => {
-			//エラー表示
-			Debug.Log ("ViewerController.Start()   エラー");
-		};
-
-		WebManager.instance.downloadContents (positive_func2, negative_func2, "bag");
+		WebManager.instance.downloadContents (positive_func,negative_func,lat,lon);
 	}
+
 	//現在のコンテンツ情報をもとにオブジェクトを削除、生成する
 	private void contentsInit(){
 		
->>>>>>> Stashed changes
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す
 
