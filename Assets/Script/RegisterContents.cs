@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class RegisterContents{
 	[SerializeField]
-	private string data; //base64
+	private string data; //binary
 	[SerializeField]
 	private string desc;
 	[SerializeField]

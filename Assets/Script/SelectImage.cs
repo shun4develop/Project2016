@@ -38,6 +38,10 @@ namespace MapScene{
 		{
 			Debug.Log ("Call From Native. (" + msg + ")");
 			ReadTexture(msg,1000, 1000);
+
+			//animationを用いて詳細画面を表示する
+			AnimationUI ui = detailPanel.GetComponent<AnimationUI> ();
+			ui.fadeIn ();
 		}
 
 		//base64data texture2D Sprite作成
@@ -58,15 +62,12 @@ namespace MapScene{
 			lat = location.position.y;
 			lon = location.position.x;
 
-			//詳細画面base64dataとLocationとSpriteImageを渡す
+			//詳細画面 dataとLocationとSpriteImageを渡す
 			InputDetailInfoCanvas detail = detailPanel.GetComponent<InputDetailInfoCanvas> ();
-			detail.setBase64data (base64data);
+			detail.setBinaryData (base64data);
 			detail.setLocation (lat, lon);
 			detail.setSpriteImage (sp);
 
-			//animationを用いて詳細画面を表示する
-			AnimationUI ui = detailPanel.GetComponent<AnimationUI> ();
-			ui.fadeIn ();
 		}
 	}
 
