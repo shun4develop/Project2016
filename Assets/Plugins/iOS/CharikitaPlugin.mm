@@ -222,6 +222,10 @@
     // 画像取得
     UIImage *origin = [info objectForKey:UIImagePickerControllerOriginalImage];
     //UIImageWriteToSavedPhotosAlbum(origin, self, nil, nil);
+    UIGraphicsBeginImageContext(origin.size); 
+    [origin drawInRect:CGRectMake(0, 0, origin.size.width, origin.size.height)]; 
+    origin = UIGraphicsGetImageFromCurrentImageContext(); 
+    UIGraphicsEndImageContext();
 
     // 端末に保存
     NSData *data = UIImagePNGRepresentation(origin);
@@ -280,6 +284,7 @@
     CGImageRef cgImage = CGImageCreateWithImageInRect(image.CGImage, rect);
     image = [UIImage imageWithCGImage:cgImage scale:image.scale orientation:image.imageOrientation];
     CGImageRelease(cgImage);
+
     return image;
 }
 

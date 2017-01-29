@@ -55,14 +55,31 @@ public class WebManager : MonoBehaviour {
 	}
 	public Coroutine contentsUpload(Action<string> positive_func,Action negative_func,RegisterContents item){
 		WWWForm data = getSecureForm ();
-		data.AddField ("contents",UnityEngine.JsonUtility.ToJson(item));
+		string itemJSON = UnityEngine.JsonUtility.ToJson (item);
+		data.AddField ("contents",itemJSON);
 		WWW www = new WWW (CONTENTS_UPLOAD,data);
+
+		string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+		double len = item.getData ().Length;
+		int order = 0;
+		while (len >= 1024 && order < sizes.Length - 1) {
+			order++;
+			len = len/1024;
+		}
+
+		// Adjust the format string to your preferences. For example "{0:0.#}{1}" would
+		// show a single decimal place, and no space.
+		string result = String.Format("{0:0.##} {1}", len, sizes[order]);
+		Debug.Log ("WebManager call contentsUpload");
+		Debug.Log ("Upload file size => "+result);
+		//Debug.Log ("JSON => "+itemJSON);
 
 		return throwQueryToServer(www,positive_func,negative_func);
 	}
 	public Coroutine getUserInfomation(Action<string> positive_func,Action negative_func){
 		WWWForm data = getSecureForm ();
 		WWW www = new WWW (GET_USER_INFOMATION,data);
+		Debug.Log ("WebManager call getUserInfomation");
 
 		return throwQueryToServer(www,positive_func,negative_func);
 	}
@@ -70,6 +87,8 @@ public class WebManager : MonoBehaviour {
 		WWWForm data = getSecureForm ();
 		data.AddField ("user_info",UnityEngine.JsonUtility.ToJson(userInfo));
 		WWW www = new WWW (UPDATE_USER_INFOMATION,data);
+		Debug.Log ("WebManager call updateUserInfomation");
+
 
 		return throwQueryToServer(www,positive_func,negative_func);
 	}
@@ -115,29 +134,44 @@ public class WebManager : MonoBehaviour {
 
 	public Coroutine getSNSIcon(Action<Texture2D> success_func,Action failure_func,string url){
 		WWW www = new WWW (url);
+
+		Debug.Log ("WebManager call getSNSIcon");
+
 		return throwQueryToServer (www,success_func,failure_func);
 	}
 	public Coroutine getResources(Action<Texture2D> success_func,Action failure_func,string filepath){
 		WWWForm data = getSecureForm ();
 		data.AddField ("filepath", filepath);
 		WWW www = new WWW (GET_RESOURCES,data);
+
+		Debug.Log ("WebManager call getResources");
+
 		return throwQueryToServer (www,success_func,failure_func);
 	}
 	public Coroutine findUserName(Action<string> find_func,Action not_find_func,string user_name){
 		WWWForm data = getSecureForm ();
 		data.AddField ("user_name",user_name);
 		WWW www = new WWW (FIND_USER_NAME,data);
+
+		Debug.Log ("WebManager call findUserName");
+
 		return throwQueryToServer (www,find_func,not_find_func);
 	}
 	public Coroutine autoLogin(Action<Dictionary<string,object>> positive_func,Action negative_func){
 		WWWForm data = getSecureForm ();
 		WWW www = new WWW (AUTO_LOGIN,data);
+
+		Debug.Log ("WebManager call autoLogin");
+
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
 	public Coroutine downloadContents(Action<string> positive_func,Action negative_func,string mode){
 		
 		WWWForm data = getSecureForm ();
 		data.AddField ("mode", mode);
+
+		Debug.Log ("WebManager call downloadContents");
+
 
 		WWW www = new WWW (FETCH_CONTENTS, data);
 
@@ -150,6 +184,9 @@ public class WebManager : MonoBehaviour {
 		data.AddField("latitude",latitude);
 		data.AddField("longitude",longitude);
 
+		Debug.Log ("WebManager call downloadContents");
+
+
 		WWW www = new WWW (FETCH_CONTENTS, data);
 
 		return throwQueryToServer (www,positive_func,negative_func);
@@ -160,6 +197,9 @@ public class WebManager : MonoBehaviour {
 		data.AddField("password", password);
 		WWW www = new WWW(LOGIN, data.data);
 
+		Debug.Log ("WebManager call login");
+
+
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
 	public Coroutine socialLogin(Action<string> positive_func,Action negative_func,UserOfSNS user,string token){
@@ -169,6 +209,9 @@ public class WebManager : MonoBehaviour {
 		data.AddField ("sns_type", user.socialType);
 		data.AddField ("instant_token", token);
 		WWW www = new WWW(LOGIN, data.data);
+
+		Debug.Log ("WebManager call socialLogin");
+
 
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
@@ -190,6 +233,9 @@ public class WebManager : MonoBehaviour {
 		data.AddField ("instant_token",token);
 		data.AddField ("icon_url",icon_url);
 
+		Debug.Log ("WebManager call socialRegister");
+
+
 		WWW www = new WWW(USER_REGISTER, data.data);
 
 		return throwQueryToServer (www,positive_func,negative_func);
@@ -200,6 +246,7 @@ public class WebManager : MonoBehaviour {
 		data.AddField("contents_id",contentsID);
 		data.AddField ("title",title);
 		WWW www = new WWW(CONTENTS_DUMP,data);
+		Debug.Log ("WebManager call contentsDump");
 
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
@@ -210,6 +257,7 @@ public class WebManager : MonoBehaviour {
 
 		WWW www = new WWW(CONTENTS_TAKEN,data);
 
+		Debug.Log ("WebManager call contentsTaken");
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
 	public Coroutine userRegister(Action<Dictionary<string,object>> positive_func,Action negative_func,string user_name,string password){
@@ -218,6 +266,8 @@ public class WebManager : MonoBehaviour {
 		data.AddField ("password",password);
 
 		WWW www = new WWW (USER_REGISTER,data);
+		Debug.Log ("WebManager call userRegister");
+
 
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
