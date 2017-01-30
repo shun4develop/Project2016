@@ -14,8 +14,8 @@ public class MapControl : MonoBehaviour {
 	public Text t;
 	private int a;
 
-	private OnlineMapsMarkerBase activeMarker;
-	private bool tooltipflag;
+	private OnlineMapsMarkerBase selectedMarker;
+	private bool canCreateTooltipFlag;
 
 	private List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
 
@@ -130,51 +130,36 @@ public class MapControl : MonoBehaviour {
 	}
 
 	//マーカーを押した時の処理
-	private void OnMarkerPress(OnlineMapsMarkerBase marker)
+	private void OnMarkerPress(OnlineMapsMarkerBase pressedMarker)
 	{
-		markertouchflag = true;
-//		if (tooltip != null) {
-//			DestroyObject(tooltip);
-//		}
-
-		if (activeMarker == marker) {
-			tooltipflag = !tooltipflag;
+		if (selectedMarker != pressedMarker) {
+			// Change active marker
+			selectedMarker = pressedMarker;
+			createTooltip ();
 		} else {
-			tooltipflag = true;
-		}
-
-		// Change active marker
-		activeMarker = marker;
-
-		Debug.Log ("onclick");
-		t.text += "markerclick";
-		//custamtooltip作成
-		//OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
-		if (tooltipflag) {
-			if (tooltip == null) {
-				tooltip = Instantiate (tooltipPrefab) as GameObject;
-				(tooltip.transform as RectTransform).SetParent (container.transform);
-			}
-			Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (activeMarker.position);
-			screenPosition.y += markerHeight + 150;
-			Vector2 point;
-			RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
-			(tooltip.transform as RectTransform).localPosition = point;
-			Item item = (Item)activeMarker.customData;
-			tooltip.GetComponentInChildren<Text> ().text = item.getTitle();
-			tooltip.GetComponentInChildren<ContentsViewerBase> ().init (item);
-			tooltip.GetComponentInChildren<ContentsViewerBase> ().show ();
+			selectedMarker = null;
+			Destroy (tooltip);
 		}
 	}
 
 	private void OnMapClick(){
-		if (markertouchflag) {
-			Debug.Log ("aaaa");
-		} else {
-			Debug.Log ("bbbbbbb");
-			markertouchflag = false;
-			DestroyObject (tooltip);
-		}
-		markertouchflag = false;
+		selectedMarker = null;
+		Destroy (tooltip);
 	}
+	private void createTooltip(){
+		if (tooltip == null) {
+			tooltip = Instantiate (tooltipPrefab) as GameObject;
+			(tooltip.transform as RectTransform).SetParent (container.transform);
+		}
+		Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (selectedMarker.position);
+		screenPosition.y += markerHeight + 150;
+		Vector2 point;
+		RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
+		(tooltip.transform as RectTransform).localPosition = point;
+		Item item = (Item)selectedMarker.customData;
+		tooltip.GetComponentInChildren<Text> ().text = item.getTitle();
+		tooltip.GetComponentInChildren<ContentsViewerBase> ().init (item);
+		tooltip.GetComponentInChildren<ContentsViewerBase> ().show ();
+	}
+
 }
