@@ -26,6 +26,7 @@ public class MapControl : MonoBehaviour {
 	private OnlineMapsMarker marker;
 	private GameObject tooltip;
 	private int markerHeight;
+	private bool markertouchflag;
 
 	private Vector2 pos;
 
@@ -37,6 +38,8 @@ public class MapControl : MonoBehaviour {
 		locationService = GetComponent<OnlineMapsLocationService>();
 
 		locationService.OnLocationChanged += OnLocationChanged;
+		//control.OnMapClick;
+		OnlineMaps.instance.control.OnMapClick += OnMapClick;
 
 
 		//locationServiceがなかった場合
@@ -61,13 +64,25 @@ public class MapControl : MonoBehaviour {
 		if (control.cameraRotation.x > 40) {
 			control.cameraRotation.x = 40;
 		}
+
+		//touchするとtooltipを削除
+//		if (Input.touchCount > 0) {
+//			t.text += "ttt"; 
+//			Touch touch = Input.GetTouch(0);
+//			if(touch.phase == TouchPhase.Began)
+//			{
+//				if (tooltip != null) {
+//					DestroyImmediate(tooltip);
+//				}
+//			}
+//		}
 	}
 
 	//locationが変化した時行う処理
 	private void OnLocationChanged(Vector2 position)
 	{
 		Debug.Log("location change");
-		t.text = position.ToString("F6") + "\n";
+		t.text += position.ToString("F6") + "\n";
 		a++;
 		t.text += a.ToString();
 		UserInfo.instance.SetLocation (position.y.ToString ("F6"), position.x.ToString ("F6"));
@@ -82,7 +97,7 @@ public class MapControl : MonoBehaviour {
 				marker.createMarker (ItemData.instance.locationItems);
 				markerlist = marker.getMarkerList ();
 				foreach (OnlineMapsMarker m in markerlist) {
-					m.OnPress += OnMarkerPress;
+					m.OnClick += OnMarkerPress;
 					m.OnDrawTooltip = delegate {
 					};
 				}
@@ -117,11 +132,10 @@ public class MapControl : MonoBehaviour {
 	//マーカーを押した時の処理
 	private void OnMarkerPress(OnlineMapsMarkerBase marker)
 	{
-		
-		//this.marker = marker;
-		if (tooltip != null) {
-			OnlineMapsUtils.DestroyImmediate (tooltip);
-		}
+		markertouchflag = true;
+//		if (tooltip != null) {
+//			DestroyObject(tooltip);
+//		}
 		// Change active marker
 		if (activeMarker == marker) {
 			tooltipflag = !tooltipflag;
@@ -130,16 +144,17 @@ public class MapControl : MonoBehaviour {
 		}
 		activeMarker = marker;
 
-		Debug.Log ("ompress");
+		Debug.Log ("onclick");
+		t.text += "markerclick";
 		//custamtooltip作成
-		OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
+		//OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
 		if (tooltipflag) {
 			if (tooltip == null) {
 				tooltip = Instantiate (tooltipPrefab) as GameObject;
 				(tooltip.transform as RectTransform).SetParent (container.transform);
 			}
 			Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (activeMarker.position);
-			screenPosition.y += markerHeight + 100;
+			screenPosition.y += markerHeight + 150;
 			Vector2 point;
 			RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
 			(tooltip.transform as RectTransform).localPosition = point;
@@ -149,25 +164,15 @@ public class MapControl : MonoBehaviour {
 			tooltip.GetComponentInChildren<ContentsViewerBase> ().show ();
 		}
 	}
-	//custom tooltip
-	private void OnUpdateLate()
-	{
-//		Debug.Log ("OnupdateLate");
-//		OnlineMapsMarkerBase tooltipMarker = OnlineMaps.instance.tooltipMarker;
-//		if (tooltipMarker == activeMarker && tooltipflag) {
-//			if (tooltip == null) {
-//				tooltip = Instantiate (tooltipPrefab) as GameObject;
-//				(tooltip.transform as RectTransform).SetParent (container.transform);
-//			}
-//			Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (activeMarker.position);
-//			screenPosition.y += markerHeight + 100;
-//			Vector2 point;
-//			RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
-//			(tooltip.transform as RectTransform).localPosition = point;
-//			Item item = (Item)activeMarker.customData;
-//			tooltip.GetComponentInChildren<Text> ().text = item.getTitle();
-//			tooltip.GetComponentInChildren<ContentsViewerBase> ().init (item);
-//			tooltip.GetComponentInChildren<ContentsViewerBase> ().show ();
-//		}
+
+	private void OnMapClick(){
+		if (markertouchflag) {
+			Debug.Log ("aaaa");
+		} else {
+			Debug.Log ("bbbbbbb");
+			markertouchflag = false;
+			DestroyObject (tooltip,1);
+		}
+		markertouchflag = false;
 	}
 }
