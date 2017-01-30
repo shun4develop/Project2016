@@ -37,7 +37,7 @@ namespace MapScene{
 		public void onCallBack (string msg)
 		{
 			Debug.Log ("Call From Native. (" + msg + ")");
-			ReadTexture(msg,1000, 1000);
+			ReadTexture(msg,100, 100);
 
 			//animationを用いて詳細画面を表示する
 			AnimationUI ui = detailPanel.GetComponent<AnimationUI> ();
@@ -50,22 +50,31 @@ namespace MapScene{
 			// バイト配列でファイルを読み込み、Texture2Dとしてセットする.
 			byte[] byteReadBinary = File.ReadAllBytes(strPath);
 			base64data = System.Convert.ToBase64String (byteReadBinary); //base64に変換
-			Texture2D txtNewImage = new Texture2D(intWidth, intHeight);
-			txtNewImage.LoadImage(byteReadBinary);
-			sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
-			//		img.sprite = sp;
 
-			double lat=0,lon=0;
+			//texture2dとspritを作る
+			if (Application.platform == RuntimePlatform.Android) {
+				Texture2D txtNewImage = new Texture2D (intWidth, intHeight);
+				txtNewImage.LoadImage(byteReadBinary);
+				sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
+			} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
+				Texture2D txtNewImage = new Texture2D (intWidth, intHeight, TextureFormat.PVRTC_RGBA4, false);
+				txtNewImage.LoadImage(byteReadBinary);
+				sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
+			}
+			//txtNewImage.LoadImage(byteReadBinary);
+			//sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
+			//t.text += "width" + txtNewImage.width.ToString () + " + " + "height" + txtNewImage.height.ToString ();
+			//double lat=0,lon=0;
 
 			//MapのOnlineMapsLocationServiceを取ってくる
-			OnlineMapsLocationService location = mapobj.GetComponent<OnlineMapsLocationService>();
-			lat = location.position.y;
-			lon = location.position.x;
+//			OnlineMapsLocationService location = mapobj.GetComponent<OnlineMapsLocationService>();
+//			lat = location.position.y;
+//			lon = location.position.x;
 
 			//詳細画面 dataとLocationとSpriteImageを渡す
 			InputDetailInfoCanvas detail = detailPanel.GetComponent<InputDetailInfoCanvas> ();
 			detail.setBinaryData (base64data);
-			detail.setLocation (lat, lon);
+//			detail.setLocation (lat, lon);
 			detail.setSpriteImage (sp);
 
 		}

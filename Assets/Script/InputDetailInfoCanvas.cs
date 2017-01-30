@@ -34,10 +34,10 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		this.binaryData = base64data;
 	}
 
-	public void setLocation(double lat , double lon){
-		this.lat = lat;
-		this.lon = lon;
-	}
+//	public void setLocation(double lat , double lon){
+//		this.lat = lat;
+//		this.lon = lon;
+//	}
 
 	//RegisterContents型のデータをアップロードする
 	public void uploadContent(){
