@@ -19,7 +19,7 @@ public class RandomlyArrange : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		target = GameObject.Find("Camera");
+		target = GameObject.Find("Main Camera");
 
 		x = Random.Range(-5.0f, 5.0f);
 		y = Random.Range(-5.0f, 5.0f);
