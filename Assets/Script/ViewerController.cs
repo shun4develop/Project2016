@@ -30,7 +30,7 @@ public class ViewerController : MonoBehaviour {
 	public void downloadContents(){
 		Action<string> positive_func = (string text) => {
 			ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
-			contentsInit(ItemData.instance.bagItems);
+			contentsInit();
 		};
 
 		Action negative_func = () => {
@@ -42,11 +42,13 @@ public class ViewerController : MonoBehaviour {
 		WebManager.instance.downloadContents ( positive_func , negative_func, "bag");
 	}
 
-	private void contentsInit(List<Item> items){
+	private void contentsInit(){
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す
 
-		for (int i=0;i<items.Count;i++){
+		
+
+		for (int i=ItemData.instance.bagItems.Count-1;i>=0;i--){
 			Item item = ItemData.instance.bagItems[i];
 
 			GameObject tmp = Instantiate(pre);
