@@ -36,10 +36,9 @@
  * @param imagePath 画像保存パス
  * @param photoStyle フォトスタイル。0：長方形、1：正方形
  */
-- (void)showCamera:(NSString *)imagePath photoStyle:(int)photoStyle {
+- (void)showCamera:(NSString *)imagePath photoStyle:(int)photoStyle{
     _imagePath = imagePath;
     _photoStyle = photoStyle;
-
     // UIImagePickerController初期化
     _ipc = [[UIImagePickerController alloc] init];
     _ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -59,47 +58,7 @@
     float a  = ((r > 1) ? (sh / ch) : (sw / cw)) / 2;
     UIView *parent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, sw, sh)];
 
-    //_ipc.cameraViewTransform = CGAffineTransformScale(_ipc.cameraViewTransform, 1.1, 1.1);
-    
-    // 背景
-    // NSString *name;
-    // CGRect rect;
-    // for(int i = 0; i < 2; i++) {
-    //     name = [NSString stringWithFormat:@"%@%d", @"common_camera_", i];
-    //     float height = ((i == 0) ? 320 : 560) * a;
-    //     rect = CGRectMake(0, sh - height, 720 * a, height);
-    //     [_cameraBacks addObject:[self createImageView:parent tag:0 imageNamed:name frame:rect]];
-    // }
 
-    // // 撮影ボタン
-    // name = @"common_button_camera";
-    // rect = CGRectMake(210 * a, 1010 * a, 300 * a, 120 * a);
-    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(takeCamera)];
-
-    // // キャンセルボタン
-    // name = @"common_button_cancel";
-    // rect = CGRectMake(10 * a, 1077 * a, 150 * a, 90 * a);
-    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(hideCamera)];
-
-    // // 長方形ボタン
-    // name = @"common_button_rectangle";
-    // rect = CGRectMake(560 * a, 970 * a, 150 * a, 90 * a);
-    // [self createButton:parent tag:0 imageNamed:name frame:rect action:@selector(updateRectangle)];
-
-    // // // 正方形ボタン
-    // name = @"common_button_square";
-    // rect = CGRectMake(560 * a, 1077 * a, 150 * a, 90 * a);
-    // [self createButton:parent tag:1 imageNamed:name frame:rect action:@selector(updateSquare)];
-
-    // // フォトスタイル初期化
-    // if(_photoStyle == 0) {
-    //     [self updateRectangle];
-    // } else {
-    //     [self updateSquare];
-    // }
-
-    // カメラ表示
-    //_ipc.cameraOverlayView = parent;
     [UnityGetGLViewController() presentViewController:_ipc animated:YES completion:nil];
 }
 
@@ -215,13 +174,28 @@
     // ローディングを先に走らせる(画像処理に時間が掛かるため)
     //UnitySendMessage("SceneTitle", "OnLoadPhoto", "");
 
+     NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    NSLog(@"amano %@", mediaType);
+    //UIImagePickerController type =  ;
+    NSLog(@"amano2 %ld", (long)UIImagePickerControllerSourceTypeCamera);
+    NSLog(@"amano3 %ld", (long)UIImagePickerControllerSourceTypeSavedPhotosAlbum);
+    NSLog(@"amano4 %ld", (long)UIImagePickerControllerSourceTypePhotoLibrary);
+    NSLog(@"amano5 %ld", (long)picker.sourceType);
+
+
     [UnityGetGLViewController() dismissViewControllerAnimated:YES completion:nil];
 
     
     NSLog(@"TEST1");
     // 画像取得
     UIImage *origin = [info objectForKey:UIImagePickerControllerOriginalImage];
-    //UIImageWriteToSavedPhotosAlbum(origin, self, nil, nil);
+    if(origin.size.width > 2048 || origin.size.height > 2048) {
+            origin = [self resizedImage:origin size:CGSizeMake(origin.size.width / 2, origin.size.height / 2)];
+    }
+    if((long)picker.sourceType == 1){
+        UIImageWriteToSavedPhotosAlbum(origin, self, nil, nil);
+    }
     UIGraphicsBeginImageContext(origin.size); 
     [origin drawInRect:CGRectMake(0, 0, origin.size.width, origin.size.height)]; 
     origin = UIGraphicsGetImageFromCurrentImageContext(); 
@@ -363,19 +337,18 @@
     strcpy(res, str);
     return res;
 }
-// - (void)alertTest {
+- (void)alertTest:(NSString *)imagePath photoStyle:(int)photoStyle {
+    _imagePath = imagePath;
+    _photoStyle = photoStyle;
  
-//     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"選択" message:@"どれにしますか？" preferredStyle:UIAlertControllerStyleActionSheet];
+     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"選択" message:@"どれにしますか？" preferredStyle:UIAlertControllerStyleActionSheet];
     
 //     // 上から順にボタンが配置
-//     [alertController addAction:[UIAlertAction actionWithTitle:@"選択１" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//         [self selectedActionWith:1];
-//     }]];
+       [alertController addAction:[UIAlertAction actionWithTitle:@"選択１" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+          [self selectedActionWith:1];
+       }]];
 //     [alertController addAction:[UIAlertAction actionWithTitle:@"選択２" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 //         [self selectedActionWith:2];
-//     }]];
-//     [alertController addAction:[UIAlertAction actionWithTitle:@"選択３" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//         [self selectedActionWith:3];
 //     }]];
 //     [alertController addAction:[UIAlertAction actionWithTitle:@"クリア" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
 //         [self selectedActionWith:0];
@@ -388,11 +361,20 @@
     
 //     [self presentViewController:alertController animated:YES completion:nil];
    
-// }
+}
  
 -(void)selectedActionWith:(int)index{
-    NSLog(@"選択: %d",index);
-    // 選択時の処理    
+    // 選択時の処理
+    switch(index){
+        case 1:
+            [self showCamera:_imagePath photoStyle:_photoStyle];
+        break;
+        case 2:
+            [self showAlbum:_imagePath photoStyle:_photoStyle];
+        break;
+        case 0:
+        break;
+    }
 }
 @end
 
@@ -414,7 +396,6 @@ extern "C" {
     }
 
     void showCamera(char *imagePath, int photoStyle){
-        static CharikitaPlugin *plugin =[[CharikitaPlugin alloc] init];
         [plugin showCamera:getStr(imagePath) photoStyle:photoStyle];
     }
 
@@ -426,9 +407,12 @@ extern "C" {
         [plugin savePhoto:getStr(path)];
     }
 
-    //void alertTest();
+    void alertTest(char *imagePath, int photoStyle){
+        [plugin alertTest:getStr(imagePath) photoStyle:photoStyle];
+    };
 
     int sampleMethod1();
+
 }
 int sampleMethod1() {
     return 10;

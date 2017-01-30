@@ -29,7 +29,7 @@ namespace MapScene{
 				activity = unityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
 				activity.CallStatic("ShowAlertDialog", activity);
 			} else if(Application.platform == RuntimePlatform.IPhonePlayer) {
-				IosCamera.album ();
+				IOSPlugin.album ();
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace MapScene{
 			// バイト配列でファイルを読み込み、Texture2Dとしてセットする.
 			byte[] byteReadBinary = File.ReadAllBytes(strPath);
 			base64data = System.Convert.ToBase64String (byteReadBinary); //base64に変換
-			Texture2D txtNewImage = new Texture2D(intWidth, intHeight);
+			Texture2D txtNewImage = new Texture2D(intWidth, intHeight,TextureFormat.PVRTC_RGB4,false);
 			txtNewImage.LoadImage(byteReadBinary);
 			sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
 			//		img.sprite = sp;
