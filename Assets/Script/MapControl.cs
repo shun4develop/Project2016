@@ -136,12 +136,14 @@ public class MapControl : MonoBehaviour {
 //		if (tooltip != null) {
 //			DestroyObject(tooltip);
 //		}
-		// Change active marker
+
 		if (activeMarker == marker) {
 			tooltipflag = !tooltipflag;
 		} else {
 			tooltipflag = true;
 		}
+
+		// Change active marker
 		activeMarker = marker;
 
 		Debug.Log ("onclick");
@@ -171,7 +173,7 @@ public class MapControl : MonoBehaviour {
 		} else {
 			Debug.Log ("bbbbbbb");
 			markertouchflag = false;
-			DestroyObject (tooltip,1);
+			DestroyObject (tooltip);
 		}
 		markertouchflag = false;
 	}
