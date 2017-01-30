@@ -22,7 +22,7 @@ public class RandomlyArrange : MonoBehaviour {
 		target = GameObject.Find("Main Camera");
 
 		x = Random.Range(-5.0f, 5.0f);
-		y = Random.Range(-5.0f, 5.0f);
+		y = Random.Range(-1.0f, 1.0f);
 		z = Random.Range(-5.0f, 5.0f);
 
 		if (x > 0) {
@@ -31,9 +31,9 @@ public class RandomlyArrange : MonoBehaviour {
 			x -= 5f;
 		}
 		if (y > 0) {
-			y += 5;
+			y += 1;
 		} else {
-			y -= 5;
+			y -= 1;
 		}
 		if (z > 0) {
 			z += 5f;
