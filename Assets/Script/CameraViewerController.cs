@@ -18,10 +18,21 @@ public class CameraViewerController: MonoBehaviour {
 	private string lat;
 	private string lon;
 
+	private Coroutine runningCoroutine;
 
 	private Dictionary<int,GameObject> instanceObjectList = new Dictionary<int,GameObject> ();
+	void Start(){
+		runningCoroutine = StartCoroutine(start());
+	}
+
+	private void updateScene(){
+		if(runningCoroutine != null){
+			StopCoroutine (runningCoroutine);
+		}
+		runningCoroutine = StartCoroutine (start());
+	}
 	//Start with this method
-	IEnumerator Start(){
+	IEnumerator start(){
 		//位置情報の更新がスタートするまで待つ
 		while (LocationManager.location.latitude == 0 
 			&& LocationManager.location.longitude == 0) {
@@ -64,14 +75,14 @@ public class CameraViewerController: MonoBehaviour {
 				Debug.Log("CameraViewerController.Start()   エラー");
 			};
 
-			WebManager.instance.downloadContents ( positive_func2 , negative_func2, "bag");
+			WebManager.instance.downloadContents ( positive_func2 , negative_func2, lat,lon);
 
 			//yield return new WaitForSeconds (5);
 		};
 		Action negative_func = () => {
 				
 		};
-		WebManager.instance.downloadContents (positive_func,negative_func,lat,lon);
+		WebManager.instance.downloadContents (positive_func,negative_func,"bag");
 	}
 
 	//現在のコンテンツ情報をもとにオブジェクトを削除、生成する
