@@ -152,10 +152,18 @@ public class MapControl : MonoBehaviour {
 			(tooltip.transform as RectTransform).SetParent (container.transform);
 		}
 		Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (selectedMarker.position);
-		screenPosition.y += markerHeight + 150;
+		Debug.Log ("x = " + screenPosition.x + " / y = " + screenPosition.y);
+		screenPosition.y += markerHeight+100;
 		Vector2 point;
 		RectTransformUtility.ScreenPointToLocalPointInRectangle (container.transform as RectTransform, screenPosition, null, out point);
-		(tooltip.transform as RectTransform).localPosition = point;
+
+		RectTransform tooltipRectTransform = tooltip.GetComponent<RectTransform> ();
+		tooltipRectTransform.localPosition = Vector3.zero;
+		tooltipRectTransform.localScale = new Vector3 (1,1,1);
+		tooltipRectTransform.rotation = new Quaternion (0,0,0,0);
+
+		tooltip.transform.SetAsFirstSibling ();
+
 		Item item = (Item)selectedMarker.customData;
 		tooltip.GetComponentInChildren<Text> ().text = item.getTitle();
 		tooltip.GetComponentInChildren<ContentsViewerBase> ().init (item);
