@@ -12,6 +12,7 @@ using MyClass;
 
 public class ContentsOfThumbnail : ContentsViewerBase  {
 
+	private Coroutine runningCoroutine;
 	public override void show ()
 	{
 		Texture2D downloadedTex = ItemData.instance.getThumbnailTexture2DById (Item.getId());
@@ -28,19 +29,25 @@ public class ContentsOfThumbnail : ContentsViewerBase  {
 			};
 			if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Album") {
 				// Scene が Album の場合は BagItem を参照する
-				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId ()).getThumbnail ());
+				runningCoroutine = WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getBagItemById (Item.getId ()).getThumbnail ());
 			} else {
 				// それ以外の Scene（Camera）では LocationItem をもらう
-				WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getThumbnail ());
+				runningCoroutine = WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId ()).getThumbnail ());
 			}
 		}
 
 	}		
 	//imageのオブジェクトに貼り付ける
 	public override void setTexture(Texture2D tex){
-		Sprite s = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
-		Image image = this.gameObject.GetComponent<Image> ();
-		image.sprite = s;
-		showCompleted = true;
+		try{
+			StopCoroutine (runningCoroutine);
+		}catch{
+			Debug.Log ("すでにCoroutineが終了しています。");
+		}finally{
+			Sprite s = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
+			Image image = this.gameObject.GetComponent<Image> ();
+			image.sprite = s;
+			showCompleted = true;
+		}
 	}
 }

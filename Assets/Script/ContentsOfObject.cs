@@ -10,6 +10,8 @@ public class ContentsOfObject : ContentsViewerBase  {
 
 	public bool touchFlag = true;
 
+	private Coroutine runningCoroutine;
+
 	void Start(){
 		cc = GetComponent<CanvasCreatorBase>();
 		cvc = GameObject.Find ("System").GetComponent<CameraViewerController>();
@@ -28,14 +30,20 @@ public class ContentsOfObject : ContentsViewerBase  {
 			Action failure_func = () => {
 				Debug.Log ("ContentsOfThumbnail : failure_func");
 			};
-			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId()).getThumbnail ());
+			runningCoroutine = WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId()).getThumbnail ());
 		}
 
 	}
 
 	//オブジェクトのテクスチャに貼り付ける
 	public override void setTexture(Texture2D tex){
-		this.gameObject.GetComponent<MeshRenderer> ().material.mainTexture = tex;
+		try{
+			StopCoroutine (runningCoroutine);
+		}catch{
+			Debug.Log ("すでにCoroutineが終了しています。");
+		}finally{
+			this.gameObject.GetComponent<MeshRenderer> ().material.mainTexture = tex;
+		}
 	}
 
 	public void OnMouseDown() {
