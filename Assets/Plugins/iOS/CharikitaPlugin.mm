@@ -341,25 +341,29 @@
     _imagePath = imagePath;
     _photoStyle = photoStyle;
  
-     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"選択" message:@"どれにしますか？" preferredStyle:UIAlertControllerStyleActionSheet];
+     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"モード選択" message:@"どれにしますか？" preferredStyle:UIAlertControllerStyleActionSheet];
     
 //     // 上から順にボタンが配置
-       [alertController addAction:[UIAlertAction actionWithTitle:@"選択１" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+       [alertController addAction:[UIAlertAction actionWithTitle:@"カメラ" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
           [self selectedActionWith:1];
        }]];
-//     [alertController addAction:[UIAlertAction actionWithTitle:@"選択２" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-//         [self selectedActionWith:2];
-//     }]];
-//     [alertController addAction:[UIAlertAction actionWithTitle:@"クリア" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-//         [self selectedActionWith:0];
-//     }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"カメラロール" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self selectedActionWith:2];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"クリア" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self selectedActionWith:0];
+    }]];
     
 //     // iPad用　（これが無いとエラー）
 //     // alertController.popoverPresentationController.sourceView = self.view;
 //     // alertController.popoverPresentationController.sourceRect = CGRectMake(_actionSheetBtn.frame.origin.x, _actionSheetBtn.frame.origin.y, 20.0, 20.0);
 //     //alertController.popoverPresentationController.sourceView = _actionSheetBtn; //でも良い
     
-//     [self presentViewController:alertController animated:YES completion:nil];
+    UIViewController *baseView = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (baseView.presentedViewController != nil && !baseView.presentedViewController.isBeingDismissed) {
+        baseView = baseView.presentedViewController;
+    }
+     [baseView presentViewController:alertController animated:YES completion:nil];
    
 }
  
