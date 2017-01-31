@@ -470,7 +470,7 @@ MonoBehaviour:
   redrawOnPlay: 0
   renderInThread: 1
   resourcesPath: 4f6e6c696e654d61707354696c65732f7b7a6f6f6d7d2f7b787d2f7b797d
-  showMarkerTooltip: 1
+  showMarkerTooltip: 3
   smartTexture: {fileID: 0}
   source: 0
   stopPlayingWhenScriptsCompile: 1
@@ -504,7 +504,7 @@ MonoBehaviour:
   latitude: 0
   longitude: 0
   _position: {x: 0, y: 0}
-  _zoom: 18
+  _zoom: 19
 --- !u!4 &193630191
 Transform:
   m_ObjectHideFlags: 0
@@ -546,9 +546,9 @@ MonoBehaviour:
   autoStopUpdateOnInput: 0
   compassThreshold: 8
   createMarkerInUserPosition: 1
-  desiredAccuracy: 100
+  desiredAccuracy: 10
   emulatorCompass: 30
-  emulatorPosition: {x: 138.5095, y: 35.675537}
+  emulatorPosition: {x: 138.5095, y: 35.675568}
   findLocationByIP: 0
   markerTooltip: 
   markerType: 1
@@ -557,9 +557,9 @@ MonoBehaviour:
   marker3DPrefab: {fileID: 100000, guid: a85f02af30f3b1e4ba8512858f9c4316, type: 3}
   maxPositionCount: 3
   position: {x: 0, y: 0}
-  restoreAfter: 20
+  restoreAfter: 10
   trueHeading: 0
-  updateDistance: 500
+  updateDistance: 100
   updatePosition: 1
   useCompassForMarker: 1
   useGPSEmulator: 1
@@ -810,8 +810,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 187.73, y: -300}
-  m_SizeDelta: {x: 375.45, y: 600}
+  m_AnchoredPosition: {x: 187.5, y: -290}
+  m_SizeDelta: {x: 375, y: 460}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &356807023
 MonoBehaviour:
@@ -908,10 +908,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
+    m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -2035,7 +2035,7 @@ Canvas:
   m_GameObject: {fileID: 1218702706}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1343750811}
   m_PlaneDistance: 1
   m_PixelPerfect: 1

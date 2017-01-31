@@ -22,8 +22,8 @@ public class DetailInfoCanvas : MonoBehaviour{
 	public Text title;
 	public Text date;
 	public Text comment;
+	public Text owner;
 	public GameObject image;
-
 	public GameObject btn;
 
 	private ContentsViewerBase imageViewer;
@@ -36,15 +36,15 @@ public class DetailInfoCanvas : MonoBehaviour{
 
 	public void init(Item item){
 		this.imageViewer.Item = item;
-
 		this.item = item;
 		this.date.text = item.getDate ();
 		this.title.text = item.getTitle ();
 		this.comment.text = item.getDesc ();
+		this.owner.text = item.getOwner ();
 
 		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Camera"
 		    && !ItemData.instance.checkOverlapItemById (item.getId ())) {
-			Debug.Log ("すでに持ってる" + item);
+			//Debug.Log ("すでに持ってる" + item);
 			btn.GetComponent<Button> ().interactable = false;
 		} else {
 			btn.GetComponent<Button>().interactable = true;
@@ -55,5 +55,6 @@ public class DetailInfoCanvas : MonoBehaviour{
 		}
 
 		imageViewer.show ();
+
 	}
 }
