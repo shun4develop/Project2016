@@ -38,11 +38,11 @@ public class ContentsOfObject : ContentsViewerBase  {
 	//オブジェクトのテクスチャに貼り付ける
 	public override void setTexture(Texture2D tex){
 		try{
-			StopCoroutine (runningCoroutine);
+			this.gameObject.GetComponent<MeshRenderer> ().material.mainTexture = tex;
 		}catch{
 			Debug.Log ("すでにCoroutineが終了しています。");
 		}finally{
-			this.gameObject.GetComponent<MeshRenderer> ().material.mainTexture = tex;
+			
 		}
 	}
 

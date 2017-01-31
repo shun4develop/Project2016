@@ -40,14 +40,26 @@ public class ContentsOfThumbnail : ContentsViewerBase  {
 	//imageのオブジェクトに貼り付ける
 	public override void setTexture(Texture2D tex){
 		try{
-			StopCoroutine (runningCoroutine);
-		}catch{
-			Debug.Log ("すでにCoroutineが終了しています。");
-		}finally{
 			Sprite s = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
 			Image image = this.gameObject.GetComponent<Image> ();
 			image.sprite = s;
 			showCompleted = true;
+		}catch{
+			Debug.Log ("すでにオブジェクトが破棄されています。");
+		}finally{
+			
 		}
+	}
+	public void clearImage(){
+		try{
+			StopCoroutine (runningCoroutine);
+		}catch{
+			Debug.Log ("すでにCoroutineが終了しています。");
+		}finally{
+			Image image = this.gameObject.GetComponent<Image> ();
+			image.sprite = null;
+			showCompleted = false;
+		}
+
 	}
 }

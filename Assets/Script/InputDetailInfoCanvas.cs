@@ -43,7 +43,7 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public void uploadContent(){
 		
 		if (title.text == "") {
-			title.text = "no title";
+			title.text = "untitle";
 		}
 
 		if (desc.text == "") {
@@ -68,5 +68,13 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		WebManager.instance.contentsUpload (positive_func, negative_func, content);
 		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
 		ui.fadeOut ();
+		clear ();
+	}
+	public void clear(){
+		title.text = "";
+		desc.text = "";
+		toggle.isOn = true;
+		img.clearImage ();
+		fullImage.clearImage ();
 	}
 }
