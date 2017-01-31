@@ -29,7 +29,7 @@ namespace MapScene{
 				activity = unityPlayer.GetStatic<AndroidJavaObject> ("currentActivity");
 				activity.CallStatic("ShowAlertDialog", activity);
 			} else if(Application.platform == RuntimePlatform.IPhonePlayer) {
-				IosCamera.album ();
+				IOSPlugin.choice ();
 			}
 		}
 
