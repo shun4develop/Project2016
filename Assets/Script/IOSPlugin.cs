@@ -13,15 +13,13 @@ public class IOSPlugin{
 	private static extern void savePhoto();
 	[DllImport("__Internal")]
 	private static extern void alertTest();
-//
-//
+
+
 	public static void album(){
-		Debug.Log ("BBBBBBBBBBBBBBBBBBBB");
 		showAlbum ();
 	}
 
 	public static void cameraStart(){
-		
 		showCamera ();
 	}
 	public static void save(){

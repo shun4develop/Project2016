@@ -2,7 +2,7 @@
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface CharikitaPlugin : NSObject<UIImagePickerControllerDelegate>
+@interface IOSCameraPlugin : NSObject<UIImagePickerControllerDelegate>
 @property(nonatomic, retain)UIImagePickerController *_ipc;
 @property(nonatomic, retain)NSMutableArray *_cameraBacks;
 @property(nonatomic, copy)NSString *_imagePath;
@@ -13,7 +13,7 @@
 // @interface presentViewController : NSObject<UIAlertController>
 // @end
 
-@implementation CharikitaPlugin
+@implementation IOSCameraPlugin
 @synthesize _ipc;
 @synthesize _cameraBacks;
 @synthesize _imagePath;
@@ -36,9 +36,7 @@
  * @param imagePath 画像保存パス
  * @param photoStyle フォトスタイル。0：長方形、1：正方形
  */
-- (void)showCamera:(NSString *)imagePath photoStyle:(int)photoStyle{
-    _imagePath = imagePath;
-    _photoStyle = photoStyle;
+- (void)showCamera{
     // UIImagePickerController初期化
     _ipc = [[UIImagePickerController alloc] init];
     _ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -46,62 +44,8 @@
     _ipc.showsCameraControls = YES;
     _ipc.allowsEditing = NO;
 
-
-
-    // カメラビュー
-    CGRect s = [[UIScreen mainScreen] bounds];
-    float sw = s.size.width;
-    float sh = s.size.height;
-    float cw = 720 / 2;
-    float ch = 1280 / 2;
-    float r  = (sh * cw) / (sw * ch);
-    float a  = ((r > 1) ? (sh / ch) : (sw / cw)) / 2;
-    UIView *parent = [[UIView alloc] initWithFrame:CGRectMake(0, 0, sw, sh)];
-
-
     [UnityGetGLViewController() presentViewController:_ipc animated:YES completion:nil];
 }
-
-/**
- * UIImageView作成
- * @param parent 親ビュー
- * @param tag タグ
- * @param imageNamed イメージ名
- * @param frame 描画フレーム
- * @return UIImageView
- */
-- (UIImageView *)createImageView:(UIView *)parent tag:(int)tag imageNamed:(NSString *)imageNamed frame:(CGRect)frame {
-    UIImage *image = [UIImage imageNamed:imageNamed];
-    UIImageView *view = [[UIImageView alloc] initWithImage:image];
-    [view setTag:tag];
-    [view setFrame:frame];
-    [parent addSubview:view];
-    return view;
-}
-
-/**
- * UIButton作成
- * @param parent 親ビュー
- * @param tag タグ
- * @param imageNamed イメージ名
- * @param frame 描画フレーム
- * @param action ボタンクリック時のコールバック
- * @return UIButton
- */
-- (UIButton *)createButton:(UIView *)parent tag:(int)tag imageNamed:(NSString *)imageNamed frame:(CGRect)frame action:(SEL)action {
-    UIImage *image = [UIImage imageNamed:imageNamed];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setTag:tag];
-    [button setImage:image forState:UIControlStateNormal];
-    [button setImage:image forState:UIControlStateHighlighted];
-    [button setFrame:frame];
-    [button.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    [button setContentMode:UIViewContentModeScaleAspectFit];
-    [button addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-    [parent addSubview:button];
-    return button;
-}
-
 /**
  * カメラ撮影
  */
@@ -118,38 +62,11 @@
 }
 
 /**
- * フォトスタイルを長方形に更新
- */
-- (void)updateRectangle {
-    [self updatePhotoStyle:true isSquare:false];
-}
-
-/**
- * フォトスタイルを正方形に更新
- */
-- (void)updateSquare {
-    [self updatePhotoStyle:false isSquare:true];
-}
-
-/**
- * フォトスタイル更新
- * @param isRectangle 長方形の場合 true
- * @param isSquare 正方形の場合 true
- */
-- (void)updatePhotoStyle:(BOOL)isRectangle isSquare:(BOOL)isSquare {
-    _photoStyle = (isRectangle) ? 0 : 1;
-    ((UIView *)[_cameraBacks objectAtIndex:0]).hidden = isSquare;
-    ((UIView *)[_cameraBacks objectAtIndex:1]).hidden = isRectangle;
-}
-
-/**
  * アルバム表示
  * @param imagePath 画像保存パス
  * @param photoStyle フォトスタイル。0：長方形、1：正方形
  */
-- (void)showAlbum:(NSString *)imagePath photoStyle:(int)photoStyle {
-    _imagePath = imagePath;
-    _photoStyle = photoStyle;
+- (void)showAlbum {
     _ipc = [[UIImagePickerController alloc] init];
     _ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     _ipc.allowsEditing = NO;
@@ -172,27 +89,21 @@
  */
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     // ローディングを先に走らせる(画像処理に時間が掛かるため)
-    //UnitySendMessage("SceneTitle", "OnLoadPhoto", "");
 
-     NSString* mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    
-    NSLog(@"amano %@", mediaType);
-    //UIImagePickerController type =  ;
-    NSLog(@"amano2 %ld", (long)UIImagePickerControllerSourceTypeCamera);
-    NSLog(@"amano3 %ld", (long)UIImagePickerControllerSourceTypeSavedPhotosAlbum);
-    NSLog(@"amano4 %ld", (long)UIImagePickerControllerSourceTypePhotoLibrary);
+    NSLog(@"amano2 %ld", (long)UIImagePickerControllerSourceTypeCamera);    //1
+    NSLog(@"amano3 %ld", (long)UIImagePickerControllerSourceTypeSavedPhotosAlbum);  //2
+    NSLog(@"amano4 %ld", (long)UIImagePickerControllerSourceTypePhotoLibrary);  //0
     NSLog(@"amano5 %ld", (long)picker.sourceType);
 
 
     [UnityGetGLViewController() dismissViewControllerAnimated:YES completion:nil];
 
-    
-    NSLog(@"TEST1");
     // 画像取得
     UIImage *origin = [info objectForKey:UIImagePickerControllerOriginalImage];
     if(origin.size.width > 2048 || origin.size.height > 2048) {
             origin = [self resizedImage:origin size:CGSizeMake(origin.size.width / 2, origin.size.height / 2)];
     }
+    //カメラモードの時だけ保存する
     if((long)picker.sourceType == 1){
         UIImageWriteToSavedPhotosAlbum(origin, self, nil, nil);
     }
@@ -211,7 +122,6 @@
     [data writeToFile:filePath atomically:YES];
 
     _imagePath = (NSMutableString *)filePath;
-    NSLog(@"TEST2");
 
     // Unity側に情報を返す
     //_mstSelectedImage
@@ -219,17 +129,7 @@
 
     // 破棄
     [self releaseImagePicker];
-    NSLog(@"TEST3  path : %s", _imagePath);
 }
-// - (char *)MakeStringCopy: (const char*) string{
-//     if (string == NULL)
-//         return NULL;
-    
-//     char* res = (char*)malloc(strlen(string) + 1);
-//     strcpy(res, string);
-//     return res;
-// }
-
 
 /**
  * 画像リサイズ
@@ -246,69 +146,6 @@
     UIGraphicsEndImageContext();
     return image;
 }
-
-/**
- * 画像クリップ
- * @param image UIImage
- * @param rect クリップ領域
- * @return UIImage
- */
-- (UIImage *)clippedImage:(UIImage *)image rect:(CGRect)rect {
-    rect = CGRectApplyAffineTransform(rect, [self transformForOrientation:image]);
-    CGImageRef cgImage = CGImageCreateWithImageInRect(image.CGImage, rect);
-    image = [UIImage imageWithCGImage:cgImage scale:image.scale orientation:image.imageOrientation];
-    CGImageRelease(cgImage);
-
-    return image;
-}
-
-/**
- * Affine変換
- * @param image UIImage
- * @return CGAffineTransform
- */
-- (CGAffineTransform)transformForOrientation:(UIImage *)image {
-    CGAffineTransform t = CGAffineTransformIdentity;
-    CGSize visibleImageSize = image.size;
-    CGSize originalImageSize = image.size;
-    switch (image.imageOrientation) {
-        case UIImageOrientationLeft:
-        case UIImageOrientationLeftMirrored:
-        case UIImageOrientationRight:
-        case UIImageOrientationRightMirrored:
-            originalImageSize = CGSizeMake(visibleImageSize.height, visibleImageSize.width);
-            break;
-        default:
-            originalImageSize = visibleImageSize;
-    }
-
-    t = CGAffineTransformTranslate(t, originalImageSize.width / 2, originalImageSize.height / 2);
-    switch (image.imageOrientation) {
-        case UIImageOrientationDownMirrored:
-            t = CGAffineTransformScale(t, -1, 1);
-        case UIImageOrientationDown:
-            t = CGAffineTransformRotate(t, M_PI);
-            break;
-        case UIImageOrientationLeftMirrored:
-            t = CGAffineTransformScale(t, -1, 1);
-        case UIImageOrientationLeft:
-            t = CGAffineTransformRotate(t, M_PI/2);
-            break;
-        case UIImageOrientationRightMirrored:
-            t = CGAffineTransformScale(t, -1, 1);
-        case UIImageOrientationRight:
-            t = CGAffineTransformRotate(t, -M_PI/2);
-            break;
-        case UIImageOrientationUpMirrored:
-            t = CGAffineTransformScale(t, -1, 1);
-        case UIImageOrientationUp:
-        default:
-            break;
-    }
-    t = CGAffineTransformTranslate(t, -visibleImageSize.width / 2, -visibleImageSize.height / 2);
-    return t;
-}
-
 /**
  * UIImagePickerController：画像選択キャンセル
  * @param picker UIImagePickerController
@@ -323,7 +160,6 @@
 - (void)releaseImagePicker {
     self._ipc = nil;
     [_cameraBacks removeAllObjects];
-    NSLog(@"TEST");
 }
 
 /**
@@ -337,9 +173,7 @@
     strcpy(res, str);
     return res;
 }
-- (void)alertTest:(NSString *)imagePath photoStyle:(int)photoStyle {
-    _imagePath = imagePath;
-    _photoStyle = photoStyle;
+- (void)alertTest {
  
      UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"モード選択" message:@"どれにしますか？" preferredStyle:UIAlertControllerStyleActionSheet];
     
@@ -371,10 +205,10 @@
     // 選択時の処理
     switch(index){
         case 1:
-            [self showCamera:_imagePath photoStyle:_photoStyle];
+            [self showCamera];
         break;
         case 2:
-            [self showAlbum:_imagePath photoStyle:_photoStyle];
+            [self showAlbum];
         break;
         case 0:
         break;
@@ -386,7 +220,7 @@
  * ネイティブメソッド
  */
 extern "C" {
-    static CharikitaPlugin *plugin =[[CharikitaPlugin alloc] init];
+    static IOSCameraPlugin *plugin =[[IOSCameraPlugin alloc] init];
     UIView *UnityGetGLView();
     UIViewController *UnityGetGLViewController();
     void UnitySendMessage(const char *, const char *, const char *);
@@ -399,28 +233,25 @@ extern "C" {
         }
     }
 
-    void showCamera(char *imagePath, int photoStyle){
-        [plugin showCamera:getStr(imagePath) photoStyle:photoStyle];
+    void showCamera(){
+        [plugin showCamera];
     }
 
-    void showAlbum(char *imagePath, int photoStyle){
-        [plugin showAlbum:getStr(imagePath) photoStyle:photoStyle];
+    void showAlbum(){
+        [plugin showAlbum];
     }
 
     void savePhoto(char *path){
         [plugin savePhoto:getStr(path)];
     }
 
-    void alertTest(char *imagePath, int photoStyle){
-        [plugin alertTest:getStr(imagePath) photoStyle:photoStyle];
+    void alertTest(){
+        [plugin alertTest];
     };
 
-    int sampleMethod1();
 
 }
-int sampleMethod1() {
-    return 10;
-}
+
 
 
 
