@@ -12,7 +12,7 @@ public class GenerateMapMarker{
 //	public GenerateMapMarker(){
 
 //	}
-
+	//マーカー作成
 	public void createMarker(List<Item> items){
 		for(int i = 0; i < items.Count; i++){
 			Item item = items [i];
@@ -21,20 +21,17 @@ public class GenerateMapMarker{
 			markerlist [i].label = item.getTitle() + "\n" + item.getDesc();
 			titlelist.Add(item.getTitle ());
 		}
+		Debug.Log ("createmarker" + markerlist.Count);
 	}
-
+	//マーカーを全て削除
 	public void allMarkerDestroy(Text t){
 		int a=0;
+		Debug.Log ("des" + a);
 		if (markerlist.Count != 0) {
-			while (markerlist.Count != 0) {
-				OnlineMaps.instance.RemoveMarker (markerlist [0]);
-				markerlist.Remove (markerlist [0]);
-				titlelist.Remove (titlelist [0]);
-				//t.text += "markerDestoroy" + "\n";
-				a++;
-			}
+			OnlineMaps.instance.RemoveAllMarkers ();
+			markerlist.Clear ();
+			Debug.Log ("demarkerlist" + markerlist.Count);
 		}
-		//t.text += "destroy呼ばれた回数" + a.ToString();
 	}
 
 	public List<OnlineMapsMarker> getMarkerList(){
