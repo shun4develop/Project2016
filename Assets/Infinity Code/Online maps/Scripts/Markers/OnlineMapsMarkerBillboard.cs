@@ -32,6 +32,9 @@ public class OnlineMapsMarkerBillboard : OnlineMapsMarkerInstanceBase
     public static OnlineMapsMarkerBillboard Create(OnlineMapsMarker marker)
     {
         GameObject billboardGO = new GameObject("Marker");
+		//一文追加
+		billboardGO.layer = LayerMask.NameToLayer("marker");
+
         SpriteRenderer spriteRenderer = billboardGO.AddComponent<SpriteRenderer>();
         OnlineMapsMarkerBillboard billboard = billboardGO.AddComponent<OnlineMapsMarkerBillboard>();
         
