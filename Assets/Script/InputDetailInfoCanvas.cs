@@ -21,6 +21,7 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public ImageFullPanel fullImage;
 	public GameObject uploadCheck;
 	public Text debugText;
+	public Camera camera;
 		
 	public void setSpriteImage(Sprite sp){
 		this.sp = sp;
@@ -32,6 +33,15 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 
 	public void setBinaryData(string base64data){
 		this.binaryData = base64data;
+	}
+
+	public void cameraCullingMaskChange(int depth){
+		camera.cullingMask = depth;
+	}
+
+	public void inputfieldclear(){
+		title.text = "";
+		desc.text = "";
 	}
 
 //	public void setLocation(double lat , double lon){
@@ -68,5 +78,6 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		WebManager.instance.contentsUpload (positive_func, negative_func, content);
 		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
 		ui.fadeOut ();
+		cameraCullingMaskChange (1);
 	}
 }
