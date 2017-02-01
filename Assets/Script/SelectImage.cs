@@ -73,10 +73,11 @@ namespace MapScene{
 
 			//詳細画面 dataとLocationとSpriteImageを渡す
 			InputDetailInfoCanvas detail = detailPanel.GetComponent<InputDetailInfoCanvas> ();
+			detail.cameraCullingMaskChange (0);
 			detail.setBinaryData (base64data);
 //			detail.setLocation (lat, lon);
 			detail.setSpriteImage (sp);
-
+			detail.inputfieldclear ();
 		}
 	}
 

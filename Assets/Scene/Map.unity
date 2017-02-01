@@ -202,7 +202,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34941953}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &34941956
 Behaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +241,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 768
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -642,7 +642,8 @@ MonoBehaviour:
   markerType: 1
   marker2DAlign: 4
   marker2DTexture: {fileID: 2800000, guid: d4a71c90a47de41159805118027f7f57, type: 3}
-  marker3DPrefab: {fileID: 100000, guid: a85f02af30f3b1e4ba8512858f9c4316, type: 3}
+  marker3DPrefab: {fileID: 1000013501285382, guid: 9c2f6aaef7250479c8c2ec4e2d8b199d,
+    type: 2}
   maxPositionCount: 3
   position: {x: 0, y: 0}
   restoreAfter: 10
@@ -3654,6 +3655,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2116057377}
+        m_MethodName: cameraCullingMaskChange
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1799113227
@@ -4318,3 +4330,4 @@ MonoBehaviour:
   fullImage: {fileID: 838769459}
   uploadCheck: {fileID: 1324933101}
   debugText: {fileID: 356807023}
+  camera: {fileID: 34941958}
