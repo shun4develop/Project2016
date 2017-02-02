@@ -164,6 +164,93 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 16197806}
+--- !u!1 &34941953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 34941954}
+  - 20: {fileID: 34941958}
+  - 124: {fileID: 34941957}
+  - 92: {fileID: 34941956}
+  - 81: {fileID: 34941955}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34941954
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34941953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1343750815}
+  m_RootOrder: 0
+--- !u!81 &34941955
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34941953}
+  m_Enabled: 0
+--- !u!92 &34941956
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34941953}
+  m_Enabled: 1
+--- !u!124 &34941957
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34941953}
+  m_Enabled: 1
+--- !u!20 &34941958
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34941953}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 768
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!1 &46224112
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +460,7 @@ GameObject:
   - 114: {fileID: 193630190}
   - 114: {fileID: 193630192}
   - 114: {fileID: 193630194}
+  - 114: {fileID: 193630195}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -501,8 +589,8 @@ MonoBehaviour:
   useWebplayerProxy: 1
   webplayerProxyURL: 687474703a2f2f736572766963652e696e66696e6974792d636f64652e636f6d2f72656469726563742e7068703f
   width: 0
-  latitude: 0
-  longitude: 0
+  latitude: 139.794160999713
+  longitude: 35.7498700008407
   _position: {x: 0, y: 0}
   _zoom: 19
 --- !u!4 &193630191
@@ -548,13 +636,14 @@ MonoBehaviour:
   createMarkerInUserPosition: 1
   desiredAccuracy: 10
   emulatorCompass: 30
-  emulatorPosition: {x: 138.5095, y: 35.675568}
+  emulatorPosition: {x: 138.50945, y: 35.6755}
   findLocationByIP: 0
   markerTooltip: 
   markerType: 1
   marker2DAlign: 4
   marker2DTexture: {fileID: 2800000, guid: d4a71c90a47de41159805118027f7f57, type: 3}
-  marker3DPrefab: {fileID: 100000, guid: a85f02af30f3b1e4ba8512858f9c4316, type: 3}
+  marker3DPrefab: {fileID: 1000013501285382, guid: 9c2f6aaef7250479c8c2ec4e2d8b199d,
+    type: 2}
   maxPositionCount: 3
   position: {x: 0, y: 0}
   restoreAfter: 10
@@ -575,6 +664,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 100000, guid: a85f02af30f3b1e4ba8512858f9c4316, type: 3}
+--- !u!114 &193630195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 193630188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950ee17c19f816a49bd815a7b0b2be7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomRange:
+    max: 20
+    min: 19
+    maxLimit: 20
+    minLimit: 3
+  levelsRange:
+    max: 7
+    min: 3
+    maxLimit: 100
+    minLimit: 1
+  levelHeight: 4.5
+  minHeight: 4.5
+  heightScale: 1
+  materials: []
+  maxActiveBuildings: 5
+  maxBuilding: 5
 --- !u!1 &317946722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,7 +2716,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2641,7 +2757,8 @@ Transform:
   m_LocalPosition: {x: -256, y: 512, z: 256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 34941954}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &1408413446
@@ -3572,12 +3689,21 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2116057377}
+<<<<<<< HEAD
         m_MethodName: clear
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+=======
+        m_MethodName: cameraCullingMaskChange
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+>>>>>>> master
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4246,3 +4372,4 @@ MonoBehaviour:
   fullImage: {fileID: 838769459}
   uploadCheck: {fileID: 1324933101}
   debugText: {fileID: 356807023}
+  camera: {fileID: 34941958}

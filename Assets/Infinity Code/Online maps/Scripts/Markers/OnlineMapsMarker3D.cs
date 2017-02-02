@@ -176,6 +176,9 @@ public class OnlineMapsMarker3D : OnlineMapsMarkerBase
         
         instance.transform.parent = parent;
         instance.AddComponent<OnlineMapsMarker3DInstance>().marker = this;
+		//追加
+		instance.layer = LayerMask.NameToLayer("3dmarker");
+
         visible = false;
         inited = true;
         OnlineMaps api = OnlineMaps.instance;
