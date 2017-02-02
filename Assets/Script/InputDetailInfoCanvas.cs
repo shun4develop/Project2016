@@ -78,8 +78,9 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		WebManager.instance.contentsUpload (positive_func, negative_func, content,binaryData);
 		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
 		ui.fadeOut ();
-<<<<<<< HEAD
 		clear ();
+
+		cameraCullingMaskChange (1);
 	}
 	public void clear(){
 		title.text = "";
@@ -87,8 +88,5 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		toggle.isOn = true;
 		img.clearImage ();
 		fullImage.clearImage ();
-=======
-		cameraCullingMaskChange (1);
->>>>>>> master
 	}
 }
