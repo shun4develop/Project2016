@@ -9,7 +9,7 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 
 	private RegisterContents content;
 
-	private string binaryData;
+	private byte[] binaryData;
 	private double lat;
 	private double lon;
 	private Sprite sp;
@@ -31,8 +31,8 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		fullImage.setSprite (this.sp);
 	}
 
-	public void setBinaryData(string base64data){
-		this.binaryData = base64data;
+	public void setBinaryData(byte[] binary){
+		this.binaryData = binary;
 	}
 
 	public void cameraCullingMaskChange(int depth){
@@ -53,7 +53,7 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public void uploadContent(){
 		
 		if (title.text == "") {
-			title.text = "no title";
+			title.text = "untitle";
 		}
 
 		if (desc.text == "") {
@@ -63,7 +63,7 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		double lat = LocationManager.location.latitude;
 		double lon = LocationManager.location.longitude;
 
-		content = new RegisterContents (binaryData, desc.text, title.text, lat, lon ,SaveDataManager.loadUserName() , toggle.isOn, "images");
+		content = new RegisterContents (desc.text, title.text, lat, lon ,SaveDataManager.loadUserName() , toggle.isOn, "images");
 
 		Action<string> positive_func = (string text) => {
 			debugText.text += text;
@@ -75,9 +75,18 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 			Debug.Log("miss");
 		};
 
-		WebManager.instance.contentsUpload (positive_func, negative_func, content);
+		WebManager.instance.contentsUpload (positive_func, negative_func, content,binaryData);
 		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
 		ui.fadeOut ();
+		clear ();
+
 		cameraCullingMaskChange (1);
+	}
+	public void clear(){
+		title.text = "";
+		desc.text = "";
+		toggle.isOn = true;
+		img.clearImage ();
+		fullImage.clearImage ();
 	}
 }

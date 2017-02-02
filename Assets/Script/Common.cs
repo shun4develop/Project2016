@@ -6,5 +6,4 @@ namespace MyCommon{
 		public const string FAILURE = "bW5QQSU9chPy93swPPs9ank7Cc2zWmBcJuHW7XVYPyhWnFT95QHumb2bNJZU3VR8X5FdhTGfiE5cKkXD532YWAdnFK3CxEb3rPnw";
 		public const string SUCCESS = "ePN45ES2bHGr9kCGAc4ViM8fG9sL7EwQHKNykhCtTmziS5xiwE7L5UgEV2ZaiDbh9ykkz96L74EtMghQY96w8Q8GTmgWQ53cAEsr";
 	}
-
 }
