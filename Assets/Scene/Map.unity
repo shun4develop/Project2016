@@ -750,7 +750,7 @@ RectTransform:
   m_Children:
   - {fileID: 1408413447}
   m_Father: {fileID: 1218702710}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0.9}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2093,9 +2093,9 @@ RectTransform:
   - {fileID: 356807022}
   - {fileID: 1324933102}
   - {fileID: 1526212164}
+  - {fileID: 2116057372}
   - {fileID: 2104782501}
   - {fileID: 324908766}
-  - {fileID: 2116057372}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
@@ -4047,7 +4047,7 @@ RectTransform:
   - {fileID: 1985145677}
   - {fileID: 1201092083}
   m_Father: {fileID: 1218702710}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4157,7 +4157,7 @@ RectTransform:
   - {fileID: 1720235214}
   - {fileID: 1799113225}
   m_Father: {fileID: 1218702710}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4191,7 +4191,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2116057371}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0

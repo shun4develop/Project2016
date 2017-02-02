@@ -7,9 +7,8 @@ using MyCommon;
 using MyLibrary;
 using MyManagers;
 public class AutoLogin : MonoBehaviour {
-	
-	// Use this for initialization
-	void Start () {
+	public bool successLogin;
+	public void autoLogin(){
 		//自動ログインに必要な情報が保存されているかを調べる
 		string user_name = SaveDataManager.loadUserName();
 		string token = SaveDataManager.loadToken ();
@@ -20,7 +19,6 @@ public class AutoLogin : MonoBehaviour {
 		}
 		//コールバック関数の定義
 		Action<Dictionary<string,object>> success_func = (Dictionary<string,object> resp) => {
-			
 			string resp_token = (string)resp["token"];
 			Profile info = JsonUtility.FromJson<Profile>((string)resp["user_info"]);
 
@@ -41,7 +39,6 @@ public class AutoLogin : MonoBehaviour {
 		//自動ログインを試みる
 		WebManager.instance.autoLogin(success_func,failure_func);
 	}
-
 	public void logout(){
 		PlayerPrefs.DeleteKey ("token");
 	}

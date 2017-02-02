@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class RegisterContents{
 	[SerializeField]
-	private string data; //binary
+	private byte[] data; //binary
 	[SerializeField]
 	private string desc;
 	[SerializeField]
@@ -19,8 +19,7 @@ public class RegisterContents{
 	[SerializeField]
 	private string type;
 
-	public RegisterContents(string data,string desc,string title,double lat,double lon,string owner,bool permitSave, string type){
-		this.data = data;
+	public RegisterContents(string desc,string title,double lat,double lon,string owner,bool permitSave, string type){
 		this.desc = desc;
 		this.title = title;
 		this.lat = lat;
@@ -40,10 +39,6 @@ public class RegisterContents{
 
 	public void setPermitSave(bool permitsave){
 		this.permitSave = permitsave;
-	}
-
-	public string getData(){
-		return this.data;
 	}
 
 	public string getTitle(){
