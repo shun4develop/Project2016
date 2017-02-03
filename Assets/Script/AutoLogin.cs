@@ -7,9 +7,11 @@ using MyCommon;
 using MyLibrary;
 using MyManagers;
 public class AutoLogin : MonoBehaviour {
-	//private bool successLogin;
+	
+	public bool success {get;set;}
+	public bool inquiryCompleted{ get; set;}
 	void Start(){
-		autoLogin ();
+		
 	}
 	public void autoLogin(){
 		//自動ログインに必要な情報が保存されているかを調べる
@@ -22,6 +24,8 @@ public class AutoLogin : MonoBehaviour {
 		}
 		//コールバック関数の定義
 		Action<Dictionary<string,object>> success_func = (Dictionary<string,object> resp) => { 
+			success = true;
+
 			string resp_token = (string)resp["token"];
 			Profile info = JsonUtility.FromJson<Profile>((string)resp["user_info"]);
 
@@ -29,13 +33,16 @@ public class AutoLogin : MonoBehaviour {
 			SaveDataManager.saveUserInfo(info);
 			SaveDataManager.saveUserName(user_name);
 
-			UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
+			inquiryCompleted = true;
+
 			return;
 		};
-		Action failure_func = ()=> { 
+		Action failure_func = ()=> {
+			success = false;
 			logout ();
-			//ログイン画面へ
-			UnityEngine.SceneManagement.SceneManager.LoadScene("Auth");
+
+			inquiryCompleted = true;
+
 			return;
 		};
 
@@ -44,6 +51,6 @@ public class AutoLogin : MonoBehaviour {
 		Debug.Log ("test");
 	}
 	public void logout(){
-		PlayerPrefs.DeleteKey ("token");
+		SaveDataManager.deleteData ();
 	}
 }
