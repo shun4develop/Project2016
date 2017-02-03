@@ -53,26 +53,14 @@ public class WebManager : MonoBehaviour {
 		data.AddField ("user_name",SaveDataManager.loadUserName());
 		return data;
 	}
-	public Coroutine contentsUpload(Action<string> positive_func,Action negative_func,RegisterContents item){
+	public Coroutine contentsUpload(Action<string> positive_func,Action negative_func,RegisterContents item,byte[] binaryData){
 		WWWForm data = getSecureForm ();
 		string itemJSON = UnityEngine.JsonUtility.ToJson (item);
+		data.AddBinaryData ("binaryData",binaryData,"image.png", "image/png");
 		data.AddField ("contents",itemJSON);
 		WWW www = new WWW (CONTENTS_UPLOAD,data);
 
-		string[] sizes = { "B", "KB", "MB", "GB", "TB" };
-		double len = item.getData ().Length;
-		int order = 0;
-		while (len >= 1024 && order < sizes.Length - 1) {
-			order++;
-			len = len/1024;
-		}
-
-		// Adjust the format string to your preferences. For example "{0:0.#}{1}" would
-		// show a single decimal place, and no space.
-		string result = String.Format("{0:0.##} {1}", len, sizes[order]);
 		Debug.Log ("WebManager call contentsUpload");
-		Debug.Log ("Upload file size => "+result);
-		//Debug.Log ("JSON => "+itemJSON);
 
 		return throwQueryToServer(www,positive_func,negative_func);
 	}

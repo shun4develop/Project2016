@@ -23,8 +23,8 @@ public class DetailInfoCanvas : MonoBehaviour{
 	public Text date;
 	public Text comment;
 	public Text owner;
-	public GameObject image;
-	public GameObject btn;
+	public Image image;
+	public Button btn;
 
 	private ContentsViewerBase imageViewer;
 
@@ -42,12 +42,13 @@ public class DetailInfoCanvas : MonoBehaviour{
 		this.comment.text = item.getDesc ();
 		this.owner.text = item.getOwner ();
 
-		if (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Camera"
-		    && !ItemData.instance.checkOverlapItemById (item.getId ())) {
-			//Debug.Log ("すでに持ってる" + item);
-			btn.GetComponent<Button> ().interactable = false;
-		} else {
-			btn.GetComponent<Button>().interactable = true;
+		if ((UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Camera"
+			&& !ItemData.instance.checkOverlapItemById (item.getId ())) || !item.getPermitSave()) {
+			btn.interactable = false;
+			btn.GetComponent<CanvasGroup> ().alpha = 0;
+		} else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Album"){
+			btn.interactable = true;
+			btn.GetComponent<CanvasGroup> ().alpha = 1;
 		}
 
 		if (this.item == null) {
