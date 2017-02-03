@@ -43,9 +43,13 @@ public class ContentsOfImage : ContentsViewerBase {
 
 	//imageのオブジェクトに貼り付ける
 	public override void setTexture(Texture2D tex){
-		Sprite s = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
-		setTexture (s);
-		ItemData.instance.addSprite (Item.getId(), s);
+		try{
+			Sprite s = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
+			setTexture (s);
+			ItemData.instance.addSprite (Item.getId(), s);
+		}catch{
+			Debug.Log ("すでにオブジェクトが破棄されています。");
+		}
 	}
 	public  void setTexture(Sprite s){
 		image.sprite = s;

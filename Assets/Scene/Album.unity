@@ -1174,8 +1174,8 @@ MonoBehaviour:
   date: {fileID: 1038363973}
   comment: {fileID: 294172098}
   owner: {fileID: 430893130}
-  image: {fileID: 299598273}
-  btn: {fileID: 2129212934}
+  image: {fileID: 299598277}
+  btn: {fileID: 2129212936}
 --- !u!225 &236882931
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4322,7 +4322,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 04e335d93e0924f36a38a74e883bd061, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -6889,6 +6889,7 @@ GameObject:
   - 222: {fileID: 2129212938}
   - 114: {fileID: 2129212937}
   - 114: {fileID: 2129212936}
+  - 225: {fileID: 2129212939}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -7004,3 +7005,14 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2129212934}
+--- !u!225 &2129212939
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2129212934}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

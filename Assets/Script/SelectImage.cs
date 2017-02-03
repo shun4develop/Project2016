@@ -50,17 +50,21 @@ namespace MapScene{
 			// バイト配列でファイルを読み込み、Texture2Dとしてセットする.
 			byte[] byteReadBinary = File.ReadAllBytes(strPath);
 			base64data = System.Convert.ToBase64String (byteReadBinary); //base64に変換
+			Texture2D txtNewImage = new Texture2D (intWidth, intHeight);
 
 			//texture2dとspritを作る
 			if (Application.platform == RuntimePlatform.Android) {
-				Texture2D txtNewImage = new Texture2D (intWidth, intHeight);
 				txtNewImage.LoadImage(byteReadBinary);
 				sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
 			} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
-				Texture2D txtNewImage = new Texture2D (intWidth, intHeight, TextureFormat.PVRTC_RGBA4, false);
+//				Texture2D txtNewImage = new Texture2D (intWidth, intHeight, TextureFormat.PVRTC_RGBA4, false);
 				txtNewImage.LoadImage(byteReadBinary);
 				sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
 			}
+
+
+			//byte[] binaryData = txtNewImage.EncodeToPNG ();
+
 			//txtNewImage.LoadImage(byteReadBinary);
 			//sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
 			//t.text += "width" + txtNewImage.width.ToString () + " + " + "height" + txtNewImage.height.ToString ();
@@ -73,10 +77,13 @@ namespace MapScene{
 
 			//詳細画面 dataとLocationとSpriteImageを渡す
 			InputDetailInfoCanvas detail = detailPanel.GetComponent<InputDetailInfoCanvas> ();
-			detail.setBinaryData (base64data);
+
+			detail.cameraCullingMaskChange (0);
+			detail.setBinaryData (byteReadBinary);
+
 //			detail.setLocation (lat, lon);
 			detail.setSpriteImage (sp);
-
+			detail.inputfieldclear ();
 		}
 	}
 
