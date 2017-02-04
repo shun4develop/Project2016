@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class ImageFullPanel: MonoBehaviour{
 	
-	public Image image;
+	public ContentsOfFullScreenImage image;
 
 	public void setSprite(Sprite s){
-		image.sprite = s;
+		image.setTexture (s);
 	}
 
 	public void clearImage(){
-		image.sprite = null;
+		image.clearImage ();
 	}
 }

@@ -11,8 +11,6 @@ public class MapControl : MonoBehaviour {
 	private OnlineMapsLocationService locationService;
 	private OnlineMapsTileSetControl control;
 	private OnlineMaps map;
-	public Text t;
-	private int a;
 
 	private OnlineMapsMarkerBase selectedMarker;
 	private bool canCreateTooltipFlag;
@@ -29,8 +27,6 @@ public class MapControl : MonoBehaviour {
 	private bool markertouchflag;
 
 	private Vector2 pos;
-
-	private GenerateMapMarker ma;
 
 	private void Start(){
 		map = GetComponent<OnlineMaps>();
@@ -52,9 +48,8 @@ public class MapControl : MonoBehaviour {
 			return;
 		}
 
-		ma = new GenerateMapMarker ();
 		//test用のマーカー
-//		marker = map.AddMarker(139.7942,35.74987, "marker2");
+//		marker = map.AddMarker(138.5097,35.675194, "marker2");
 //		marker.OnPress += OnMarkerPress;
 //		marker.customData = "custamdata";
 //
@@ -67,40 +62,50 @@ public class MapControl : MonoBehaviour {
 		if (control.cameraRotation.x > 40) {
 			control.cameraRotation.x = 40;
 		}
+
+		//touchするとtooltipを削除
+//		if (Input.touchCount > 0) {
+//			t.text += "ttt"; 
+//			Touch touch = Input.GetTouch(0);
+//			if(touch.phase == TouchPhase.Began)
+//			{
+//				if (tooltip != null) {
+//					DestroyImmediate(tooltip);
+//				}
+//			}
+//		}
 	}
 
 	//locationが変化した時行う処理
 	private void OnLocationChanged(Vector2 position)
 	{
 		Debug.Log("location change");
-		t.text += position.ToString("F6") + "\n";
-		a++;
-		t.text += a.ToString();
 		UserInfo.instance.SetLocation (position.y.ToString ("F6"), position.x.ToString ("F6"));
 
+		if (pos.x != position.x && pos.y != position.y) {
 			Debug.Log ("createmarker");
 			//成功
 			Action<string> positive_func = (string text) => {
 				ItemData.instance.SetLocationItems (JsonHelper.ListFromJson<Item> (text));
-				ma.allMarkerDestroy (t);
-				ma.createMarker (ItemData.instance.locationItems);
-				markerlist = ma.getMarkerList ();
+				GenerateMapMarker marker = new GenerateMapMarker ();
+				marker.destroyAllMarker();
+				marker.createMarker (ItemData.instance.locationItems);
+				markerlist = marker.getMarkerList ();
 				foreach (OnlineMapsMarker m in markerlist) {
 					m.OnClick += OnMarkerPress;
 					m.OnDrawTooltip = delegate {
 					};
-				markerHeight = markerlist [0].height;
 				}
+				markerHeight = markerlist [0].height;
 			};
 			//失敗
 			Action negative_func = () => {
 				Debug.Log ("miss");
-				t.text = "miss";
 			};
 
-		WebManager.instance.downloadContents (positive_func, negative_func, UserInfo.instance.latitude, UserInfo.instance.longitude);
+			WebManager.instance.downloadContents (positive_func, negative_func, UserInfo.instance.latitude, UserInfo.instance.longitude);
 			pos = position;
-		Debug.Log (UserInfo.instance.latitude + " + " + UserInfo.instance.longitude);
+		}
 	}
 
 	//GPSの緯度情報を返す
@@ -157,7 +162,6 @@ public class MapControl : MonoBehaviour {
 		tooltip.GetComponentInChildren<ContentsViewerBase> ().init (item);
 		tooltip.GetComponentInChildren<ContentsViewerBase> ().show ();
 	}
-
 	//ビルを作る際にMeshColliderを無効化する
 	private void OnBuildingCreated(OnlineMapsBuildingBase building)
 	{

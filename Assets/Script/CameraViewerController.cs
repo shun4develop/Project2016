@@ -87,13 +87,17 @@ public class CameraViewerController: MonoBehaviour {
 
 	//現在のコンテンツ情報をもとにオブジェクトを削除、生成する
 	private void contentsInit(){
-		
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す
-
 		foreach(Item item in ItemData.instance.locationItems){
-			if (instanceObjectList.ContainsKey (item.getId ()))
+			//すでに作成済み
+			if (instanceObjectList.ContainsKey (item.getId ())) {
 				continue;
+			}
+			if(string.IsNullOrEmpty (item.getFilepath())){
+				destroyObject (item.getId());
+				continue;
+			}
 			
 			GameObject tmp = Instantiate (pre);
 			tmp.transform.SetParent (contents.transform);
@@ -116,19 +120,20 @@ public class CameraViewerController: MonoBehaviour {
 				}
 			}
 			if (!find) {
-				GameObject obj;
-				instanceObjectList.TryGetValue (key, out obj);
-				if (obj != null) {
-					Debug.Log (obj.name + " Destroy");
-					Destroy (obj);
-				}
+				destroyObject (key);
 			}
 		}
 
 		Debug.Log ("bagItems / " + ItemData.instance.bagItems.Count);
 		Debug.Log ("locationItems / " + ItemData.instance.locationItems.Count);
 	}
-
+	private void destroyObject(int key){
+		GameObject obj;
+		instanceObjectList.TryGetValue (key, out obj);
+		if (obj != null) {
+			Destroy (obj);
+		}
+	}
 
 	public void touchFalseFlag(){
 		foreach (Transform child in contents.transform)

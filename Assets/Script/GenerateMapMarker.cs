@@ -9,9 +9,6 @@ public class GenerateMapMarker{
 	private static List<OnlineMapsMarker> markerlist = new List<OnlineMapsMarker>();
 	private static List<string> titlelist = new List<string>();
 
-//	public GenerateMapMarker(){
-
-//	}
 	//マーカー作成
 	public void createMarker(List<Item> items){
 		for(int i = 0; i < items.Count; i++){
@@ -24,10 +21,8 @@ public class GenerateMapMarker{
 		Debug.Log ("createmarker" + markerlist.Count);
 	}
 	//マーカーを全て削除
-	public void allMarkerDestroy(Text t){
-		int a=0;
-		Debug.Log ("des" + a);
-		if (markerlist.Count != 0) {
+	public void destroyAllMarker(){
+		if (markerlist.Count > 0) {
 			OnlineMaps.instance.RemoveAllMarkers ();
 			markerlist.Clear ();
 			Debug.Log ("demarkerlist" + markerlist.Count);
