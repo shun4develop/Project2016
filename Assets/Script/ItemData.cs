@@ -64,11 +64,11 @@ public class ItemData {
 
 	public void SetLocationItems(List<Item> items){
 		this.locationItems = items;
-		sortById (items);
+		//sortById (items);
 	}
 	public void SetBagItems(List<Item> items){
 		this.bagItems = items;
-		sortById (items);
+		//sortById (items);
 	}
 
 

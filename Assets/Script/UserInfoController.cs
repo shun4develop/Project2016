@@ -21,6 +21,6 @@ public class UserInfoController: MonoBehaviour {
 		};
 		Action failure = () => {
 		};
-		WebManager.instance.getUserInfomation (success,failure);
+		WebManager.instance.getUserInfomation (success,failure,SaveDataManager.loadUserName());
 	}
 }

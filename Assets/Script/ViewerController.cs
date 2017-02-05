@@ -33,6 +33,8 @@ public class ViewerController : MonoBehaviour {
 				message.gameObject.SetActive(true);
 				message.text = "コンテンツがありません。";
 				goToMap.gameObject.SetActive(true);
+				goToMap.enabled = true;
+				message.enabled = true;
 			}
 			contentsInit();
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+[RequireComponent(typeof(Image))]
 public class ContentsOfFullScreenImage : ContentsViewerBase {
 
 	private Image image;
@@ -9,9 +10,7 @@ public class ContentsOfFullScreenImage : ContentsViewerBase {
 	void Start(){
 		image = GetComponent<Image> ();
 	}
-
-	private Coroutine runningCoroutine;
-
+		
 	public override void show(){
 		
 	}
@@ -21,7 +20,6 @@ public class ContentsOfFullScreenImage : ContentsViewerBase {
 		try{
 			Sprite s = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
 			setTexture (s);
-			ItemData.instance.addSprite (Item.getId(), s);
 		}catch{
 			Debug.Log ("すでにオブジェクトが破棄されています。");
 		}
@@ -35,14 +33,7 @@ public class ContentsOfFullScreenImage : ContentsViewerBase {
 		}
 	}
 	public void clearImage(){
-		try{
-			StopCoroutine (runningCoroutine);
-		}catch{
-			Debug.Log ("すでにCoroutineが終了しています。");
-		}finally{
-			image.sprite = null;
-			showCompleted = false;
-		}
-
+		image.sprite = null;
+		showCompleted = false;
 	}
 }

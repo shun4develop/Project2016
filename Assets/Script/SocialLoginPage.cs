@@ -48,16 +48,23 @@ public class SocialLoginPage : MonoBehaviour {
 		if (!isSetInfo) {
 			return;
 		}
-		Action<string> success_func = (string text) => {
-			SaveDataManager.saveToken (text);
-			SaveDataManager.saveUserName (user_name.text);
-			//メイン画面
-			UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
+		//コールバック関数の定義
+		Action<Dictionary<string,object>> success_func = (Dictionary<string,object> resp) => { 
+			string resp_token = (string)resp["token"];
+			Profile info = JsonUtility.FromJson<Profile>((string)resp["user_info"]);
+
+			SaveDataManager.saveToken(resp_token);
+			SaveDataManager.saveUserInfo(info);
+			SaveDataManager.saveUserName(user_name.text);
+
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Map");
+			return;
 		};
-		Action failure_func = () => {
-			Debug.Log("失敗");
+		Action failure_func = ()=> {
+			this.GetComponent<AnimationUI>().slideOut("RIGHT");
+			return;
 		};
-		Debug.Log ("###"+token);
+
 		WebManager.instance.socialLogin (success_func, failure_func,user,token);
 
 	}

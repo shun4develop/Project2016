@@ -29,7 +29,7 @@ public class Register : MonoBehaviour {
 				SaveDataManager.saveUserInfo(JsonUtility.FromJson<Profile>((string)dic["user_info"]));
 				SaveDataManager.saveUserName (user_name.text);
 				//メイン画面
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
+				UnityEngine.SceneManagement.SceneManager.LoadScene ("Map");
 			};
 			Action failure_func = () => {
 				log.text = "登録できません";
