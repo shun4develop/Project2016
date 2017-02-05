@@ -122,10 +122,10 @@ public class ItemData {
 	public bool checkOverlapItemById(int id){
 		for (int i = 0; i < bagItems.Count; i++) {
 			if (bagItems [i].getId() == id) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	public void saveContent(Item item){

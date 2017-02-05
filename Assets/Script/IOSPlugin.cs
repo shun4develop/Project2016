@@ -13,6 +13,10 @@ public class IOSPlugin{
 	private static extern void savePhoto();
 	[DllImport("__Internal")]
 	private static extern void alertTest();
+	[DllImport("__Internal")]
+	private static extern void statusBarHidden();
+	[DllImport("__Internal")]
+	private static extern void statusBarShow();
 
 
 	public static void album(){
@@ -29,4 +33,11 @@ public class IOSPlugin{
 	public static void choice(){
 		alertTest ();
 	}
+	public static void hideStatusBar(){
+		statusBarHidden ();	
+	}
+	public static void showStatusBar(){
+		statusBarShow ();
+	}
+
 }

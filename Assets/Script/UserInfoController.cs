@@ -7,7 +7,6 @@ public class UserInfoController: MonoBehaviour {
 	public Text description;
 	public Text userName;
 	public IconImageViewer icon;
-	public Text logText;
 
 	void Start(){
 		fetchUserInfo ();

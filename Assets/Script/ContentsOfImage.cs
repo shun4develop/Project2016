@@ -52,9 +52,13 @@ public class ContentsOfImage : ContentsViewerBase {
 		}
 	}
 	public  void setTexture(Sprite s){
-		image.sprite = s;
-		ifp.setSprite (s);
-		showCompleted = true;
+		try{
+			image.sprite = s;
+			ifp.setSprite (s);
+			showCompleted = true;
+		}catch{
+			Debug.Log ("すでにCoroutineが終了しています。");
+		}
 	}
 	public void clearImage(){
 		try{

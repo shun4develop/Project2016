@@ -27,8 +27,12 @@ public class ContentsOfFullScreenImage : ContentsViewerBase {
 		}
 	}
 	public  void setTexture(Sprite s){
-		image.sprite = s;
-		showCompleted = true;
+		try{
+			image.sprite = s;
+			showCompleted = true;
+		}catch{
+			Debug.Log ("すでにオブジェクトが破棄されています。");
+		}
 	}
 	public void clearImage(){
 		try{

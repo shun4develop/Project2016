@@ -14,6 +14,7 @@ public class CameraViewerController: MonoBehaviour {
 	public GameObject pre;
 	public GameObject canvas;
 	public GameObject contents;
+	public CanvasGroup contentsFailure;
 
 	private string lat;
 	private string lon;
@@ -24,8 +25,8 @@ public class CameraViewerController: MonoBehaviour {
 	void Start(){
 		runningCoroutine = StartCoroutine(start());
 	}
-
 	private void updateScene(){
+		Debug.Log ("update");
 		if(runningCoroutine != null){
 			StopCoroutine (runningCoroutine);
 		}
@@ -90,14 +91,15 @@ public class CameraViewerController: MonoBehaviour {
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す
 		foreach(Item item in ItemData.instance.locationItems){
-			//すでに作成済み
-			if (instanceObjectList.ContainsKey (item.getId ())) {
-				continue;
-			}
 			if(string.IsNullOrEmpty (item.getFilepath())){
 				destroyObject (item.getId());
 				continue;
 			}
+			//すでに作成済み
+			if (instanceObjectList.ContainsKey (item.getId ())) {
+				continue;
+			}
+
 			
 			GameObject tmp = Instantiate (pre);
 			tmp.transform.SetParent (contents.transform);
@@ -110,6 +112,7 @@ public class CameraViewerController: MonoBehaviour {
 			cv.show ();
 
 			instanceObjectList.Add (item.getId (), tmp);
+
 
 		}
 		foreach(int key in instanceObjectList.Keys){
@@ -124,12 +127,23 @@ public class CameraViewerController: MonoBehaviour {
 			}
 		}
 
+		if (instanceObjectList.Count == 0) {
+			contentsFailure.alpha = 1f;
+			contentsFailure.interactable = true;
+			contentsFailure.blocksRaycasts = true;
+		} else {
+			contentsFailure.alpha = 0f;
+			contentsFailure.interactable = false;
+			contentsFailure.blocksRaycasts = false;
+		}
+
 		Debug.Log ("bagItems / " + ItemData.instance.bagItems.Count);
 		Debug.Log ("locationItems / " + ItemData.instance.locationItems.Count);
 	}
 	private void destroyObject(int key){
 		GameObject obj;
 		instanceObjectList.TryGetValue (key, out obj);
+		instanceObjectList.Remove (key);
 		if (obj != null) {
 			Destroy (obj);
 		}
