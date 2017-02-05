@@ -64,11 +64,11 @@ public class ItemData {
 
 	public void SetLocationItems(List<Item> items){
 		this.locationItems = items;
-		sortById (items);
+		//sortById (items);
 	}
 	public void SetBagItems(List<Item> items){
 		this.bagItems = items;
-		sortById (items);
+		//sortById (items);
 	}
 
 
@@ -122,10 +122,10 @@ public class ItemData {
 	public bool checkOverlapItemById(int id){
 		for (int i = 0; i < bagItems.Count; i++) {
 			if (bagItems [i].getId() == id) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	public void saveContent(Item item){

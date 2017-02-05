@@ -20,8 +20,6 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public ContentsOfImage img;
 	public ImageFullPanel fullImage;
 	public GameObject uploadCheck;
-	public Text debugText;
-	public Camera camera;
 		
 	public void setSpriteImage(Sprite sp){
 		this.sp = sp;
@@ -40,20 +38,16 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		desc.text = "";
 	}
 
-//	public void setLocation(double lat , double lon){
-//		this.lat = lat;
-//		this.lon = lon;
-//	}
 
 	//RegisterContents型のデータをアップロードする
 	public void uploadContent(){
 		
 		if (title.text == "") {
-			title.text = "untitle";
+			title.text = "Untitle";
 		}
 
 		if (desc.text == "") {
-			desc.text = "no comment";
+			desc.text = "No comment";
 		}
 
 		double lat = LocationManager.location.latitude;
@@ -62,16 +56,18 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		content = new RegisterContents (desc.text, title.text, lat, lon ,SaveDataManager.loadUserName() , toggle.isOn, "images");
 
 		Action<string> positive_func = (string text) => {
-			debugText.text += text;
 			AnimationUI u = uploadCheck.GetComponent<AnimationUI>();
 			u.fadeIn();
+			clear();
 		};
 
 		Action negative_func = () => {
 			Debug.Log("miss");
+
 		};
 
 		WebManager.instance.contentsUpload (positive_func, negative_func, content,binaryData);
+
 		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
 		ui.fadeOut ();
 		clear ();

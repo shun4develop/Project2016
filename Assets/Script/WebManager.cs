@@ -64,8 +64,16 @@ public class WebManager : MonoBehaviour {
 
 		return throwQueryToServer(www,positive_func,negative_func);
 	}
-	public Coroutine getUserInfomation(Action<string> positive_func,Action negative_func){
+//	public Coroutine getUserInfomation(Action<string> positive_func,Action negative_func){
+//		WWWForm data = getSecureForm ();
+//		WWW www = new WWW (GET_USER_INFOMATION,data);
+//		Debug.Log ("WebManager call getUserInfomation");
+//
+//		return throwQueryToServer(www,positive_func,negative_func);
+//	}
+	public Coroutine getUserInfomation(Action<string> positive_func,Action negative_func,string user_name){
 		WWWForm data = getSecureForm ();
+		data.AddField ("user_id",user_name);
 		WWW www = new WWW (GET_USER_INFOMATION,data);
 		Debug.Log ("WebManager call getUserInfomation");
 
@@ -190,6 +198,17 @@ public class WebManager : MonoBehaviour {
 
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
+	public Coroutine login(Action<Dictionary<string,object>> positive_func,Action negative_func,string user_name,string password){
+		WWWForm data = getSecureForm ();
+		data.AddField("user_name", user_name);
+		data.AddField("password", password);
+		WWW www = new WWW(LOGIN, data.data);
+
+		Debug.Log ("WebManager call login");
+
+
+		return throwQueryToServer (www,positive_func,negative_func);
+	}
 	public Coroutine socialLogin(Action<string> positive_func,Action negative_func,UserOfSNS user,string token){
 		WWWForm data = getSecureForm ();
 		data.AddField("user_name", user.name);
@@ -200,6 +219,18 @@ public class WebManager : MonoBehaviour {
 
 		Debug.Log ("WebManager call socialLogin");
 
+
+		return throwQueryToServer (www,positive_func,negative_func);
+	}
+	public Coroutine socialLogin(Action<Dictionary<string,object>> positive_func,Action negative_func,UserOfSNS user,string token){
+		WWWForm data = getSecureForm ();
+		data.AddField("user_name", user.name);
+		data.AddField("social_id", user.id);
+		data.AddField ("sns_type", user.socialType);
+		data.AddField ("instant_token", token);
+		WWW www = new WWW(LOGIN, data.data);
+
+		Debug.Log ("WebManager call socialLogin");
 
 		return throwQueryToServer (www,positive_func,negative_func);
 	}
@@ -286,7 +317,9 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
 		
 		yield return www;
-		Debug.Log (www.text);
+
+		checkImportantErorr (www.text);
+
 		if (string.IsNullOrEmpty (www.error)) {
 			
 			string[] result = www.text.Split ('/');
@@ -300,6 +333,7 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action<string> negative_func){
 		yield return www;
 		Debug.Log (www.text);
+		checkImportantErorr (www.text);
 		if (string.IsNullOrEmpty (www.error)) {
 
 			string[] result = www.text.Split ('/');
@@ -313,6 +347,7 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
 		yield return www;
 		Debug.Log (www.text);
+		checkImportantErorr (www.text);
 		if (string.IsNullOrEmpty (www.error)) {
 			if (www.text != MyCommon.Common.FAILURE) {
 				Dictionary<string,object> dic = MiniJSON.Json.Deserialize (www.text) as Dictionary<string,object>;
@@ -329,6 +364,7 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action<string> negative_func){
 		yield return www;
 		Debug.Log (www.text);
+		checkImportantErorr (www.text);
 		if (string.IsNullOrEmpty (www.error)) {
 			if (www.text != MyCommon.Common.FAILURE) {
 				Dictionary<string,object> dic = MiniJSON.Json.Deserialize (www.text) as Dictionary<string,object>;
@@ -344,10 +380,16 @@ public class WebManager : MonoBehaviour {
 
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){
 		yield return www;
+		checkImportantErorr (www.text);
 		if (string.IsNullOrEmpty (www.error)&&www.text != MyCommon.Common.FAILURE) {
 			positive_func (www.texture);
 		} else {
 			negative_func ();
+		}
+	}
+	private void checkImportantErorr(string resp){
+		if (resp == "important error") {
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
 		}
 	}
 }

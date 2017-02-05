@@ -14,11 +14,11 @@ public class AnimationWebView : WebViewObject {
 	}
 	public void slideIn(){
 		controller.slideIn ("BOTTOM");
-		SetMargins (0,Screen.height,0,-Screen.height);
+		SetMargins (0,Screen.height,0,-Screen.height-40);
 		SetVisibility (true);
 		Hashtable table = new Hashtable ();
 		table.Add ("from", 0);
-		table.Add ("to",Screen.height);
+		table.Add ("to",Screen.height-40);
 		table.Add ("time",SPEED);
 		table.Add ("easeType", EASE_TYPE);
 		table.Add ("onupdate","moveWebView");
