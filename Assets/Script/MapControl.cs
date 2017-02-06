@@ -127,16 +127,22 @@ public class MapControl : MonoBehaviour {
 	private void OnMarkerPress(OnlineMapsMarkerBase pressedMarker)
 	{
 		if (selectedMarker != pressedMarker) {
+			if (selectedMarker != null) {
+				selectedMarker.scale = 1f;
+			}
+			pressedMarker.scale = 1.3f;
 			// Change active marker
 			selectedMarker = pressedMarker;
 			createTooltip ();
 		} else {
+			selectedMarker.scale = 1f;
 			selectedMarker = null;
 			Destroy (tooltip);
 		}
 	}
 
 	private void OnMapClick(){
+		selectedMarker.scale = 1f;
 		selectedMarker = null;
 		Destroy (tooltip);
 	}
@@ -158,9 +164,7 @@ public class MapControl : MonoBehaviour {
 		tooltip.transform.SetAsFirstSibling ();
 
 		Item item = (Item)selectedMarker.customData;
-		tooltip.GetComponentInChildren<Text> ().text = item.getTitle();
-		tooltip.GetComponentInChildren<ContentsViewerBase> ().init (item);
-		tooltip.GetComponentInChildren<ContentsViewerBase> ().show ();
+		tooltip.GetComponent<Tooltip> ().init (item);
 	}
 	//ビルを作る際にMeshColliderを無効化する
 	private void OnBuildingCreated(OnlineMapsBuildingBase building)
