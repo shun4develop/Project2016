@@ -21,7 +21,6 @@ public class PinchInOut : MonoBehaviour {
 	void Update () {
 		
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			Debug.Log (touchFlag);
 			content.transform.localScale= new Vector3 (transform.localScale.x + 1, transform.localScale.y+1);
 		}
 		if (touchFlag) {

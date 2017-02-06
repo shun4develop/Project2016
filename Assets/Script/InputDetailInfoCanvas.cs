@@ -35,10 +35,6 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		this.binaryData = binary;
 	}
 
-	public void cameraCullingMaskChange(int depth){
-		camera.cullingMask = depth;
-	}
-
 	public void inputfieldclear(){
 		title.text = "";
 		desc.text = "";
@@ -79,8 +75,6 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
 		ui.fadeOut ();
 		clear ();
-
-		cameraCullingMaskChange (1);
 	}
 	public void clear(){
 		title.text = "";
