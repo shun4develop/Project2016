@@ -1012,18 +1012,7 @@ MonoBehaviour:
   m_CharacterLimit: 100
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 317946722}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -1594,9 +1583,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.3
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 0
 --- !u!114 &541809202
 MonoBehaviour:
@@ -1696,9 +1687,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.1
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 0
 --- !u!225 &590561306
 CanvasGroup:
@@ -3559,9 +3552,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.3
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 0
 --- !u!225 &1324933106
 CanvasGroup:
@@ -5217,9 +5212,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.3
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 0
 --- !u!225 &2116057374
 CanvasGroup:

@@ -119,7 +119,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -198,12 +198,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD:Assets/Resources/Prefabs/tooltip.prefab
   m_Children:
   - {fileID: 224000012812107932}
-=======
-  m_Children: []
->>>>>>> master:Assets/Prefab/tooltip.prefab
   m_Father: {fileID: 22446300}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.1, y: 0.2}
@@ -219,11 +215,7 @@ RectTransform:
   m_GameObject: {fileID: 171846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD:Assets/Resources/Prefabs/tooltip.prefab
   m_LocalScale: {x: 1, y: 1, z: 1}
-=======
-  m_LocalScale: {x: 2, y: 2, z: 2}
->>>>>>> master:Assets/Prefab/tooltip.prefab
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 22427846}
