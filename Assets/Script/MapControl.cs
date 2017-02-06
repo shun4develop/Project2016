@@ -82,7 +82,7 @@ public class MapControl : MonoBehaviour {
 		Debug.Log("location change");
 		UserInfo.instance.SetLocation (position.y.ToString ("F6"), position.x.ToString ("F6"));
 
-		if (pos.x != position.x && pos.y != position.y) {
+		//if (pos.x != position.x && pos.y != position.y) {
 			Debug.Log ("createmarker");
 			//成功
 			Action<string> positive_func = (string text) => {
@@ -95,8 +95,8 @@ public class MapControl : MonoBehaviour {
 					m.OnClick += OnMarkerPress;
 					m.OnDrawTooltip = delegate {
 					};
-				}
 				markerHeight = markerlist [0].height;
+				}
 			};
 			//失敗
 			Action negative_func = () => {
@@ -105,7 +105,7 @@ public class MapControl : MonoBehaviour {
 
 			WebManager.instance.downloadContents (positive_func, negative_func, UserInfo.instance.latitude, UserInfo.instance.longitude);
 			pos = position;
-		}
+		//}
 	}
 
 	//GPSの緯度情報を返す

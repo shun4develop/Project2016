@@ -23,7 +23,10 @@ public class GenerateMapMarker{
 	//マーカーを全て削除
 	public void destroyAllMarker(){
 		if (markerlist.Count > 0) {
-			OnlineMaps.instance.RemoveAllMarkers ();
+			foreach (OnlineMapsMarker m in markerlist) {
+				OnlineMaps.instance.RemoveMarker (m);
+			}
+			//OnlineMaps.instance.RemoveAllMarkers ();
 			markerlist.Clear ();
 			Debug.Log ("demarkerlist" + markerlist.Count);
 		}
