@@ -6,6 +6,8 @@ public class PinchInOut : MonoBehaviour {
 
 	public bool touchFlag = false;
 
+	NavMeshAgent agent;
+
 	float vMin = 1.0f;
 	float vMax = 5.0f;
 
@@ -15,17 +17,54 @@ public class PinchInOut : MonoBehaviour {
 	float view = 60.0f;
 	float v = 1.0f;
 
-	public GameObject content;
+	Vector2 startPos;
+	RectTransform rectTrans;
+
+	Vector2 max;
+	Vector2 min;
+
+	void Start(){
+		startPos = transform.position;
+		rectTrans = GetComponent <RectTransform> ();
+	}
 
 	// Update is called once per frame
 	void Update () {
-		
+
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			content.transform.localScale= new Vector3 (transform.localScale.x + 1, transform.localScale.y+1);
+			rectTrans.sizeDelta = new Vector2 (rectTrans.sizeDelta.x+1, rectTrans.sizeDelta.y+1);
+			Debug.Log( rectTrans.offsetMax );
 		}
+
+		if (Input.GetKeyDown (KeyCode.E)) {
+			rectTrans.sizeDelta = new Vector2 (rectTrans.sizeDelta.x-1, rectTrans.sizeDelta.y-1);
+			Debug.Log( rectTrans.offsetMax );
+		}
+
 		if (touchFlag) {
+			if (Input.touchCount == 1 && rectTrans.sizeDelta.x > 0) {
+				Touch touch = Input.GetTouch (0);
+
+				max = rectTrans.offsetMax;
+				min = rectTrans.offsetMin;
+
+				if (max.y >= 0 && min.y <= 0&& max.x >= 0 && min.x <= 0) {
+					rectTrans.position = new Vector2 (transform.position.x + touch.deltaPosition.x, transform.position.y + touch.deltaPosition.y);
+				}else{
+				if (max.y < 0) {
+					max.y = 0;
+				}else if (max.x < 0) {
+					max.x = 0;
+				}
+				else if (min.x > 0) {
+					max.x = 0;
+				}
+				else if (min.y > 0) {
+					max.y = 0;
+				}
+			}
 			// マルチタッチかどうか確認
-			if (Input.touchCount == 2) {
+			if (Input.touchCount >= 2) {
 				// タッチしている２点を取得
 				Touch t1 = Input.GetTouch (0);
 				Touch t2 = Input.GetTouch (1);
@@ -48,8 +87,13 @@ public class PinchInOut : MonoBehaviour {
 
 					// 相対値が変更した場合、カメラに相対値を反映させる
 					if (v != 0) {
-//					map.transform.localScale = new Vector3(v, v, 1.0f);
-						content.transform.localScale = new Vector3 (v, v, 1.0f);
+						//transform.localScale = new Vector3 (v, v, 1.0f);
+						if(backDist<newDist && rectTrans.sizeDelta.x <= 200){
+							rectTrans.sizeDelta = new Vector2 (rectTrans.sizeDelta.x + v, rectTrans.sizeDelta.y + v);
+						}
+						if(backDist>newDist && rectTrans.sizeDelta.x >= 0){
+							rectTrans.sizeDelta = new Vector2 (rectTrans.sizeDelta.x - v, rectTrans.sizeDelta.y - v);
+						}
 						backDist = newDist;
 					}
 				}
@@ -63,6 +107,7 @@ public class PinchInOut : MonoBehaviour {
 
 	public void falseTouchFlag(){
 		touchFlag = false;
-		content.transform.localScale = new Vector3 (1, 1, 1);
+		rectTrans.sizeDelta = new Vector2(0,0);
+		transform.position = startPos;
 	}
 }
