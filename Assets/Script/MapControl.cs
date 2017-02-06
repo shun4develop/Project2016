@@ -56,8 +56,8 @@ public class MapControl : MonoBehaviour {
 //		marker.OnDrawTooltip = delegate {  };
 
 		//map.OnUpdateLate += OnUpdateLate;
-	}
 
+	}
 	private void Update(){
 		if (control.cameraRotation.x > 40) {
 			control.cameraRotation.x = 40;
@@ -130,7 +130,7 @@ public class MapControl : MonoBehaviour {
 			if (selectedMarker != null) {
 				selectedMarker.scale = 1f;
 			}
-			pressedMarker.scale = 1.3f;
+			pressedMarker.scale = 1.8f;
 			// Change active marker
 			selectedMarker = pressedMarker;
 			createTooltip ();
@@ -142,9 +142,11 @@ public class MapControl : MonoBehaviour {
 	}
 
 	private void OnMapClick(){
-		selectedMarker.scale = 1f;
-		selectedMarker = null;
-		Destroy (tooltip);
+		if (selectedMarker != null) {
+			selectedMarker.scale = 1f;
+			selectedMarker = null;
+			Destroy (tooltip);
+		}
 	}
 	private void createTooltip(){
 		if (tooltip == null) {

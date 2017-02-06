@@ -8,7 +8,6 @@ using MyClass;
 public class InputDetailInfoCanvas : MonoBehaviour{
 
 	private RegisterContents content;
-
 	private byte[] binaryData;
 	private double lat;
 	private double lon;
@@ -18,8 +17,9 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public InputField desc;
 	public Toggle toggle;
 	public ContentsOfImage img;
+	public Text logText;
 	public ImageFullPanel fullImage;
-	public GameObject uploadCheck;
+	public UploadLogCanvas uploadLog;
 		
 	public void setSpriteImage(Sprite sp){
 		this.sp = sp;
@@ -43,11 +43,9 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public void uploadContent(){
 		
 		if (title.text == "") {
-			title.text = "Untitle";
-		}
-
-		if (desc.text == "") {
-			desc.text = "No comment";
+			logText.text = "Titleが入力されていません";
+			StartCoroutine (wordDelete(2));
+			return;
 		}
 
 		double lat = LocationManager.location.latitude;
@@ -56,21 +54,24 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		content = new RegisterContents (desc.text, title.text, lat, lon ,SaveDataManager.loadUserName() , toggle.isOn, "images");
 
 		Action<string> positive_func = (string text) => {
-			AnimationUI u = uploadCheck.GetComponent<AnimationUI>();
-			u.fadeIn();
+			LoadingManager.stop();
+
+			this.gameObject.GetComponent<AnimationUI> ().fadeOut();
+
+			uploadLog.uploadComplete();
+
 			clear();
 		};
 
 		Action negative_func = () => {
-			Debug.Log("miss");
-
+			LoadingManager.stop();
+			uploadLog.uploadFailure();
 		};
 
 		WebManager.instance.contentsUpload (positive_func, negative_func, content,binaryData);
 
-		AnimationUI ui = this.gameObject.GetComponent<AnimationUI> ();
-		ui.fadeOut ();
-		clear ();
+		LoadingManager.run ();
+
 	}
 	public void clear(){
 		title.text = "";
@@ -78,5 +79,9 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 		toggle.isOn = true;
 		img.clearImage ();
 		fullImage.clearImage ();
+	}
+	private IEnumerator wordDelete(int sec){
+		yield return new WaitForSeconds (sec);
+		logText.text = "";
 	}
 }
