@@ -18,8 +18,13 @@ public class AnimationUI : MonoBehaviour {
 	public iTween.EaseType FEAD_EASE_TYPE = iTween.EaseType.linear;
 	public iTween.EaseType POP_EASE_TYPE = iTween.EaseType.easeInBounce;
 	public bool startWithActive;
+	private bool isActive;
+	public bool IsActive{ 
+		get{
+			return isActive;
+		}
+	}
 	private bool move;
-	public bool IsActive{ get; set;}
 	void Awake () {
 		rectTransform = GetComponent<RectTransform> ();
 		canvasGroup = GetComponent<CanvasGroup> ();
@@ -193,14 +198,14 @@ public class AnimationUI : MonoBehaviour {
 		transform.SetAsFirstSibling ();
 	}
 	private void activate(){
-		IsActive = true;
 		canvasGroup.interactable = true;
 		canvasGroup.blocksRaycasts = true;
 		transform.SetAsLastSibling ();
+		isActive = true;
 	}
 	private void deactivate(){
-		IsActive = false;
 		canvasGroup.blocksRaycasts = false;
 		canvasGroup.interactable = false;
+		isActive = false;
 	}
 }

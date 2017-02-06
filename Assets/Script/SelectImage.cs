@@ -7,19 +7,15 @@ namespace MapScene{
 	public class SelectImage : MonoBehaviour {
 
 		public GameObject webManager;
-		public Text t;
 		public GameObject detailPanel;
 		public GameObject mapobj;
 
-		private MapControl mapcontrol;
-		private string base64data;
 		private Sprite sp;
 		private AndroidJavaClass unityPlayer;
 		private AndroidJavaObject activity;
 
 		private void Start(){
 			
-			mapcontrol = mapobj.GetComponent<MapControl> ();
 
 		}
 
@@ -49,7 +45,6 @@ namespace MapScene{
 		{
 			// バイト配列でファイルを読み込み、Texture2Dとしてセットする.
 			byte[] byteReadBinary = File.ReadAllBytes(strPath);
-			base64data = System.Convert.ToBase64String (byteReadBinary); //base64に変換
 			Texture2D txtNewImage = new Texture2D (intWidth, intHeight);
 
 			//texture2dとspritを作る
@@ -63,24 +58,12 @@ namespace MapScene{
 			}
 
 
-			//byte[] binaryData = txtNewImage.EncodeToPNG ();
-
-			//txtNewImage.LoadImage(byteReadBinary);
-			//sp = Sprite.Create(txtNewImage, new Rect(0, 0, txtNewImage.width, txtNewImage.height),new Vector2 (0.5f, 0.5f));
-			//t.text += "width" + txtNewImage.width.ToString () + " + " + "height" + txtNewImage.height.ToString ();
-			//double lat=0,lon=0;
-
-			//MapのOnlineMapsLocationServiceを取ってくる
-//			OnlineMapsLocationService location = mapobj.GetComponent<OnlineMapsLocationService>();
-//			lat = location.position.y;
-//			lon = location.position.x;
 
 			//詳細画面 dataとLocationとSpriteImageを渡す
 			InputDetailInfoCanvas detail = detailPanel.GetComponent<InputDetailInfoCanvas> ();
 
 			detail.setBinaryData (byteReadBinary);
 
-//			detail.setLocation (lat, lon);
 			detail.setSpriteImage (sp);
 			detail.inputfieldclear ();
 		}

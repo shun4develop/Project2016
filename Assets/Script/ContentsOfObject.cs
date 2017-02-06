@@ -10,8 +10,6 @@ public class ContentsOfObject : ContentsViewerBase  {
 
 	public bool touchFlag = true;
 
-	private Coroutine runningCoroutine;
-
 	void Start(){
 		cc = GetComponent<CanvasCreatorBase>();
 		cvc = GameObject.Find ("System").GetComponent<CameraViewerController>();
@@ -30,7 +28,7 @@ public class ContentsOfObject : ContentsViewerBase  {
 			Action failure_func = () => {
 				Debug.Log ("ContentsOfThumbnail : failure_func");
 			};
-			runningCoroutine = WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId()).getThumbnail ());
+			WebManager.instance.getResources (success_func, failure_func, ItemData.instance.getLocationItemById (Item.getId()).getThumbnail ());
 		}
 
 	}

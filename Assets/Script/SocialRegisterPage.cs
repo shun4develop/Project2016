@@ -61,7 +61,7 @@ public class SocialRegisterPage : MonoBehaviour {
 
 
 				//メイン画面
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
+				UnityEngine.SceneManagement.SceneManager.LoadScene ("Map");
 			};
 			Action<string> failure_func = (string text) => {
 				Debug.Log("失敗");

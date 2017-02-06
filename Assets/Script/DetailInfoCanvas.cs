@@ -28,8 +28,6 @@ public class DetailInfoCanvas : MonoBehaviour{
 
 	private ContentsViewerBase imageViewer;
 
-	GameObject child;
-
 	void Start(){
 		this.imageViewer = image.GetComponent<ContentsViewerBase> ();
 	}
@@ -37,16 +35,16 @@ public class DetailInfoCanvas : MonoBehaviour{
 	public void init(Item item){
 		this.imageViewer.Item = item;
 		this.item = item;
-		this.date.text = item.getDate ();
+		this.date.text = item.getDate ().Substring(0,10);
 		this.title.text = item.getTitle ();
 		this.comment.text = item.getDesc ();
-		this.owner.text = item.getOwner ();
+		this.owner.text = "<color=blue>@"+item.getOwner ()+"</color>";
 
 		if ((UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Camera"
-			&& !ItemData.instance.checkOverlapItemById (item.getId ())) || !item.getPermitSave()) {
+			&& (ItemData.instance.checkOverlapItemById (item.getId ()) || !item.getPermitSave()))) {
 			btn.interactable = false;
 			btn.GetComponent<CanvasGroup> ().alpha = 0;
-		} else if(UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Album"){
+		} else {
 			btn.interactable = true;
 			btn.GetComponent<CanvasGroup> ().alpha = 1;
 		}

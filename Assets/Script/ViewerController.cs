@@ -11,10 +11,10 @@ public class ViewerController : MonoBehaviour {
 	public GameObject pre;
 
 	public ScrollRect scrollView;
-	public GameObject tx;
+	public Text message;
+	public Button goToMap;
 
 	void Start () {
-
 		//WebManager wm = GetComponent<WebManager>();
 		// Action<> 戻り値なし
 		// Func<>	戻り値ある
@@ -23,20 +23,28 @@ public class ViewerController : MonoBehaviour {
 		// Action<T1,T2>		引数 2
 		// Func  <T,TResult>	引数 1 戻り値 TResult型
 		// Func  <T1,T2,TResult> 同上
-
-		downloadContents ();			
+		downloadContents ();
 	}
 
 	public void downloadContents(){
 		Action<string> positive_func = (string text) => {
 			ItemData.instance.SetBagItems(JsonHelper.ListFromJson<Item> (text));
+			if(ItemData.instance.bagItems.Count == 0){
+				message.gameObject.SetActive(true);
+				message.text = "コンテンツがありません。";
+				goToMap.gameObject.SetActive(true);
+				goToMap.enabled = true;
+				message.enabled = true;
+			}
 			contentsInit();
+
 		};
 
 		Action negative_func = () => {
 			//エラー表示
 			Debug.Log("ViewerController.Start()   エラー");
-			tx.SetActive(true);
+			message.gameObject.SetActive(true);
+			message.text = "コンテンツの取得に失敗しました。";
 		};
 
 		WebManager.instance.downloadContents ( positive_func , negative_func, "bag");
@@ -45,9 +53,6 @@ public class ViewerController : MonoBehaviour {
 	private void contentsInit(){
 		//返ってきたデータの分だけItemクラスのリストに入っているので
 		//items.Countの数だけ繰り返す
-
-		
-
 		for (int i=ItemData.instance.bagItems.Count-1;i>=0;i--){
 			Item item = ItemData.instance.bagItems[i];
 

@@ -10,8 +10,8 @@ public class Indicator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		image = GetComponent<Image>();
+		//transform.LookAt (Camera.main.transform);
 	}
-	
 	// Update is called once per frame
 	void Update () {
 		contents = transform.parent.GetComponent<ContentsViewerBase> ();

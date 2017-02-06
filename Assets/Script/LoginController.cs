@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System;
 using MyManagers;
+using System.Collections.Generic;
 public class LoginController : MonoBehaviour {
 	public InputField userName;
 	public InputField password;
@@ -14,25 +15,28 @@ public class LoginController : MonoBehaviour {
 		}else if(password.text.Length < 8 || password.text.Length > 65){
 			log.text = "パスワードは8文字以上64文字以下の長さが必要です";
 		}else {
-			Action<string> success_func = (string text) => {
+			
+
+
+			//コールバック関数の定義
+			Action<Dictionary<string,object>> success_func = (Dictionary<string,object> resp) => { 
+				
+				string resp_token = (string)resp["token"];
+				Profile info = JsonUtility.FromJson<Profile>((string)resp["user_info"]);
+
+				SaveDataManager.saveToken(resp_token);
+				SaveDataManager.saveUserInfo(info);
 				SaveDataManager.saveUserName(userName.text);
-				SaveDataManager.saveToken(text);
-				getUserInfo(userName.text);
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("Main");
+				UnityEngine.SceneManagement.SceneManager.LoadScene ("Map");
+
 			};
-			Action failure_func = () => {
+			Action failure_func = ()=> {
 				log.text = "ユーザ名かパスワードが正しくありません";
 			};
-			WebManager.instance.login (success_func,failure_func,userName.text,password.text);
-		}
-	}
-	private void getUserInfo(string user_name){
-		Action<string> success = (string msg)=>{
-			SaveDataManager.saveUserInfo(JsonUtility.FromJson<Profile>(msg));
-		};
-		Action failure = ()=>{
 
-		};
-		WebManager.instance.getUserInfomation(success,failure);
+			//自動ログインを試みる
+			WebManager.instance.login (success_func,failure_func,userName.text,password.text);
+
+		}
 	}
 }
