@@ -14,6 +14,8 @@ public class ViewerController : MonoBehaviour {
 	public Text message;
 	public Button goToMap;
 
+	public Transform contentsParent;
+
 	void Start () {
 		//WebManager wm = GetComponent<WebManager>();
 		// Action<> 戻り値なし
@@ -61,7 +63,7 @@ public class ViewerController : MonoBehaviour {
 //			if (tmp == null)
 //				return;
 
-			tmp.transform.SetParent (scrollView.content.transform);
+			tmp.transform.SetParent (contentsParent);
 
 			ContentsViewerBase cv = tmp.GetComponent<ContentsViewerBase> ();
 			cv.init (item);
@@ -73,7 +75,7 @@ public class ViewerController : MonoBehaviour {
 	}
 
 	public void contentsUpdate(){
-		foreach (Transform child in scrollView.content.transform)
+		foreach (Transform child in contentsParent)
 		{
 			Destroy (child.gameObject);
 		}
