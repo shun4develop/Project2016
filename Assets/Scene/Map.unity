@@ -876,7 +876,7 @@ MonoBehaviour:
   markerTooltip: 
   markerType: 0
   marker2DAlign: 4
-  marker2DTexture: {fileID: 2800000, guid: 35523377964384f408ab4ad1d7ae944c, type: 3}
+  marker2DTexture: {fileID: 2800000, guid: 738b342193f2949dcb065425362ccf2f, type: 3}
   marker3DPrefab: {fileID: 1000013501285382, guid: 9c2f6aaef7250479c8c2ec4e2d8b199d,
     type: 2}
   maxPositionCount: 3
@@ -5280,6 +5280,7 @@ MonoBehaviour:
   logText: {fileID: 1141793540}
   fullImage: {fileID: 838769459}
   uploadLog: {fileID: 1324933107}
+  map: {fileID: 193630192}
 --- !u!114 &2116057378
 MonoBehaviour:
   m_ObjectHideFlags: 0

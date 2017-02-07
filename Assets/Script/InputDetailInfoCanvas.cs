@@ -20,6 +20,7 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 	public Text logText;
 	public ImageFullPanel fullImage;
 	public UploadLogCanvas uploadLog;
+	public MapControl map;
 		
 	public void setSpriteImage(Sprite sp){
 		this.sp = sp;
@@ -57,7 +58,7 @@ public class InputDetailInfoCanvas : MonoBehaviour{
 			LoadingManager.stop();
 
 			this.gameObject.GetComponent<AnimationUI> ().fadeOut();
-
+			map.updateMap();
 			uploadLog.uploadComplete();
 
 			clear();

@@ -15,7 +15,7 @@ public class ScrollControllWithElementSizeOfChildren : MonoBehaviour{
 		rect = GetComponent<RectTransform> ();
 	}
 
-	public void fit ()
+	public void fitWithAnimation ()
 	{
 		if (GetComponent<iTween> () == null && !move) {
 			if (rect.localPosition.y < 0) {
@@ -47,17 +47,19 @@ public class ScrollControllWithElementSizeOfChildren : MonoBehaviour{
 			}
 		}
 	}
+	public void fit(){
+		if (rect.localPosition.y < -1) {
+			scroll (0);
+		} else if (rect.localPosition.y > getContentsSizeDelta ()+1) {
+			scroll (getContentsSizeDelta());
+		} 
+	}
 	private float getContentsSizeDelta(){
 		float size = 0;
 		foreach(RectTransform rt in contents){
 			size += rt.sizeDelta.y;
 		}
 		return size;
-	}
-
-	// Update is called once per frame
-	void Update () {
-		Debug.Log (rect.localPosition.y);
 	}
 	private void scroll(float val){
 		rect.localPosition = new Vector2(0,val);
