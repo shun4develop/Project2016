@@ -317,9 +317,10 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action negative_func){
 		
 		yield return www;
-
-		checkImportantErorr (www.text);
-
+		if (checkImportantErorr (www.text)) {
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
+			yield break;
+		}
 		if (string.IsNullOrEmpty (www.error)) {
 			
 			string[] result = www.text.Split ('/');
@@ -333,7 +334,10 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<string> positive_func,Action<string> negative_func){
 		yield return www;
 		Debug.Log (www.text);
-		checkImportantErorr (www.text);
+		if (checkImportantErorr (www.text)) {
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
+			yield break;
+		}
 		if (string.IsNullOrEmpty (www.error)) {
 
 			string[] result = www.text.Split ('/');
@@ -347,7 +351,10 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action negative_func){
 		yield return www;
 		Debug.Log (www.text);
-		checkImportantErorr (www.text);
+		if (checkImportantErorr (www.text)) {
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
+			yield break;
+		}
 		if (string.IsNullOrEmpty (www.error)) {
 			if (www.text != MyCommon.Common.FAILURE) {
 				Dictionary<string,object> dic = MiniJSON.Json.Deserialize (www.text) as Dictionary<string,object>;
@@ -364,7 +371,10 @@ public class WebManager : MonoBehaviour {
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Dictionary<string,object>> positive_func,Action<string> negative_func){
 		yield return www;
 		Debug.Log (www.text);
-		checkImportantErorr (www.text);
+		if (checkImportantErorr (www.text)) {
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
+			yield break;
+		}
 		if (string.IsNullOrEmpty (www.error)) {
 			if (www.text != MyCommon.Common.FAILURE) {
 				Dictionary<string,object> dic = MiniJSON.Json.Deserialize (www.text) as Dictionary<string,object>;
@@ -380,16 +390,17 @@ public class WebManager : MonoBehaviour {
 
 	private IEnumerator ThrowQueryToServer(WWW www,Action<Texture2D> positive_func,Action negative_func){
 		yield return www;
-		checkImportantErorr (www.text);
+		if (checkImportantErorr (www.text)) {
+			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
+			yield break;
+		}
 		if (string.IsNullOrEmpty (www.error)&&www.text != MyCommon.Common.FAILURE) {
 			positive_func (www.texture);
 		} else {
 			negative_func ();
 		}
 	}
-	private void checkImportantErorr(string resp){
-		if (resp == "important error") {
-			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
-		}
+	private bool checkImportantErorr(string resp){
+		return resp == "important error";
 	}
 }

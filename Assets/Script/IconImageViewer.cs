@@ -10,7 +10,7 @@ public class IconImageViewer : MonoBehaviour {
 			GetComponent<Image> ().sprite = Sprite.Create (tex, new Rect (0, 0, tex.width, tex.height), new Vector2 (0.5f, 0.5f));
 		};
 		Action failure = () => {
-			GetComponent<Image> ().sprite = Resources.Load<Sprite> ("image/DefaultIcon");
+			GetComponent<Image> ().sprite = Resources.Load<Sprite> ("image/Nut");
 		};
 		WebManager.instance.getSNSIcon (success, failure, filepath);
 	}

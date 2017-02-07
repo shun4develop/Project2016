@@ -11,7 +11,7 @@ public class UserInfoController: MonoBehaviour {
 	void Start(){
 		fetchUserInfo ();
 	}
-	private void fetchUserInfo(){
+	public void fetchUserInfo(string name){
 		Action<string> success = (string msg) => {
 			Profile profile = JsonUtility.FromJson<Profile>(msg);
 			description.text = profile.getDesc();
@@ -21,6 +21,9 @@ public class UserInfoController: MonoBehaviour {
 		};
 		Action failure = () => {
 		};
-		WebManager.instance.getUserInfomation (success,failure,SaveDataManager.loadUserName());
+		WebManager.instance.getUserInfomation (success,failure,name);
+	}
+	private void fetchUserInfo(){
+		fetchUserInfo (SaveDataManager.loadUserName());
 	}
 }

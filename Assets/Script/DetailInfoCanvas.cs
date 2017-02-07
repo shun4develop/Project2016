@@ -38,6 +38,9 @@ public class DetailInfoCanvas : MonoBehaviour{
 		this.date.text = item.getDate ().Substring(0,10);
 		this.title.text = item.getTitle ();
 		this.comment.text = item.getDesc ();
+		if (string.IsNullOrEmpty (this.comment.text)) {
+			this.comment.text = "<color=#c0c0c0ff>コメントはありません</color>";
+		}
 		this.owner.text = "<color=blue>@"+item.getOwner ()+"</color>";
 
 		if ((UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name == "Camera"
