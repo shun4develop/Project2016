@@ -869,7 +869,7 @@ MonoBehaviour:
   autoStopUpdateOnInput: 0
   compassThreshold: 8
   createMarkerInUserPosition: 1
-  desiredAccuracy: 10
+  desiredAccuracy: 1
   emulatorCompass: 30
   emulatorPosition: {x: 138.33157, y: 35.860626}
   findLocationByIP: 0
@@ -883,7 +883,7 @@ MonoBehaviour:
   position: {x: 0, y: 0}
   restoreAfter: 10
   trueHeading: 0
-  updateDistance: 100
+  updateDistance: 1
   updatePosition: 1
   useCompassForMarker: 1
   useGPSEmulator: 1

@@ -10,7 +10,6 @@ public class MapControl : MonoBehaviour {
 	
 	private OnlineMapsLocationService locationService;
 	private OnlineMapsTileSetControl control;
-	private OnlineMaps map;
 
 	private OnlineMapsMarkerBase selectedMarker;
 	private bool canCreateTooltipFlag;
@@ -26,10 +25,9 @@ public class MapControl : MonoBehaviour {
 	private int markerHeight;
 	private bool markertouchflag;
 
-	private Vector2 pos;
+	//private Vector2 pos;
 
 	private void Start(){
-		map = GetComponent<OnlineMaps>();
 		control = GetComponent<OnlineMapsTileSetControl>();
 
 		// Get LocationService
@@ -41,6 +39,8 @@ public class MapControl : MonoBehaviour {
 			OnlineMaps.instance.control.OnMapPress += OnMapClick;
 		} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
 			OnlineMaps.instance.control.OnMapClick += OnMapClick;
+		} else {
+			OnlineMaps.instance.control.OnMapPress += OnMapClick;
 		}
 
 
@@ -73,7 +73,6 @@ public class MapControl : MonoBehaviour {
 	private void OnLocationChanged(Vector2 position)
 	{
 		UserInfo.instance.SetLocation (position.y.ToString ("F6"), position.x.ToString ("F6"));
-		pos = position;
 		updateMap ();
 	}
 	public void updateMap(){
@@ -88,10 +87,20 @@ public class MapControl : MonoBehaviour {
 					m.OnPress += OnMarkerPress;
 				}else if (Application.platform == RuntimePlatform.IPhonePlayer) {
 					m.OnClick += OnMarkerPress;
+				}else{
+					m.OnClick += OnMarkerPress;
 				}
 				m.OnDrawTooltip = delegate {
 				};
 				markerHeight = markerlist [0].height;
+			}
+			if(tooltip != null){
+				Item item = ItemData.instance.getLocationItemById(tooltip.GetComponent<Tooltip>().getItemId());
+				Destroy(tooltip);
+				tooltip = null;
+				if(item != null){
+					createTooltip((Item)selectedMarker.customData);
+				}
 			}
 		};
 		//失敗
@@ -128,7 +137,7 @@ public class MapControl : MonoBehaviour {
 			pressedMarker.scale = 1.8f;
 			// Change active marker
 			selectedMarker = pressedMarker;
-			createTooltip ();
+			createTooltip ((Item)selectedMarker.customData);
 		} else {
 			selectedMarker.scale = 1f;
 			selectedMarker = null;
@@ -143,11 +152,10 @@ public class MapControl : MonoBehaviour {
 			Destroy (tooltip);
 		}
 	}
-	private void createTooltip(){
-		if (tooltip == null) {
-			tooltip = Instantiate (tooltipPrefab) as GameObject;
-			(tooltip.transform as RectTransform).SetParent (container.transform);
-		}
+	private void createTooltip(Item item){
+		tooltip = Instantiate (tooltipPrefab) as GameObject;
+		(tooltip.transform as RectTransform).SetParent (container.transform);
+
 		Vector2 screenPosition = OnlineMapsControlBase.instance.GetScreenPosition (selectedMarker.position);
 		screenPosition.y += markerHeight+150;
 		Vector2 point;
@@ -160,7 +168,6 @@ public class MapControl : MonoBehaviour {
 
 		tooltip.transform.SetAsFirstSibling ();
 
-		Item item = (Item)selectedMarker.customData;
 		tooltip.GetComponent<Tooltip> ().init (item);
 	}
 	//ビルを作る際にMeshColliderを無効化する
