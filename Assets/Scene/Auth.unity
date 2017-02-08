@@ -225,7 +225,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_CharacterValidation: 0
   m_CharacterLimit: 16
   m_OnEndEdit:
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_CharacterValidation: 0
   m_CharacterLimit: 64
   m_OnEndEdit:
@@ -1203,7 +1203,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_CharacterValidation: 0
   m_CharacterLimit: 64
   m_OnEndEdit:
@@ -1437,9 +1437,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.3
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 0
 --- !u!225 &278837061
 CanvasGroup:
@@ -1807,9 +1809,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.3
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 0
 --- !u!225 &392674829
 CanvasGroup:
@@ -3500,7 +3504,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u304A\u6301\u3061\u3067\u306A\u3044\u65B9\u306F<color=blue>\u3053\u3061\u3089</color>"
+  m_Text: "\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u304A\u6301\u3061\u3067\u306A\u3044\u65B9\u306F<color=blue>\u3053\u3061\u3089</color>\u3078"
 --- !u!222 &826143556
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3722,7 +3726,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3059\u3067\u306B\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u304A\u6301\u3061\u306E\u65B9\u306F<color=blue>\u3053\u3061\u3089</color>"
+  m_Text: "\u3059\u3067\u306B\u30A2\u30AB\u30A6\u30F3\u30C8\u3092\u304A\u6301\u3061\u306E\u65B9\u306F<color=blue>\u3053\u3061\u3089</color>\u3078"
 --- !u!222 &1009592135
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4634,7 +4638,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_CharacterValidation: 0
   m_CharacterLimit: 64
   m_OnEndEdit:
@@ -5092,7 +5096,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_CharacterValidation: 0
   m_CharacterLimit: 16
   m_OnEndEdit:
@@ -5435,9 +5439,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.3
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 0
 --- !u!225 &1402202906
 CanvasGroup:
@@ -5731,9 +5737,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.3
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 1
 --- !u!114 &1590243361
 MonoBehaviour:
@@ -5837,9 +5845,11 @@ MonoBehaviour:
   FEAD_OUT_SPEED: 0.3
   POP_UP_SPEED: 0.2
   POP_DOWN_SPEED: 0.2
-  SLIDE_EASE_TYPE: 16
+  SLIDE_IN_EASE_TYPE: 11
+  POP_UP_EASE_TYPE: 27
+  SLIDE_OUT_EASE_TYPE: 11
   FEAD_EASE_TYPE: 21
-  POP_EASE_TYPE: 23
+  POP_DOWN_EASE_TYPE: 21
   startWithActive: 0
 --- !u!114 &1611821106
 MonoBehaviour:
@@ -5968,7 +5978,7 @@ MonoBehaviour:
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
-  m_HideMobileInput: 0
+  m_HideMobileInput: 1
   m_CharacterValidation: 0
   m_CharacterLimit: 16
   m_OnEndEdit:

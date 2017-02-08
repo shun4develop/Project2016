@@ -10,18 +10,16 @@ public class Indicator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		image = GetComponent<Image>();
-		//transform.LookAt (Camera.main.transform);
 	}
 	// Update is called once per frame
 	void Update () {
 		contents = transform.parent.GetComponent<ContentsViewerBase> ();
-		if (!contents.showCompleted) {
+		if ( contents == null || !contents.showCompleted) {
 			image.enabled = true;
 			iTween.RotateTo (gameObject, iTween.Hash ("z", -720, "easetype", "linear", "loopType", "loop", "delay", 0));
 		} else {
 			image.enabled = false;
 			GetComponent<RectTransform> ().rotation = new Quaternion(0,0,0,1);
-			//iTween.Stop ("Rotate");
 		}
 	}
 }
