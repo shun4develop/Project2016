@@ -2127,7 +2127,7 @@ RectTransform:
   m_Father: {fileID: 1590243359}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.6}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.95}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2150,7 +2150,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fa0f6476a7ab543128ba98834dda2eef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dae64b19c8c7a4f4a8159f58c3603bd7, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2850,7 +2850,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0
-  m_Text: Sign Up
+  m_Text: SIGN IN
 --- !u!222 &620972167
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4247,7 +4247,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sign Up
+  m_Text: SIGN UP
 --- !u!222 &1102191008
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4924,7 +4924,7 @@ RectTransform:
   m_Father: {fileID: 1611821104}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0.6}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 0.95}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4947,9 +4947,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fa0f6476a7ab543128ba98834dda2eef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dae64b19c8c7a4f4a8159f58c3603bd7, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -6458,7 +6458,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sign Up
+  m_Text: SIGN UP
 --- !u!222 &1818518337
 CanvasRenderer:
   m_ObjectHideFlags: 0
