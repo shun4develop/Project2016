@@ -37,7 +37,12 @@ public class MapControl : MonoBehaviour {
 
 		locationService.OnLocationChanged += OnLocationChanged;
 		//control.OnMapClick;
-		OnlineMaps.instance.control.OnMapClick += OnMapClick;
+		if (Application.platform == RuntimePlatform.Android) {
+			OnlineMaps.instance.control.OnMapPress += OnMapClick;
+		} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			OnlineMaps.instance.control.OnMapClick += OnMapClick;
+		}
+
 
 		OnlineMapsBuildings.instance.OnBuildingCreated += OnBuildingCreated;
 		//locationServiceがなかった場合
@@ -62,18 +67,6 @@ public class MapControl : MonoBehaviour {
 		if (control.cameraRotation.x > 40) {
 			control.cameraRotation.x = 40;
 		}
-
-		//touchするとtooltipを削除
-//		if (Input.touchCount > 0) {
-//			t.text += "ttt"; 
-//			Touch touch = Input.GetTouch(0);
-//			if(touch.phase == TouchPhase.Began)
-//			{
-//				if (tooltip != null) {
-//					DestroyImmediate(tooltip);
-//				}
-//			}
-//		}
 	}
 
 	//locationが変化した時行う処理
@@ -91,7 +84,11 @@ public class MapControl : MonoBehaviour {
 			marker.createMarker (ItemData.instance.locationItems);
 			markerlist = marker.getMarkerList ();
 			foreach (OnlineMapsMarker m in markerlist) {
-				m.OnClick += OnMarkerPress;
+				if(Application.platform == RuntimePlatform.Android){
+					m.OnPress += OnMarkerPress;
+				}else if (Application.platform == RuntimePlatform.IPhonePlayer) {
+					m.OnClick += OnMarkerPress;
+				}
 				m.OnDrawTooltip = delegate {
 				};
 				markerHeight = markerlist [0].height;
