@@ -321,7 +321,7 @@ public class WebManager : MonoBehaviour {
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
 			yield break;
 		}
-		if (string.IsNullOrEmpty (www.error)) {
+		if (string.IsNullOrEmpty (www.error)&&!string.IsNullOrEmpty(www.text)) {
 			
 			string[] result = www.text.Split ('/');
 			if (result [0] == MyCommon.Common.SUCCESS && result[0] != MyCommon.Common.FAILURE) {
@@ -338,7 +338,7 @@ public class WebManager : MonoBehaviour {
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
 			yield break;
 		}
-		if (string.IsNullOrEmpty (www.error)) {
+		if (string.IsNullOrEmpty (www.error)&&!string.IsNullOrEmpty(www.text)) {
 
 			string[] result = www.text.Split ('/');
 			if (result [0] == MyCommon.Common.SUCCESS && result[0] != MyCommon.Common.FAILURE) {
@@ -355,7 +355,7 @@ public class WebManager : MonoBehaviour {
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
 			yield break;
 		}
-		if (string.IsNullOrEmpty (www.error)) {
+		if (string.IsNullOrEmpty (www.error)&&!string.IsNullOrEmpty(www.text)) {
 			if (www.text != MyCommon.Common.FAILURE) {
 				Dictionary<string,object> dic = MiniJSON.Json.Deserialize (www.text) as Dictionary<string,object>;
 				Debug.Log (dic);
@@ -375,7 +375,7 @@ public class WebManager : MonoBehaviour {
 			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
 			yield break;
 		}
-		if (string.IsNullOrEmpty (www.error)) {
+		if (string.IsNullOrEmpty (www.error)&&!string.IsNullOrEmpty(www.text)) {
 			if (www.text != MyCommon.Common.FAILURE) {
 				Dictionary<string,object> dic = MiniJSON.Json.Deserialize (www.text) as Dictionary<string,object>;
 				Debug.Log (dic);
