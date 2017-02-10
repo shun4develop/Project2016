@@ -153,6 +153,8 @@ public class MapControl : MonoBehaviour {
 		}
 	}
 	private void createTooltip(Item item){
+		Destroy (tooltip);
+		tooltip = null;
 		tooltip = Instantiate (tooltipPrefab) as GameObject;
 		(tooltip.transform as RectTransform).SetParent (container.transform);
 

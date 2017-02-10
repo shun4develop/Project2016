@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 public class AnimationWebView : WebViewObject {
 	private float SPEED = 0.3f;
-	private iTween.EaseType EASE_TYPE = iTween.EaseType.easeOutExpo;
+	private iTween.EaseType EASE_TYPE = iTween.EaseType.easeInOutQuart;
 	private AnimationUI controller;
 	void Awake(){
 		controller = GameObject.Find ("WebViewControllerPage").GetComponent<AnimationUI>();

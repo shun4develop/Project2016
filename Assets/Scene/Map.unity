@@ -4282,16 +4282,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: e0a040cf4495e462b911aeefdcc3b061, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 15
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PUTS
+  m_Text: "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9"
 --- !u!222 &1635679514
 CanvasRenderer:
   m_ObjectHideFlags: 0
