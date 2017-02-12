@@ -7,6 +7,7 @@ public class LoginController : MonoBehaviour {
 	public InputField userName;
 	public InputField password;
 	public Text log;
+
 	public void login(){
 		if (userName.text.Length == 0 || password.text.Length == 0) {
 			log.text = "ユーザ名とパスワードを入力してください";

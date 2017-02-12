@@ -19,7 +19,8 @@ public class AutoLogin : MonoBehaviour {
 		string token = SaveDataManager.loadToken ();
 		if (string.IsNullOrEmpty (user_name) || string.IsNullOrEmpty (token)) {
 			Debug.Log("トークンがありません->ログイン画面へ");
-			UnityEngine.SceneManagement.SceneManager.LoadScene ("Auth");
+			success = false;
+			inquiryCompleted = true;
 			return;
 		}
 		//コールバック関数の定義

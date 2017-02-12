@@ -174,7 +174,6 @@ public class AnimationUI : MonoBehaviour {
 
 		move = true;
 		iTween.ValueTo (gameObject,hashtable);
-
 	}
 	private void setScale(float val){
 		rectTransform.localScale = new Vector3(val,val,val);

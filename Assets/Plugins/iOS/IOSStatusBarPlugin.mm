@@ -13,8 +13,8 @@ extern "C" {
 }
 
 
-//UnityViewControllerBaseiOS.mmに追記
+// UnityViewControllerBaseiOS.mmに追記
 // - (BOOL)prefersStatusBarHidden
 // {
-//     return self.view.tag == 0 ? YES:NO;//NOのとき表示する
+//     return self.view.tag == 999 ? YES:NO;//NOのとき表示する
 // }
