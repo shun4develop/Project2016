@@ -49,7 +49,6 @@ public class AutoLogin : MonoBehaviour {
 
 		//自動ログインを試みる
 		WebManager.instance.autoLogin(success_func,failure_func);
-		Debug.Log ("test");
 	}
 	public void logout(){
 		SaveDataManager.deleteData ();

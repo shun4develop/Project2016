@@ -14,13 +14,15 @@ public class UserInfomationEditorController : MonoBehaviour {
 	void Start(){
 		update ();
 	}
-
-
 	private void update(){
-		Profile info = SaveDataManager.loadUserInfo ();
-		string desc = info.getDesc ();
-		description.text = desc;
-		display.text = desc;
+		try{
+			Profile info = SaveDataManager.loadUserInfo ();
+			string desc = info.getDesc ();
+			description.text = desc;
+			display.text = desc;
+		}catch{
+			UnityEngine.SceneManagement.SceneManager.LoadSceneAsync ("Auth");
+		}
 	}
 	public void sendNewInfomation () {
 		Profile info = SaveDataManager.loadUserInfo ();

@@ -10,7 +10,6 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 	
 	public Item Item{ set; get;}
 	public bool showCompleted{ set; get;}
-
 	public void init(Item item){
 		this.Item = item;
 	}
@@ -26,6 +25,5 @@ public abstract class ContentsViewerBase : MonoBehaviour {
 //			setTexture (tex);
 //		}
 //	}
-
 
 }
