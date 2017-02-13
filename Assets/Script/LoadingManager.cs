@@ -15,7 +15,6 @@ public class LoadingManager{
 		loading = obj.GetComponent<LoadingPanel> ();
 		GameObject canvas = GameObject.FindGameObjectWithTag ("Canvas");
 		loading.transform.SetParent (canvas.transform,false);
-		//loading.run ();
 	}
 	public static void stop(){
 		if (loading != null) {
